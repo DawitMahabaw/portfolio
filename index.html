@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Junior Full-Stack Developer (MERN) | React, Node.js, MySQL</title>
+  
+  <!-- SEO & Sharing Meta Tags -->
+  <meta name="description" content="Portfolio of a Junior Full-Stack Developer (MERN) specializing in React, Node.js, and MySQL. AAU Information Science undergraduate and Evangadi Networks graduate." />
+  <link rel="canonical" href="https://yourportfolio.vercel.app/" />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Junior Full-Stack Developer (MERN) | Portfolio" />
+  <meta property="og:description" content="Explore full-stack web applications built with React, Node.js, Express, and MySQL." />
+  <meta property="og:image" content="/images/profile.jpg" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Junior Full-Stack Developer (MERN) | Portfolio" />
+  <meta name="twitter:description" content="Explore full-stack web applications built with React, Node.js, Express, and MySQL." />
+  <meta name="twitter:image" content="/images/profile.jpg" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Theme early check to avoid flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('portfolio_theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  
+  <!-- Person JSON-LD Structured Data for Technical Recruiters / SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "TODO: [YOUR FULL NAME]",
+    "jobTitle": "Junior Full-Stack Developer (MERN)",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Addis Ababa",
+      "addressCountry": "Ethiopia"
+    },
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Addis Ababa University"
+      },
+      {
+        "@type": "EducationalOrganization",
+        "name": "Evangadi Networks"
+      }
+    ],
+    "knowsAbout": ["React", "JavaScript", "Node.js", "Express", "MySQL", "REST APIs", "Git"]
+  }
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
