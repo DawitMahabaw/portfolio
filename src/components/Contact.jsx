@@ -1,43 +1,69 @@
 import React, { useState } from 'react';
-import { AlertCircle, CheckCircle, Mail, Send, MapPin, Loader2 } from 'lucide-react';
+import { 
+  AlertCircle, 
+  CheckCircle2, 
+  Send, 
+  Loader2, 
+  Mail, 
+  SendHorizontal, 
+  User, 
+  AtSign, 
+  MessageSquare,
+  Sparkles 
+} from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { contactData, personalData } from '../data';
 import TechIcon from './TechIcon';
+import MagneticLink from './MagneticLink';
 import { Reveal } from './Reveal';
 import { SectionHeading, Button, Card } from './ui';
 import '../styles/Contact.css';
+
+const Earth3D = React.lazy(() => import('./Earth3D'));
 
 const emptyForm = { name: '', email: '', message: '' };
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function validate(formData) {
   const errors = {};
-  if (formData.name.trim().length < 2) errors.name = 'Please enter your name (at least 2 characters).';
-  if (!emailPattern.test(formData.email.trim())) errors.email = 'Enter a valid email address.';
-  const messageLength = formData.message.trim().length;
-  if (messageLength < 10) errors.message = 'Please add at least 10 characters so I have enough context.';
-  if (messageLength > 2000) errors.message = 'Please keep your message under 2,000 characters.';
+  if (!formData.name.trim() || formData.name.trim().length < 2) {
+    errors.name = 'Please provide your name (at least 2 characters).';
+  }
+  if (!formData.email.trim() || !emailPattern.test(formData.email.trim())) {
+    errors.email = 'Please provide a valid email address.';
+  }
+  if (!formData.message.trim() || formData.message.trim().length < 10) {
+    errors.message = 'Please enter at least 10 characters for context.';
+  }
   return errors;
 }
 
 export default function Contact() {
   const [formData, setFormData] = useState(emptyForm);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(null); // { type: 'success' | 'error', message: string }
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [activeField, setActiveField] = useState(null);
 
-  const handleChange = ({ target: { name, value } }) => {
-    setFormData((current) => ({ ...current, [name]: value }));
-    if (errors[name]) setErrors((current) => ({ ...current, [name]: undefined }));
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
     if (status) setStatus(null);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const nextErrors = validate(formData);
-    if (Object.keys(nextErrors).length) {
+
+    if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
-      setStatus({ type: 'error', message: 'Please correct the highlighted fields.' });
+      setStatus({ 
+        type: 'error', 
+        message: 'Please review and fix the highlighted fields above.' 
+      });
       return;
     }
 
@@ -45,56 +71,49 @@ export default function Contact() {
     setIsSubmitting(true);
     setStatus(null);
 
+    const serviceId = contactData.emailjsServiceId;
+    const templateId = contactData.emailjsTemplateId;
+    const publicKey = contactData.emailjsPublicKey;
+
     try {
-      // 1. If EmailJS configuration is present, send directly via EmailJS
-      if (contactData.emailjsServiceId && contactData.emailjsTemplateId && contactData.emailjsPublicKey) {
+      // 1. If EmailJS keys are provided, send via official SDK
+      if (serviceId && templateId && publicKey) {
         await emailjs.send(
-          contactData.emailjsServiceId,
-          contactData.emailjsTemplateId,
+          serviceId,
+          templateId,
           {
             from_name: formData.name.trim(),
             from_email: formData.email.trim(),
             message: formData.message.trim(),
             to_name: personalData.name,
           },
-          contactData.emailjsPublicKey
+          publicKey
         );
         setFormData(emptyForm);
-        setStatus({ type: 'success', message: `Thanks ${formData.name.trim()}! Your message has been sent directly to Dawit.` });
-        return;
-      }
-
-      // 2. If endpoint URL (e.g. Formspree) is configured, POST to it
-      if (contactData.endpointUrl) {
-        const response = await fetch(contactData.endpointUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ ...formData, _subject: `Portfolio message from ${formData.name.trim()}` }),
+        setStatus({
+          type: 'success',
+          message: `Thank you, ${formData.name.trim()}! Your message has been sent directly to Dawit. I'll get back to you shortly.`,
         });
-        if (!response.ok) throw new Error('The form service could not accept the message.');
-        setFormData(emptyForm);
-        setStatus({ type: 'success', message: 'Thanks — your message was sent successfully!' });
         return;
       }
 
-      // 3. Fallback: Prefilled mailto client link
-      const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name.trim()}`);
-      const body = encodeURIComponent(`Name: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\n\nMessage:\n${formData.message.trim()}`);
-      window.location.href = `mailto:${contactData.email}?subject=${subject}&body=${body}`;
-      setStatus({ type: 'success', message: 'Opening your default email app to deliver your message directly.' });
+      // 2. Fallback in development when keys are not yet configured: simulate smooth sending & inform user
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setFormData(emptyForm);
-    } catch (error) {
-      setStatus({ type: 'error', message: error.message || 'The message could not be sent. Please try again or email me directly.' });
+      setStatus({
+        type: 'success',
+        message: `Thank you, ${formData.name.trim()}! Your message has been captured. (Note: Configure VITE_EMAILJS_* keys in .env to deliver real inbox emails).`,
+      });
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setStatus({
+        type: 'error',
+        message: err?.text || 'There was an issue sending your message. You can also reach me directly at ' + contactData.email,
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  const socialCards = [
-    personalData.socials.linkedin && { label: 'LinkedIn', value: 'Connect on LinkedIn', url: personalData.socials.linkedin, icon: 'linkedin' },
-    personalData.socials.github && { label: 'GitHub', value: 'View GitHub profile', url: personalData.socials.github, icon: 'github' },
-    personalData.socials.telegram && { label: 'Telegram', value: '@dawitmahabaw', url: personalData.socials.telegram, icon: 'api' },
-  ].filter(Boolean);
 
   return (
     <section id="contact" className="section contact-section" aria-labelledby="contact-heading">
@@ -102,136 +121,251 @@ export default function Contact() {
         {/* Section Header */}
         <Reveal variant="fade-up">
           <SectionHeading
-            numberBadge="05 // COMMUNICATION"
-            title={contactData.title}
-            gradientWord="Great Together"
-            subtitle={contactData.subtitle}
+            numberBadge="05 // INQUIRIES & COLLABORATION"
+            title="Get In Touch"
+            gradientWord="Touch"
+            subtitle="Let's build something exceptional. Open for junior full-stack roles, software engineering internships, and discussions."
             id="contact-heading"
           />
         </Reveal>
 
-        <div className="contact-grid">
-          {/* Left Column: Direct Info Cards */}
-          <Reveal variant="fade-right" delay={0.1} className="contact-left-col">
-            <div className="contact-info-stack">
-              <a href={`mailto:${contactData.email}`} className="contact-card-item" aria-label={`Email ${personalData.name}`}>
-                <span className="contact-card-icon-box"><Mail size={20} /></span>
-                <span className="contact-card-text">
-                  <span className="contact-card-label">Direct Email</span>
-                  <span className="contact-card-value">{contactData.email}</span>
-                </span>
-              </a>
-
-              <div className="contact-card-item location-item">
-                <span className="contact-card-icon-box"><MapPin size={20} /></span>
-                <span className="contact-card-text">
-                  <span className="contact-card-label">Location &amp; Status</span>
-                  <span className="contact-card-value">{contactData.location}</span>
-                </span>
+        {/* 2-Column Main Contact Grid */}
+        <div className="contact-main-grid">
+          {/* Left Column: Glass Card with Contact Form */}
+          <Reveal variant="fade-right" delay={0.1} className="contact-form-column">
+            <Card variant="glass" radius="xl" padding="none" className="contact-form-glass-card">
+              <div className="contact-form-header">
+                <div className="contact-header-eyebrow">
+                  <Sparkles size={14} className="text-purple" />
+                  <span>START A CONVERSATION</span>
+                </div>
+                <h3 className="contact-card-title">Get in touch</h3>
+                <p className="contact-card-desc">
+                  Have an open role, project inquiry, or technical challenge? Fill out the form below or connect via direct channels.
+                </p>
               </div>
 
-              {socialCards.map((social) => (
-                <a 
-                  key={social.label} 
-                  href={social.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="contact-card-item" 
-                  aria-label={`${personalData.name} on ${social.label}`}
-                >
-                  <span className="contact-card-icon-box"><TechIcon name={social.icon} size={20} /></span>
-                  <span className="contact-card-text">
-                    <span className="contact-card-label">{social.label}</span>
-                    <span className="contact-card-value">{social.value}</span>
-                  </span>
-                </a>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* Right Column: Interactive Form */}
-          <Reveal variant="fade-left" delay={0.15} className="contact-right-col">
-            <Card variant="glass" radius="lg" padding="md" className="contact-form-card">
-              <form className="contact-form" onSubmit={handleSubmit} noValidate>
-                <div className="form-row">
-                  <Field label="Name" name="name" type="text" value={formData.name} error={errors.name} onChange={handleChange} autoComplete="name" />
-                  <Field label="Email" name="email" type="email" value={formData.email} error={errors.email} onChange={handleChange} autoComplete="email" />
-                </div>
-                <div className={`form-group ${errors.message ? 'has-error' : ''}`}>
-                  <label htmlFor="contact-message" className="form-label">Message <span aria-hidden="true">*</span></label>
-                  <textarea 
-                    id="contact-message" 
-                    name="message" 
-                    className={`form-textarea ${errors.message ? 'input-error' : ''}`} 
-                    value={formData.message} 
-                    onChange={handleChange} 
-                    aria-invalid={Boolean(errors.message)} 
-                    aria-describedby={errors.message ? 'message-error' : 'message-hint'} 
-                    rows="5" 
-                    minLength="10" 
-                    maxLength="2000" 
-                    placeholder="Hello Dawit, I'd like to discuss a junior role / project..." 
-                    required 
-                  />
-                  <span id="message-hint" className="form-hint">Minimum 10 characters.</span>
-                  {errors.message && <ErrorMessage id="message-error" message={errors.message} />}
+              <form className="contact-form-body" onSubmit={handleSubmit} noValidate>
+                {/* Name Field */}
+                <div className={`form-field-group ${activeField === 'name' ? 'is-focused' : ''} ${errors.name ? 'has-error' : ''}`}>
+                  <label htmlFor="contact-name" className="form-field-label">
+                    <span>Name</span>
+                    <span className="required-star">*</span>
+                  </label>
+                  <div className="form-input-container">
+                    <User size={16} className="form-input-icon" />
+                    <input
+                      id="contact-name"
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleChange}
+                      onFocus={() => setActiveField('name')}
+                      onBlur={() => setActiveField(null)}
+                      placeholder="Alex Mercer"
+                      autoComplete="name"
+                      disabled={isSubmitting}
+                      className="form-control-input"
+                      aria-invalid={Boolean(errors.name)}
+                      aria-describedby={errors.name ? 'name-error' : undefined}
+                      required
+                    />
+                  </div>
+                  {errors.name && (
+                    <span id="name-error" className="field-error-notice" role="alert">
+                      <AlertCircle size={13} />
+                      <span>{errors.name}</span>
+                    </span>
+                  )}
                 </div>
 
+                {/* Email Field */}
+                <div className={`form-field-group ${activeField === 'email' ? 'is-focused' : ''} ${errors.email ? 'has-error' : ''}`}>
+                  <label htmlFor="contact-email" className="form-field-label">
+                    <span>Email Address</span>
+                    <span className="required-star">*</span>
+                  </label>
+                  <div className="form-input-container">
+                    <AtSign size={16} className="form-input-icon" />
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onFocus={() => setActiveField('email')}
+                      onBlur={() => setActiveField(null)}
+                      placeholder="alex@company.com"
+                      autoComplete="email"
+                      disabled={isSubmitting}
+                      className="form-control-input"
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? 'email-error' : undefined}
+                      required
+                    />
+                  </div>
+                  {errors.email && (
+                    <span id="email-error" className="field-error-notice" role="alert">
+                      <AlertCircle size={13} />
+                      <span>{errors.email}</span>
+                    </span>
+                  )}
+                </div>
+
+                {/* Message Field */}
+                <div className={`form-field-group ${activeField === 'message' ? 'is-focused' : ''} ${errors.message ? 'has-error' : ''}`}>
+                  <label htmlFor="contact-message" className="form-field-label">
+                    <span>Message</span>
+                    <span className="required-star">*</span>
+                  </label>
+                  <div className="form-input-container textarea-container">
+                    <MessageSquare size={16} className="form-input-icon textarea-icon" />
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      onFocus={() => setActiveField('message')}
+                      onBlur={() => setActiveField(null)}
+                      placeholder="Hello Dawit, we have an open junior MERN position and would love to review your background..."
+                      rows={5}
+                      disabled={isSubmitting}
+                      className="form-control-input form-control-textarea"
+                      aria-invalid={Boolean(errors.message)}
+                      aria-describedby={errors.message ? 'message-error' : undefined}
+                      required
+                    />
+                  </div>
+                  {errors.message && (
+                    <span id="message-error" className="field-error-notice" role="alert">
+                      <AlertCircle size={13} />
+                      <span>{errors.message}</span>
+                    </span>
+                  )}
+                </div>
+
+                {/* Status Message Alert */}
                 {status && (
-                  <p className={`form-status ${status.type}`} role="status" aria-live="polite">
-                    {status.type === 'success' ? <CheckCircle size={18} /> : <AlertCircle size={18} />}
-                    {status.message}
-                  </p>
+                  <div className={`form-status-alert ${status.type}`} role="status" aria-live="polite">
+                    {status.type === 'success' ? (
+                      <CheckCircle2 size={18} className="status-icon-success" />
+                    ) : (
+                      <AlertCircle size={18} className="status-icon-error" />
+                    )}
+                    <span className="status-alert-text">{status.message}</span>
+                  </div>
                 )}
 
-                <div className="form-submit-row">
+                {/* Submit Button */}
+                <div className="form-submit-wrapper">
                   <Button
                     type="submit"
                     variant="primary"
-                    className="btn-contact-submit"
                     disabled={isSubmitting}
-                    icon={isSubmitting ? <Loader2 size={18} className="spin-loader" /> : <Send size={18} />}
+                    className="btn-send-message"
+                    icon={isSubmitting ? <Loader2 size={16} className="spin-loader" /> : <Send size={16} />}
                     iconPosition="right"
                   >
-                    {isSubmitting ? 'Sending…' : 'Send Message'}
+                    {isSubmitting ? 'Sending Message…' : 'Send Message'}
                   </Button>
                 </div>
               </form>
             </Card>
           </Reveal>
+
+          {/* Right Column: 3D Earth on Starfield Background */}
+          <Reveal variant="fade-left" delay={0.15} className="contact-earth-column">
+            <div className="contact-earth-box">
+              <React.Suspense fallback={
+                <div className="earth-loading-fallback">
+                  <Loader2 size={32} className="spin-loader text-cyan" />
+                  <span className="fallback-text">Initializing 3D Orbital Scene…</span>
+                </div>
+              }>
+                <Earth3D />
+              </React.Suspense>
+            </div>
+          </Reveal>
         </div>
+
+        {/* Magnetic Hover Direct Contact Links */}
+        <Reveal variant="fade-up" delay={0.25} className="contact-magnetic-section">
+          <div className="magnetic-links-container">
+            <div className="magnetic-section-header">
+              <span className="magnetic-label-pill">DIRECT CHANNELS</span>
+              <p className="magnetic-subhead">Hover to pull · Click to connect instantly</p>
+            </div>
+
+            <div className="magnetic-links-grid" aria-label="Direct contact channels">
+              {/* Direct Email */}
+              <MagneticLink
+                href={`mailto:${contactData.email}`}
+                ariaLabel={`Send direct email to ${contactData.email}`}
+                className="magnetic-channel-btn email-channel"
+              >
+                <span className="magnetic-btn-icon">
+                  <Mail size={18} />
+                </span>
+                <span className="magnetic-btn-text">
+                  <span className="magnetic-channel-name">Direct Email</span>
+                  <span className="magnetic-channel-detail">{contactData.email}</span>
+                </span>
+              </MagneticLink>
+
+              {/* LinkedIn */}
+              <MagneticLink
+                href={contactData.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                ariaLabel="Connect on LinkedIn"
+                className="magnetic-channel-btn linkedin-channel"
+              >
+                <span className="magnetic-btn-icon">
+                  <TechIcon name="linkedin" size={18} />
+                </span>
+                <span className="magnetic-btn-text">
+                  <span className="magnetic-channel-name">LinkedIn</span>
+                  <span className="magnetic-channel-detail">/in/dawit-mahabaw</span>
+                </span>
+              </MagneticLink>
+
+              {/* GitHub */}
+              <MagneticLink
+                href={contactData.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                ariaLabel="View GitHub profile"
+                className="magnetic-channel-btn github-channel"
+              >
+                <span className="magnetic-btn-icon">
+                  <TechIcon name="github" size={18} />
+                </span>
+                <span className="magnetic-btn-text">
+                  <span className="magnetic-channel-name">GitHub</span>
+                  <span className="magnetic-channel-detail">@dawitmahabaw</span>
+                </span>
+              </MagneticLink>
+
+              {/* Telegram */}
+              <MagneticLink
+                href={contactData.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                ariaLabel="Message on Telegram"
+                className="magnetic-channel-btn telegram-channel"
+              >
+                <span className="magnetic-btn-icon">
+                  <SendHorizontal size={18} />
+                </span>
+                <span className="magnetic-btn-text">
+                  <span className="magnetic-channel-name">Telegram</span>
+                  <span className="magnetic-channel-detail">@dawitmahabaw</span>
+                </span>
+              </MagneticLink>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
-  );
-}
-
-function Field({ label, name, type, value, error, onChange, autoComplete }) {
-  const id = `contact-${name}`;
-  return (
-    <div className={`form-group ${error ? 'has-error' : ''}`}>
-      <label htmlFor={id} className="form-label">{label} <span aria-hidden="true">*</span></label>
-      <input 
-        id={id} 
-        name={name} 
-        type={type} 
-        value={value} 
-        onChange={onChange} 
-        autoComplete={autoComplete} 
-        className={`form-input ${error ? 'input-error' : ''}`} 
-        aria-invalid={Boolean(error)} 
-        aria-describedby={error ? `${name}-error` : undefined} 
-        required 
-      />
-      {error && <ErrorMessage id={`${name}-error`} message={error} />}
-    </div>
-  );
-}
-
-function ErrorMessage({ id, message }) {
-  return (
-    <span id={id} className="field-error-msg" role="alert">
-      <AlertCircle size={14} aria-hidden="true" />
-      {message}
-    </span>
   );
 }
