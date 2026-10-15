@@ -1,6 +1,7 @@
 import React from 'react';
 import ProjectCard from './ProjectCard';
 import { Reveal, RevealStagger, RevealItem } from './Reveal';
+import { SectionHeading } from './ui';
 import '../styles/Projects.css';
 
 export default function Projects({ projects, onSelectProject }) {
@@ -11,18 +12,13 @@ export default function Projects({ projects, onSelectProject }) {
       <div className="container">
         {/* Section Header */}
         <Reveal variant="fade-up">
-          <div className="section-pill-badge">
-            <span className="badge-num">04</span>
-            <span className="badge-divider">//</span>
-            <span className="badge-text">FEATURED WORK</span>
-          </div>
-
-          <div className="section-header">
-            <h2 id="projects-heading" className="section-title">Project Case Studies</h2>
-            <p className="section-desc">
-              A closer look at the architecture, problem statements, decisions, and working results behind each build.
-            </p>
-          </div>
+          <SectionHeading
+            numberBadge="04 // FEATURED WORK"
+            title="Project Case Studies"
+            gradientWord="Case Studies"
+            subtitle="A closer look at the architecture, problem statements, decisions, and working results behind each build."
+            id="projects-heading"
+          />
         </Reveal>
 
         {/* Staggered Projects Grid */}

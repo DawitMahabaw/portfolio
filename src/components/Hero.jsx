@@ -6,6 +6,7 @@ import TechIcon from './TechIcon';
 import DevTerminal from './DevTerminal';
 import Hero3DCanvas from './Hero3DCanvas';
 import { Reveal, RevealStagger, RevealItem } from './Reveal';
+import { Button } from './ui';
 import '../styles/Hero.css';
 
 export default function Hero() {
@@ -71,12 +72,26 @@ export default function Hero() {
             {/* Core Action Buttons */}
             <Reveal variant="fade-up" delay={0.36}>
               <div className="hero-actions-group">
-                <a href="#projects" onClick={handleExploreProjects} className="btn btn-primary btn-hero-primary">
-                  Explore Projects <ArrowRight size={17} />
-                </a>
-                <a href="#contact" onClick={handleContact} className="btn btn-outline btn-hero-contact">
+                <Button
+                  as="a"
+                  href="#projects"
+                  onClick={handleExploreProjects}
+                  variant="primary"
+                  className="btn-hero-primary"
+                  icon={<ArrowRight size={17} />}
+                  iconPosition="right"
+                >
+                  Explore Projects
+                </Button>
+                <Button
+                  as="a"
+                  href="#contact"
+                  onClick={handleContact}
+                  variant="outline"
+                  className="btn-hero-contact"
+                >
                   Contact Me
-                </a>
+                </Button>
               </div>
             </Reveal>
 

@@ -4,6 +4,7 @@ import emailjs from '@emailjs/browser';
 import { contactData, personalData } from '../data';
 import TechIcon from './TechIcon';
 import { Reveal } from './Reveal';
+import { SectionHeading, Button, Card } from './ui';
 import '../styles/Contact.css';
 
 const emptyForm = { name: '', email: '', message: '' };
@@ -100,16 +101,13 @@ export default function Contact() {
       <div className="container">
         {/* Section Header */}
         <Reveal variant="fade-up">
-          <div className="section-pill-badge">
-            <span className="badge-num">05</span>
-            <span className="badge-divider">//</span>
-            <span className="badge-text">COMMUNICATION</span>
-          </div>
-
-          <div className="section-header">
-            <h2 id="contact-heading" className="section-title">{contactData.title}</h2>
-            <p className="section-desc">{contactData.subtitle}</p>
-          </div>
+          <SectionHeading
+            numberBadge="05 // COMMUNICATION"
+            title={contactData.title}
+            gradientWord="Great Together"
+            subtitle={contactData.subtitle}
+            id="contact-heading"
+          />
         </Reveal>
 
         <div className="contact-grid">
@@ -153,7 +151,7 @@ export default function Contact() {
 
           {/* Right Column: Interactive Form */}
           <Reveal variant="fade-left" delay={0.15} className="contact-right-col">
-            <div className="contact-form-card">
+            <Card variant="glass" radius="lg" padding="md" className="contact-form-card">
               <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <div className="form-row">
                   <Field label="Name" name="name" type="text" value={formData.name} error={errors.name} onChange={handleChange} autoComplete="name" />
@@ -187,13 +185,19 @@ export default function Contact() {
                 )}
 
                 <div className="form-submit-row">
-                  <button type="submit" className="btn btn-primary btn-contact-submit" disabled={isSubmitting}>
-                    {isSubmitting ? <Loader2 size={18} className="spin-loader" /> : <Send size={18} />}
-                    <span>{isSubmitting ? 'Sending…' : 'Send Message'}</span>
-                  </button>
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    className="btn-contact-submit"
+                    disabled={isSubmitting}
+                    icon={isSubmitting ? <Loader2 size={18} className="spin-loader" /> : <Send size={18} />}
+                    iconPosition="right"
+                  >
+                    {isSubmitting ? 'Sending…' : 'Send Message'}
+                  </Button>
                 </div>
               </form>
-            </div>
+            </Card>
           </Reveal>
         </div>
       </div>

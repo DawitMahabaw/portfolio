@@ -13,9 +13,9 @@ import {
   FileText,
   ArrowRight
 } from 'lucide-react';
-import Tilt from 'react-parallax-tilt';
 import { aboutHighlights, personalData, learningPath } from '../data';
 import { Reveal, RevealStagger, RevealItem } from './Reveal';
+import { SectionHeading, Button, Tag, Card } from './ui';
 import '../styles/About.css';
 import '../styles/Timeline.css';
 
@@ -36,22 +36,15 @@ export default function About({ onOpenResume }) {
   return (
     <section id="about" className="section about-section" aria-labelledby="about-heading">
       <div className="container">
-        {/* Section Pill Badge & Header */}
+        {/* Section Heading */}
         <Reveal variant="fade-up">
-          <div className="section-pill-badge">
-            <span className="badge-num">02</span>
-            <span className="badge-divider">//</span>
-            <span className="badge-text">BACKGROUND &amp; PHILOSOPHY</span>
-          </div>
-
-          <div className="section-header">
-            <h2 id="about-heading" className="section-title">
-              Building with Clarity, Structure &amp; Care
-            </h2>
-            <p className="section-desc">
-              Bridging academic Information Science principles with modern full-stack engineering.
-            </p>
-          </div>
+          <SectionHeading
+            numberBadge="02 // BACKGROUND & PHILOSOPHY"
+            title="Building with Clarity, Structure & Care"
+            gradientWord="Clarity"
+            subtitle="Bridging academic Information Science principles with modern full-stack engineering."
+            id="about-heading"
+          />
         </Reveal>
 
         {/* Top Grid: Bio Narrative & Strengths + Workspace Visual */}
@@ -66,14 +59,16 @@ export default function About({ onOpenResume }) {
               {aboutHighlights.map((item) => {
                 const Icon = strengthIcons[item.icon] || Layout;
                 return (
-                  <RevealItem key={item.id} variant="fade-up" className="strength-card">
-                    <span className="strength-icon-box" aria-hidden="true">
-                      <Icon size={20} />
-                    </span>
-                    <div className="strength-info">
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
-                    </div>
+                  <RevealItem key={item.id} variant="fade-up">
+                    <Card variant="glass" radius="md" padding="sm" className="strength-card">
+                      <span className="strength-icon-box" aria-hidden="true">
+                        <Icon size={20} />
+                      </span>
+                      <div className="strength-info">
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                      </div>
+                    </Card>
                   </RevealItem>
                 );
               })}
@@ -82,14 +77,7 @@ export default function About({ onOpenResume }) {
 
           {/* Right Visual Image Frame with Parallax Tilt */}
           <Reveal variant="scale-in" delay={0.2} className="about-visual-collage">
-            <Tilt
-              tiltMaxAngleX={8}
-              tiltMaxAngleY={8}
-              perspective={1000}
-              scale={1.02}
-              transitionSpeed={1200}
-              className="about-image-tilt"
-            >
+            <Card variant="glass" tilt radius="xl" padding="none" className="about-image-card">
               <div className="about-image-container">
                 <img 
                   src={personalData.aboutImage} 
@@ -99,22 +87,19 @@ export default function About({ onOpenResume }) {
                   loading="lazy" 
                 />
               </div>
-            </Tilt>
+            </Card>
           </Reveal>
         </div>
 
         {/* Short Learning Path Timeline (Merged Experience & Credentials) */}
         <div className="learning-path-wrapper">
           <Reveal variant="fade-up">
-            <div className="learning-path-header">
-              <span className="section-tag" style={{ color: 'var(--accent-cyan)' }}>
-                Milestones &amp; Training
-              </span>
-              <h3 className="learning-path-title">My Learning Path</h3>
-              <p className="learning-path-subtitle">
-                Academic foundations at AAU, intensive bootcamp immersion at Evangadi, and independent full-stack builds.
-              </p>
-            </div>
+            <SectionHeading
+              tag="Milestones & Training"
+              title="My Learning Path"
+              gradientWord="Learning Path"
+              subtitle="Academic foundations at AAU, intensive bootcamp immersion at Evangadi, and independent full-stack builds."
+            />
           </Reveal>
 
           <ol className="experience-timeline">
@@ -127,10 +112,12 @@ export default function About({ onOpenResume }) {
                   </span>
 
                   <Reveal variant="fade-up" delay={index * 0.1}>
-                    <article className="experience-card">
+                    <Card variant="glass" radius="lg" padding="md" className="experience-card">
                       <div className="record-heading">
                         <div>
-                          <span className="timeline-badge-tag">{item.badge}</span>
+                          <Tag variant="purple" size="sm" className="timeline-badge-tag">
+                            {item.badge}
+                          </Tag>
                           <h3>{item.title}</h3>
                           <p className="record-org">{item.institution}</p>
                         </div>
@@ -161,11 +148,13 @@ export default function About({ onOpenResume }) {
                       {item.technologies?.length > 0 && (
                         <div className="record-tags" aria-label="Core topics & tools">
                           {item.technologies.map((tech) => (
-                            <span key={tech}>{tech}</span>
+                            <Tag key={tech} variant="cyan" size="sm">
+                              {tech}
+                            </Tag>
                           ))}
                         </div>
                       )}
-                    </article>
+                    </Card>
                   </Reveal>
                 </li>
               );
@@ -174,21 +163,21 @@ export default function About({ onOpenResume }) {
 
           {/* Integrated Digital CV Action */}
           <Reveal variant="fade-up" delay={0.25}>
-            <div className="about-resume-cta-box">
+            <Card variant="glass" radius="lg" padding="md" className="about-resume-cta-box">
               <div className="resume-cta-text">
                 <h4>Looking for a verified resume for your team?</h4>
                 <p>View my complete ATS-formatted CV with coursework, verified credentials, and project stack.</p>
               </div>
-              <button 
-                type="button" 
-                className="btn btn-primary btn-about-cv" 
+              <Button 
+                variant="primary"
                 onClick={onOpenResume}
+                className="btn-about-cv"
+                icon={<ArrowRight size={15} />}
+                iconPosition="right"
               >
-                <FileText size={17} />
-                <span>Preview &amp; Download CV</span>
-                <ArrowRight size={15} />
-              </button>
-            </div>
+                Preview &amp; Download CV
+              </Button>
+            </Card>
           </Reveal>
         </div>
       </div>

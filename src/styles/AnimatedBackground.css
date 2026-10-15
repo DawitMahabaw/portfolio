@@ -1,0 +1,182 @@
+/* ==========================================================================
+   Global Animated Background: Faint Flowing Waves + Ambient Gradient Orbs
+   Zero JS overhead, pure hardware-accelerated CSS (ultra-low CPU usage)
+   ========================================================================== */
+
+.global-animated-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background-color: var(--bg-primary, #050713);
+}
+
+/* Ambient Slow Gradient Orbs */
+.bg-gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  -webkit-filter: blur(130px);
+  opacity: 0.16;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.orb-purple {
+  top: -10%;
+  left: 15%;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, #8B5CF6 0%, rgba(139, 92, 246, 0) 70%);
+  animation: floatOrbPurple 28s ease-in-out infinite alternate;
+}
+
+.orb-cyan {
+  bottom: 5%;
+  right: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #06B6D4 0%, rgba(6, 182, 212, 0) 70%);
+  animation: floatOrbCyan 32s ease-in-out infinite alternate;
+}
+
+.orb-indigo {
+  top: 45%;
+  left: 55%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #6366F1 0%, rgba(99, 102, 241, 0) 70%);
+  animation: floatOrbIndigo 36s ease-in-out infinite alternate;
+  opacity: 0.12;
+}
+
+@keyframes floatOrbPurple {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(80px, 60px, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(-60px, 120px, 0) scale(0.95);
+  }
+}
+
+@keyframes floatOrbCyan {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-90px, -80px, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(70px, -50px, 0) scale(0.92);
+  }
+}
+
+@keyframes floatOrbIndigo {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-70px, 50px, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(60px, -60px, 0) scale(0.9);
+  }
+}
+
+/* Faint Flowing Wave Lines */
+.bg-wave-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.wave-path {
+  will-change: transform, opacity;
+}
+
+.wave-path-1 {
+  animation: waveFlow1 22s ease-in-out infinite alternate;
+}
+
+.wave-path-2 {
+  animation: waveFlow2 26s ease-in-out infinite alternate;
+}
+
+.wave-path-3 {
+  animation: waveFlow3 30s ease-in-out infinite alternate;
+}
+
+@keyframes waveFlow1 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate3d(-35px, 20px, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(30px, -15px, 0);
+    opacity: 0.7;
+  }
+}
+
+@keyframes waveFlow2 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(40px, -25px, 0);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(-30px, 20px, 0);
+    opacity: 0.65;
+  }
+}
+
+@keyframes waveFlow3 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate3d(-25px, -18px, 0);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(35px, 15px, 0);
+    opacity: 0.55;
+  }
+}
+
+/* Subtle dot grid pattern overlay */
+.bg-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Pause animations if user requested reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bg-gradient-orb,
+  .wave-path-1,
+  .wave-path-2,
+  .wave-path-3 {
+    animation: none !important;
+  }
+}

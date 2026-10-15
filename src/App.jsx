@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BottomNav from './components/BottomNav';
 import ResumeModal from './components/ResumeModal';
+import { AnimatedBackground } from './components/ui';
 import { projectsData } from './data';
 
 export default function App() {
@@ -48,6 +49,7 @@ export default function App() {
 
   return (
     <div className="portfolio-app">
+      <AnimatedBackground />
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navbar onOpenResume={openResume} />
       

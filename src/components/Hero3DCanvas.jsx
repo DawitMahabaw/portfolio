@@ -26,7 +26,7 @@ function FloatingGeometry() {
         <mesh ref={meshRef} scale={1.8}>
           <icosahedronGeometry args={[1, 1]} />
           <meshBasicMaterial 
-            color="#38bdf8" 
+            color="#A855F7" 
             wireframe 
             transparent 
             opacity={0.35} 
@@ -37,7 +37,7 @@ function FloatingGeometry() {
         <mesh ref={innerRef} scale={0.95}>
           <octahedronGeometry args={[1, 0]} />
           <meshBasicMaterial 
-            color="#1d7bf8" 
+            color="#06B6D4" 
             wireframe 
             transparent 
             opacity={0.65} 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Database, Layout, Server, Wrench } from 'lucide-react';
-import Tilt from 'react-parallax-tilt';
 import { skillCategories } from '../data';
 import TechIcon from './TechIcon';
 import { Reveal, RevealStagger, RevealItem } from './Reveal';
+import { SectionHeading, Card, Tag } from './ui';
 import '../styles/Skills.css';
 
 const categoryIcons = {
@@ -26,18 +26,13 @@ export default function Skills() {
       <div className="container">
         {/* Section Header */}
         <Reveal variant="fade-up">
-          <div className="section-pill-badge">
-            <span className="badge-num">03</span>
-            <span className="badge-divider">//</span>
-            <span className="badge-text">TECH STACK &amp; TOOLKIT</span>
-          </div>
-
-          <div className="section-header">
-            <h2 id="skills-heading" className="section-title">Technical Expertise</h2>
-            <p className="section-desc">
-              Production technologies I work with across frontend engineering, backend architecture, and database modeling.
-            </p>
-          </div>
+          <SectionHeading
+            numberBadge="03 // TECH STACK & TOOLKIT"
+            title="Technical Expertise"
+            gradientWord="Technical"
+            subtitle="Production technologies I work with across frontend engineering, backend architecture, and database modeling."
+            id="skills-heading"
+          />
         </Reveal>
 
         {/* Categories Grid with Stagger & Parallax Tilt */}
@@ -48,38 +43,39 @@ export default function Skills() {
 
             return (
               <RevealItem key={category.id} variant="fade-up">
-                <Tilt
-                  tiltMaxAngleX={6}
-                  tiltMaxAngleY={6}
-                  perspective={1000}
-                  scale={1.015}
-                  transitionSpeed={1000}
-                  className="skill-card-tilt"
+                <Card
+                  variant="glass"
+                  tilt
+                  radius="lg"
+                  padding="md"
+                  className={`skill-category-card category-${category.accentColor}`}
                 >
-                  <article className={`skill-category-card category-${category.accentColor}`}>
-                    <header className="category-header">
-                      <span className="category-icon-badge" aria-hidden="true">
-                        <Icon size={18} />
-                      </span>
-                      <div>
-                        <h3 className="category-title">{category.title}</h3>
-                        {desc && <p className="category-desc">{desc}</p>}
-                      </div>
-                    </header>
+                  <header className="category-header">
+                    <span className="category-icon-badge" aria-hidden="true">
+                      <Icon size={18} />
+                    </span>
+                    <div>
+                      <h3 className="category-title">{category.title}</h3>
+                      {desc && <p className="category-desc">{desc}</p>}
+                    </div>
+                  </header>
 
-                    <ul className="category-items-grid">
-                      {category.skills.map((skill) => (
-                        <li key={skill.name} className="skill-item-card">
-                          <span className="skill-icon-wrapper">
-                            <TechIcon name={skill.icon} size={26} />
-                          </span>
-                          <span className="skill-name">{skill.name}</span>
-                          {skill.level && <span className="skill-level-tag">{skill.level}</span>}
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                </Tilt>
+                  <ul className="category-items-grid">
+                    {category.skills.map((skill) => (
+                      <li key={skill.name} className="skill-item-card">
+                        <span className="skill-icon-wrapper">
+                          <TechIcon name={skill.icon} size={24} />
+                        </span>
+                        <span className="skill-name">{skill.name}</span>
+                        {skill.level && (
+                          <Tag variant="purple" size="sm" className="skill-level-tag">
+                            {skill.level}
+                          </Tag>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
               </RevealItem>
             );
           })}

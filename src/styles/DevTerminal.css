@@ -2,18 +2,20 @@
 
 .dev-terminal-card {
   width: 100%;
-  background: #080d1a;
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  border-radius: 12px;
+  background: rgba(8, 13, 26, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: var(--radius-lg, 18px);
   overflow: hidden;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(16, 185, 129, 0.12);
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(168, 85, 247, 0.15);
+  font-family: var(--font-mono, monospace);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dev-terminal-card:hover {
-  border-color: rgba(16, 185, 129, 0.4);
-  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.8), 0 0 35px -5px rgba(16, 185, 129, 0.2);
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.8), 0 0 35px -5px rgba(168, 85, 247, 0.25);
 }
 
 /* Chrome Header */
