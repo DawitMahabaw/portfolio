@@ -370,6 +370,24 @@
   }
 }
 
+@media (max-width: 400px) {
+  .category-tiles-grid {
+    gap: 8px;
+    padding: 12px;
+  }
+  .skill-tile {
+    padding: 12px 6px 10px;
+  }
+  .skill-tile-label {
+    font-size: 0.76rem;
+  }
+  .skill-tile-icon-box {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+  }
+}
+
 /* --------------------------------------------------------------------------
    Accessibility: Reduced Motion
    -------------------------------------------------------------------------- */

@@ -106,8 +106,8 @@ export const learningPath: LearningPathItem[] = [
  * Photo placeholder data with tilt-on-hover effect
  */
 export const aboutPhoto: AboutPhotoData = {
-  image: '/images/about-workspace.jpg',
-  fallbackImage: '/images/profile.jpg',
+  image: '/images/about-workspace.webp',
+  fallbackImage: '/images/profile.webp',
   alt: 'Dawit Mahabaw - Junior MERN Developer workspace and workstation',
   badge: 'Junior MERN Developer',
   subBadge: 'AAU InfoSci · Evangadi Graduate',

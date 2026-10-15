@@ -1,10 +1,10 @@
 /* Footer Section Styles */
 
 .footer-section {
-  background-color: var(--bg-dark-hero);
+  background-color: #050713 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 60px 0 30px 0;
-  color: var(--text-light-body);
+  color: #94A3B8 !important;
 }
 
 .footer-top-row {
@@ -30,17 +30,17 @@
   gap: 8px;
   font-size: 1.25rem;
   font-weight: 800;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 .footer-brand-title span.brand-code {
-  color: var(--accent-blue);
+  color: #C084FC !important;
   font-family: var(--font-mono);
 }
 
 .footer-brand-sub {
   font-size: 0.85rem;
-  color: var(--accent-blue);
+  color: #38BDF8 !important;
   font-weight: 600;
 }
 
@@ -55,12 +55,12 @@
 
 .footer-nav-link {
   font-size: 0.9rem;
-  color: var(--text-light-muted);
+  color: #94A3B8 !important;
   transition: color var(--transition-fast);
 }
 
 .footer-nav-link:hover {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 /* Right Socials & Back-to-top */
@@ -80,13 +80,13 @@
   background-color: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--text-light-body);
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .footer-social-btn:hover {
-  background-color: var(--accent-blue);
+  background-color: var(--accent-purple, #8B5CF6);
   color: #FFFFFF;
-  border-color: var(--accent-blue);
+  border-color: var(--accent-purple, #8B5CF6);
   transform: translateY(-2px);
 }
 
@@ -101,12 +101,12 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #FFFFFF;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .btn-back-to-top:hover {
-  background-color: var(--accent-blue);
-  border-color: var(--accent-blue);
+  background-color: var(--accent-purple, #8B5CF6);
+  border-color: var(--accent-purple, #8B5CF6);
   transform: translateY(-3px);
 }
 
@@ -117,14 +117,18 @@
   align-items: center;
   padding-top: 24px;
   font-size: 0.85rem;
-  color: var(--text-light-muted);
+  color: #94A3B8 !important;
   flex-wrap: wrap;
   gap: 16px;
 }
 
+.footer-bottom-row span {
+  color: #94A3B8 !important;
+}
+
 .footer-motto {
   font-weight: 600;
-  color: #93C5FD;
+  color: #38BDF8 !important;
   letter-spacing: 0.05em;
 }
 
@@ -137,6 +141,12 @@
 
   .footer-nav-links {
     gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-section {
+    padding-bottom: 96px;
   }
 }
 

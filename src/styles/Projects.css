@@ -592,3 +592,40 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 480px) {
+  .project-card-body {
+    padding: 18px 16px;
+  }
+  .project-title {
+    font-size: 1.15rem;
+  }
+  .modal-dialog-card {
+    border-radius: var(--radius-lg, 18px);
+    margin: 12px;
+  }
+  .modal-banner-box {
+    aspect-ratio: 16 / 9;
+  }
+  .modal-header-info {
+    padding: 0 16px;
+  }
+  .modal-body-content {
+    padding: 16px;
+  }
+  .modal-actions-footer {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .project-card-body {
+    padding: 14px 12px;
+  }
+  .project-title {
+    font-size: 1.05rem;
+  }
+  .project-one-liner {
+    font-size: 0.85rem;
+  }
+}

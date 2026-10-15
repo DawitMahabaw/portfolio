@@ -173,7 +173,7 @@ class ModelErrorBoundary extends React.Component {
   static getDerivedStateFromError() {
     return { hasError: true };
   }
-  componentDidCatch(error) {
+  componentDidCatch(_error) {
     console.info('Custom GLB model not found in /public/models/desktop.glb. Using procedural stylized workstation scene.');
   }
   render() {

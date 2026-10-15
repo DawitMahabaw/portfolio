@@ -65,7 +65,9 @@ export default function ProjectCard({ project, onOpenDetails }) {
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            onOpenDetails && onOpenDetails(project);
+            if (onOpenDetails) {
+              onOpenDetails(project);
+            }
           }
         }}
         aria-label={`View details for ${project.title}`}
@@ -113,7 +115,9 @@ export default function ProjectCard({ project, onOpenDetails }) {
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              onOpenDetails && onOpenDetails(project);
+              if (onOpenDetails) {
+                onOpenDetails(project);
+              }
             }
           }}
         >

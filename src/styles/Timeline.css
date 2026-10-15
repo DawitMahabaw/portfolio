@@ -242,3 +242,61 @@
     padding: 20px !important;
   }
 }
+
+@media (max-width: 480px) {
+  .timeline-item-row {
+    padding-left: 44px;
+  }
+
+  .timeline-line-track,
+  .timeline-line-progress {
+    left: 14px;
+  }
+
+  .timeline-node {
+    width: 30px;
+    height: 30px;
+  }
+
+  .timeline-node svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .timeline-entry-card {
+    padding: 16px !important;
+  }
+
+  .timeline-title {
+    font-size: 1.05rem;
+  }
+
+  .timeline-period-pill {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .timeline-item-row {
+    padding-left: 38px;
+  }
+  .timeline-line-track,
+  .timeline-line-progress {
+    left: 11px;
+  }
+  .timeline-node {
+    width: 24px;
+    height: 24px;
+  }
+  .timeline-node svg {
+    width: 12px;
+    height: 12px;
+  }
+  .timeline-entry-card {
+    padding: 14px 12px !important;
+  }
+  .timeline-title {
+    font-size: 0.98rem;
+  }
+}

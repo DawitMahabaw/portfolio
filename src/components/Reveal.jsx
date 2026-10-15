@@ -2,8 +2,8 @@ import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 // Uniform cubic-bezier easing and timing across the entire portfolio
-export const REVEAL_EASE = [0.25, 0.1, 0.25, 1];
-export const REVEAL_DURATION = 0.6;
+export const REVEAL_EASE = [0.16, 1, 0.3, 1];
+export const REVEAL_DURATION = 0.55;
 export const VIEWPORT_CONFIG = { once: true, margin: '-80px' };
 
 const getVariants = (variant, shouldReduceMotion) => {

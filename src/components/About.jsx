@@ -224,7 +224,7 @@ export default function About({ onOpenResume }) {
                           >
                             {item.badge}
                           </Tag>
-                          <h4 className="timeline-title">{item.title}</h4>
+                          <h3 className="timeline-title">{item.title}</h3>
                           <p className="timeline-institution">{item.institution}</p>
                         </div>
 

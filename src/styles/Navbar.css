@@ -138,8 +138,8 @@
 }
 
 .btn-nav-resume:hover {
-  background: var(--accent-blue, #1d7bf8);
-  border-color: var(--accent-blue, #1d7bf8);
+  background: var(--accent-purple, #8B5CF6);
+  border-color: var(--accent-purple, #8B5CF6);
   color: #fff;
   transform: translateY(-1px);
 }

@@ -565,3 +565,44 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .contact-form-header {
+    padding: 20px 18px 16px;
+  }
+  .contact-card-title {
+    font-size: 1.45rem;
+  }
+  .contact-form-body {
+    padding: 18px;
+    gap: 16px;
+  }
+  .earth-3d-wrapper {
+    height: 340px;
+  }
+}
+
+@media (max-width: 360px) {
+  .contact-form-header {
+    padding: 16px 14px 12px;
+  }
+  .contact-card-title {
+    font-size: 1.3rem;
+  }
+  .contact-form-body {
+    padding: 14px;
+    gap: 14px;
+  }
+  .magnetic-link-item {
+    padding: 12px 14px;
+  }
+  .magnetic-channel-name {
+    font-size: 0.88rem;
+  }
+  .magnetic-channel-detail {
+    font-size: 0.72rem;
+  }
+  .earth-3d-wrapper {
+    height: 290px;
+  }
+}
