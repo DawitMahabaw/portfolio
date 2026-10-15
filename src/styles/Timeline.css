@@ -1,0 +1,36 @@
+.timeline-section,
+.education-section { background: var(--bg-light-body); }
+
+.experience-timeline { list-style: none; position: relative; max-width: 900px; display: grid; gap: 24px; }
+.experience-timeline::before { content: ''; position: absolute; top: 20px; bottom: 20px; left: 20px; width: 2px; background: var(--border-light); }
+.experience-timeline-item { position: relative; padding-left: 58px; }
+.timeline-node { position: absolute; top: 22px; left: 0; display: grid; place-items: center; width: 42px; height: 42px; background: var(--accent-blue); color: #fff; border-radius: 50%; box-shadow: 0 0 0 5px var(--bg-light-body); }
+.experience-card,
+.credential-card { background: var(--bg-light-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); }
+.record-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.record-heading h3,
+.credential-card h3 { color: var(--text-dark-title); font-size: 1.15rem; line-height: 1.35; }
+.record-org { color: var(--accent-blue); font-weight: 650; font-size: .95rem; margin-top: 4px; }
+.record-period,
+.credential-meta,
+.record-location { display: inline-flex; align-items: center; gap: 6px; color: var(--text-dark-muted); font-size: .875rem; }
+.record-period { flex-shrink: 0; border: 1px solid var(--border-light); padding: 6px 10px; border-radius: var(--radius-full); }
+.record-location,
+.credential-meta { margin-top: 14px; }
+.record-description { margin-top: 16px; color: var(--text-dark-body); line-height: 1.7; }
+.record-list { list-style: none; display: grid; gap: 10px; margin-top: 18px; }
+.record-list li { display: flex; align-items: flex-start; gap: 9px; color: var(--text-dark-body); }
+.record-list svg { flex: 0 0 auto; margin-top: 4px; color: var(--accent-blue); }
+.record-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.record-tags span,
+.record-tags li { padding: 5px 10px; border: 1px solid color-mix(in srgb, var(--accent-blue) 22%, transparent); border-radius: var(--radius-full); background: var(--accent-blue-subtle); color: var(--accent-blue); font-size: .825rem; font-weight: 650; }
+.credential-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.credential-icon { color: var(--accent-blue); margin-bottom: 18px; }
+.credential-subtitle { color: var(--text-dark-title); font-size: 1.25rem; margin: 44px 0 20px; }
+.credential-link { display: inline-flex; align-items: center; gap: 7px; color: var(--accent-blue); font-size: .9rem; font-weight: 700; margin-top: 18px; }
+
+@media (max-width: 640px) {
+  .experience-card, .credential-card { padding: 22px; }
+  .record-heading { display: grid; gap: 12px; }
+  .credential-grid { grid-template-columns: 1fr; }
+}

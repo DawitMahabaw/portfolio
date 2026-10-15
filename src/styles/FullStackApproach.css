@@ -1,0 +1,5 @@
+.approach-section { background: var(--bg-light-body); border-block: 1px solid var(--border-light); }
+.centered-desc { margin: 12px auto 0; text-align: center; }.pipeline-steps-grid { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.pipeline-step-card { min-height: 238px; padding: 28px 24px; text-align: center; border: 1px solid var(--border-light); border-radius: var(--radius-lg); background: var(--bg-light-card); box-shadow: var(--shadow-sm); }
+.step-badge-circle { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto 18px; border: 2px solid; border-radius: 50%; background: var(--bg-light-body); }.step-layer-label { display: block; color: var(--text-dark-muted); font-size: .75rem; font-weight: 800; letter-spacing: .08em; }.step-tech-name { color: var(--text-dark-title); font-size: 1.15rem; margin-top: 6px; }.step-description { color: var(--text-dark-body); font-size: .925rem; line-height: 1.6; margin-top: 8px; }
+@media (max-width: 700px) { .pipeline-steps-grid { grid-template-columns: 1fr; }.pipeline-step-card { min-height: 0; } }

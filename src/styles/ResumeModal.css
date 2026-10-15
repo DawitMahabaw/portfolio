@@ -1,0 +1,319 @@
+/* Resume Modal & Printable Sheet Styles */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(7, 13, 30, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.resume-modal-container {
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-light-card);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px) scale(0.98); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.project-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-light-surface);
+  flex-shrink: 0;
+}
+
+.resume-modal-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+}
+
+.resume-modal-headline {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark-title);
+  margin-top: 2px;
+}
+
+.resume-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-close-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--text-dark-muted);
+  background: transparent;
+  transition: all var(--transition-fast);
+}
+
+.btn-close-modal:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-dark-title);
+}
+
+/* Printable Resume Sheet (Document look) */
+.resume-sheet {
+  padding: clamp(24px, 4vw, 40px);
+  background-color: #FFFFFF;
+  color: #1E293B;
+  overflow-y: auto;
+  font-size: 0.925rem;
+  line-height: 1.55;
+  font-family: var(--font-main);
+}
+
+.resume-sheet-header {
+  border-bottom: 2px solid #E2E8F0;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+}
+
+.resume-sheet-name {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+}
+
+.resume-sheet-role {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1D7BF8;
+  margin-top: 4px;
+}
+
+.resume-sheet-contact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 0.825rem;
+  color: #475569;
+}
+
+.resume-sheet-contact-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.resume-section-block {
+  margin-bottom: 22px;
+}
+
+.resume-section-heading {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0F172A;
+  border-bottom: 1.5px solid #CBD5E1;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+
+.resume-section-text {
+  color: #334155;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.resume-skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.875rem;
+}
+
+.resume-skill-cat strong {
+  color: #0F172A;
+}
+
+.resume-skill-cat span {
+  color: #334155;
+}
+
+.resume-projects-list,
+.resume-edu-list,
+.resume-exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resume-project-item,
+.resume-edu-item,
+.resume-exp-item {
+  border-left: 2px solid #E2E8F0;
+  padding-left: 14px;
+}
+
+.resume-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resume-item-title {
+  font-size: 0.975rem;
+  color: #0F172A;
+}
+
+.resume-item-sub {
+  font-size: 0.825rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.resume-item-period {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1D7BF8;
+}
+
+.resume-item-tags {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #1D7BF8;
+}
+
+.resume-item-desc {
+  font-size: 0.865rem;
+  color: #475569;
+  margin-top: 4px;
+}
+
+.resume-item-bullets {
+  margin-top: 6px;
+  padding-left: 18px;
+  font-size: 0.84rem;
+  color: #334155;
+}
+
+.resume-item-bullets li {
+  margin-bottom: 3px;
+}
+
+.resume-coursework {
+  font-size: 0.825rem;
+  color: #475569;
+  margin-top: 4px;
+}
+
+.resume-cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.875rem;
+}
+
+.resume-cert-item strong {
+  color: #0F172A;
+}
+
+.resume-cert-item span {
+  color: #64748B;
+}
+
+.project-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 14px 24px;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-light-surface);
+  flex-shrink: 0;
+}
+
+/* Dark mode modal chrome adjustments (sheet stays crisp paper white for print accuracy) */
+html[data-theme="dark"] .resume-modal-container {
+  background-color: #0F1A34;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark"] .project-modal-header,
+html[data-theme="dark"] .project-modal-footer {
+  background-color: #0B1428;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .resume-modal-headline {
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .btn-close-modal {
+  color: #94A3B8;
+}
+
+html[data-theme="dark"] .btn-close-modal:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+/* Print Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-resume, #printable-resume * {
+    visibility: visible;
+  }
+  #printable-resume {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  .modal-overlay,
+  .project-modal-header,
+  .project-modal-footer,
+  .navbar,
+  .bottom-nav,
+  .footer {
+    display: none !important;
+  }
+}
