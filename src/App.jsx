@@ -54,21 +54,16 @@ export default function App() {
       <Navbar onOpenResume={openResume} />
       
       <main id="main-content">
-        {activeProject ? (
-          <ProjectDetails 
-            project={activeProject} 
-            onBack={returnToProjects} 
-            onSelectProject={selectProject} 
-          />
-        ) : (
-          <>
-            <Hero />
-            <About onOpenResume={openResume} />
-            <Skills />
-            <Projects projects={projectsData} onSelectProject={selectProject} />
-            <Contact />
-          </>
-        )}
+        <Hero />
+        <About onOpenResume={openResume} />
+        <Skills />
+        <Projects 
+          projects={projectsData} 
+          activeProject={activeProject}
+          onSelectProject={selectProject} 
+          onCloseProject={returnToProjects}
+        />
+        <Contact />
       </main>
 
       <Footer />
