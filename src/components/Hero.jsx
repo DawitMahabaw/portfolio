@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowRight, Code2, Terminal, User, Send, Mail, ChevronDown } from 'lucide-react';
-import { personalData, skillCategories } from '../data/portfolioData';
+import { ArrowRight, Code2, Terminal, User, Mail, ChevronDown } from 'lucide-react';
+import { personalData } from '../data/portfolioData';
 import TechIcon from './TechIcon';
 import DevTerminal from './DevTerminal';
 import '../styles/Hero.css';
