@@ -1,9 +1,9 @@
 import React from 'react';
 import { Database, Layout, Server, Wrench } from 'lucide-react';
-import { skillCategories } from '../data';
+import { skillCategories, marqueeSkills } from '../data/skills';
 import TechIcon from './TechIcon';
 import { Reveal, RevealStagger, RevealItem } from './Reveal';
-import { SectionHeading, Card, Tag } from './ui';
+import { SectionHeading, Card } from './ui';
 import '../styles/Skills.css';
 
 const categoryIcons = {
@@ -13,12 +13,29 @@ const categoryIcons = {
   tools: Wrench,
 };
 
-const categoryDescriptions = {
-  frontend: 'UI components, state management, and responsive web apps.',
-  backend: 'REST APIs, token authentication, and server-side routing.',
-  database: 'Document schemas, data modeling, and query integrity.',
-  tools: 'Version control, API testing, build tools, and modern AI.',
-};
+function SkillTile({ skill }) {
+  return (
+    <li 
+      className="skill-tile" 
+      style={{
+        '--tech-color': skill.color || '#A855F7',
+        '--tech-glow': skill.glowColor || 'rgba(168, 85, 247, 0.45)',
+      }}
+      tabIndex={0}
+      aria-label={skill.name}
+    >
+      <div className="skill-tile-icon-box">
+        <TechIcon name={skill.icon} size={28} />
+      </div>
+      <span className="skill-tile-label">{skill.name}</span>
+
+      {/* Hover Tooltip with Tech Name */}
+      <div className="skill-tile-tooltip" role="tooltip">
+        <span>{skill.name}</span>
+      </div>
+    </li>
+  );
+}
 
 export default function Skills() {
   return (
@@ -28,51 +45,41 @@ export default function Skills() {
         <Reveal variant="fade-up">
           <SectionHeading
             numberBadge="03 // TECH STACK & TOOLKIT"
-            title="Technical Expertise"
-            gradientWord="Technical"
-            subtitle="Production technologies I work with across frontend engineering, backend architecture, and database modeling."
+            title="Technical Toolkit"
+            gradientWord="Toolkit"
+            subtitle="Core technologies I engineer with across frontend interfaces, backend services, databases, and developer tools."
             id="skills-heading"
           />
         </Reveal>
 
-        {/* Categories Grid with Stagger & Parallax Tilt */}
-        <RevealStagger className="skills-grid" staggerChildren={0.12}>
+        {/* 4 Category Glass Cards with Staggered Scroll Reveal */}
+        <RevealStagger className="skills-grid" staggerChildren={0.1}>
           {skillCategories.map((category) => {
             const Icon = categoryIcons[category.id] || Layout;
-            const desc = categoryDescriptions[category.id];
 
             return (
               <RevealItem key={category.id} variant="fade-up">
                 <Card
                   variant="glass"
-                  tilt
                   radius="lg"
-                  padding="md"
+                  padding="none"
                   className={`skill-category-card category-${category.accentColor}`}
                 >
                   <header className="category-header">
                     <span className="category-icon-badge" aria-hidden="true">
                       <Icon size={18} />
                     </span>
-                    <div>
+                    <div className="category-header-text">
                       <h3 className="category-title">{category.title}</h3>
-                      {desc && <p className="category-desc">{desc}</p>}
+                      {category.description && (
+                        <p className="category-desc">{category.description}</p>
+                      )}
                     </div>
                   </header>
 
-                  <ul className="category-items-grid">
+                  <ul className="category-tiles-grid" aria-label={`${category.title} skills`}>
                     {category.skills.map((skill) => (
-                      <li key={skill.name} className="skill-item-card">
-                        <span className="skill-icon-wrapper">
-                          <TechIcon name={skill.icon} size={24} />
-                        </span>
-                        <span className="skill-name">{skill.name}</span>
-                        {skill.level && (
-                          <Tag variant="purple" size="sm" className="skill-level-tag">
-                            {skill.level}
-                          </Tag>
-                        )}
-                      </li>
+                      <SkillTile key={skill.name} skill={skill} />
                     ))}
                   </ul>
                 </Card>
@@ -80,6 +87,35 @@ export default function Skills() {
             );
           })}
         </RevealStagger>
+
+        {/* Bonus: Slow Infinite Marquee of Tech Logos (pauses on hover) */}
+        <Reveal variant="fade-up" delay={0.25} className="skills-marquee-section">
+          <div className="skills-marquee-container">
+            <div className="marquee-label-row">
+              <span className="marquee-pulse-dot" aria-hidden="true" />
+              <span className="marquee-label-tag">CONTINUOUS ROTATION // FULL PRODUCTION TOOLKIT</span>
+            </div>
+
+            <div className="marquee-wrapper" tabIndex={0} aria-label="Infinite scrolling technology logos">
+              <div className="marquee-track">
+                {/* 2x repeated sequence for infinite seamless loop */}
+                {[...marqueeSkills, ...marqueeSkills].map((item, index) => (
+                  <div 
+                    key={`${item.name}-${index}`} 
+                    className="marquee-item"
+                    style={{
+                      '--tech-color': item.color || '#A855F7',
+                      '--tech-glow': item.glowColor || 'rgba(168, 85, 247, 0.4)',
+                    }}
+                  >
+                    <TechIcon name={item.icon} size={20} />
+                    <span className="marquee-item-name">{item.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -64,6 +64,8 @@ export interface AboutPhotoData {
 export interface SkillItem {
   name: string;
   icon: string;
+  color?: string;
+  glowColor?: string;
   level?: string;
 }
 
@@ -71,6 +73,7 @@ export interface SkillCategory {
   id: string;
   title: string;
   accentColor: string;
+  description?: string;
   skills: SkillItem[];
 }
 

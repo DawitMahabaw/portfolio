@@ -141,6 +141,37 @@ export default function TechIcon({ name, size = 22, className = '' }) {
         </svg>
       );
 
+    case 'mysql':
+      return (
+        <svg width={size} height={size} viewBox="0 0 32 32" className={className}>
+          <path fill="#00758F" d="M16 3C9.4 3 4 7.5 4 13c0 3.8 2.6 7 6.4 8.7l-1.1 3.5 4.3-1.9c.8.2 1.6.3 2.4.3 6.6 0 12-4.5 12-10S22.6 3 16 3z"/>
+          <path fill="#F29111" d="M20.2 8.5c-2.4-.6-5.1.2-6.7 2-1.6 1.8-1.9 4.4-.9 6.6.9 2 2.7 3.4 4.8 3.8l.5-1.5c-1.6-.3-3-1.4-3.7-3-.8-1.7-.5-3.8.7-5.2 1.2-1.4 3.3-2 5.2-1.5l.1-1.2z"/>
+          <circle cx="21" cy="11.5" r="1.3" fill="#FFFFFF"/>
+          <path fill="#F29111" d="M22.5 15.2c1.2.8 2.2 2 2.7 3.3l-1.2.6c-.4-1.1-1.2-2-2.2-2.7l.7-1.2z"/>
+        </svg>
+      );
+
+    case 'jwt':
+    case 'jsonwebtoken':
+      return (
+        <svg width={size} height={size} viewBox="0 0 32 32" className={className}>
+          <path d="M16 2.5l11.5 6.6v13.8L16 29.5 4.5 22.9V9.1L16 2.5z" fill="none" stroke="#D63AFF" strokeWidth="2.2" strokeLinejoin="round"/>
+          <circle cx="16" cy="14.5" r="3.8" fill="#FB015B"/>
+          <path d="M5.5 9.1L16 14.5l10.5-5.4" stroke="#00B9F1" strokeWidth="2" fill="none"/>
+          <path d="M16 14.5v13" stroke="#D63AFF" strokeWidth="2"/>
+        </svg>
+      );
+
+    case 'gitgithub':
+    case 'gitandgithub':
+      return (
+        <svg width={size} height={size} viewBox="0 0 32 32" className={className}>
+          <path fill="#F05032" d="M15 1.5L2.8 13.7c-.6.6-.6 1.5 0 2.1l4.5 4.5 7.7-7.7v-2.2c-.4-.3-.6-.8-.6-1.4 0-1.1.9-2 2-2s2 .9 2 2c0 .6-.3 1.1-.7 1.4v2.3l4 4c.4-.2.8-.3 1.3-.3 1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2c0-.3.1-.7.2-1l-3.8-3.8v4.8c.4.3.7.8.7 1.4 0 1.1-.9 2-2 2s-2-.9-2-2c0-.5.2-1 .5-1.3v-5l-4.5 4.5 8.9 8.9c.6.6 1.5.6 2.1 0l12.2-12.2c.6-.6.6-1.5 0-2.1L17.1 1.5c-.6-.6-1.5-.6-2.1 0z"/>
+          <circle cx="23" cy="23" r="7.5" fill="#181717" stroke="#FFFFFF" strokeWidth="1"/>
+          <path fill="#FFFFFF" d="M23 18.5a4.5 4.5 0 00-1.4 8.8c.2 0 .3-.1.3-.2v-.8c-1.2.3-1.5-.6-1.5-.6-.2-.5-.5-.7-.5-.7-.4-.3 0-.3 0-.3.5 0 .7.5.7.5.4.7 1 .5 1.3.4 0-.3.2-.5.3-.6-1-.1-2-.5-2-2.2 0-.5.2-.9.5-1.2 0-.1-.2-.6 0-1.2 0 0 .4-.1 1.3.5a4.5 4.5 0 012.4 0c.9-.6 1.3-.5 1.3-.5.2.6 0 1.1 0 1.2.3.3.5.7.5 1.2 0 1.7-1 2.1-2 2.2.2.1.3.4.3.8v1.3c0 .1.1.2.3.2A4.5 4.5 0 0023 18.5z"/>
+        </svg>
+      );
+
     case 'socketio':
     case 'websocket':
       return (
