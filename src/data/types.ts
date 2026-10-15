@@ -33,12 +33,12 @@ export interface LearningPathItem {
   period: string;
   title: string;
   institution: string;
-  role: string;
-  location: string;
-  type: 'education' | 'bootcamp' | 'production';
+  role?: string;
+  location?: string;
+  type?: 'education' | 'bootcamp' | 'production' | 'certification';
   badge: string;
   description: string;
-  highlights: string[];
+  highlights?: string[];
   technologies: string[];
   credentialUrl?: string;
 }
@@ -48,6 +48,17 @@ export interface AboutHighlight {
   title: string;
   description: string;
   icon: string;
+  stat?: string;
+}
+
+export interface AboutPhotoData {
+  image: string;
+  fallbackImage?: string;
+  alt: string;
+  badge: string;
+  subBadge?: string;
+  status?: string;
+  location?: string;
 }
 
 export interface SkillItem {

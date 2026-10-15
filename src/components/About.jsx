@@ -1,165 +1,274 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useSpring, useReducedMotion } from 'framer-motion';
 import { 
-  Layout, 
+  Layers, 
   Cpu, 
-  ShieldCheck, 
-  CheckCircle, 
+  Sparkles, 
   GraduationCap, 
   Code2, 
-  Rocket, 
+  Award, 
   Calendar, 
   MapPin, 
   Check, 
-  FileText,
   ArrowRight
 } from 'lucide-react';
-import { aboutHighlights, personalData, learningPath } from '../data';
+import { aboutHighlights, aboutIntro, learningPath, aboutPhoto } from '../data/about';
 import { Reveal, RevealStagger, RevealItem } from './Reveal';
 import { SectionHeading, Button, Tag, Card } from './ui';
 import '../styles/About.css';
 import '../styles/Timeline.css';
 
-const strengthIcons = {
-  Layout,
+const highlightIcons = {
+  Layers,
   Cpu,
-  ShieldCheck,
-  CheckCircle,
+  Sparkles,
 };
 
 const timelineIcons = {
   education: GraduationCap,
   bootcamp: Code2,
-  production: Rocket,
+  certification: Award,
 };
 
 export default function About({ onOpenResume }) {
+  const timelineRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Scroll progress for the timeline vertical line drawing itself
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start 85%', 'end 50%'],
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <section id="about" className="section about-section" aria-labelledby="about-heading">
       <div className="container">
         {/* Section Heading */}
         <Reveal variant="fade-up">
           <SectionHeading
-            numberBadge="02 // BACKGROUND & PHILOSOPHY"
-            title="Building with Clarity, Structure & Care"
-            gradientWord="Clarity"
-            subtitle="Bridging academic Information Science principles with modern full-stack engineering."
+            numberBadge="02 // ABOUT & BACKGROUND"
+            title="Building with Purpose, Structure & Systems Thinking"
+            gradientWord="Structure & Systems"
+            subtitle="Second-year Information Science student at AAU and fresh graduate of Evangadi's AI-powered MERN stack course."
             id="about-heading"
           />
         </Reveal>
 
-        {/* Top Grid: Bio Narrative & Strengths + Workspace Visual */}
-        <div className="about-grid">
-          <div className="about-content">
+        {/* Top Grid: Bio Narrative & Photo Placeholder with Tilt */}
+        <div className="about-hero-grid">
+          <div className="about-bio-column">
             <Reveal variant="fade-up" delay={0.1}>
-              <p className="about-description">{personalData.aboutIntro}</p>
-            </Reveal>
+              <div className="about-bio-card">
+                <p className="about-bio-text">
+                  {aboutIntro}
+                </p>
 
-            {/* Core Engineering Strengths */}
-            <RevealStagger className="strengths-grid" staggerChildren={0.08} delayChildren={0.15}>
-              {aboutHighlights.map((item) => {
-                const Icon = strengthIcons[item.icon] || Layout;
-                return (
-                  <RevealItem key={item.id} variant="fade-up">
-                    <Card variant="glass" radius="md" padding="sm" className="strength-card">
-                      <span className="strength-icon-box" aria-hidden="true">
-                        <Icon size={20} />
-                      </span>
-                      <div className="strength-info">
-                        <h3>{item.title}</h3>
-                        <p>{item.description}</p>
-                      </div>
-                    </Card>
-                  </RevealItem>
-                );
-              })}
-            </RevealStagger>
+                {/* Quick Academic & Technical Credentials Chips */}
+                <div className="about-credentials-strip" aria-label="Key background credentials">
+                  <Tag variant="purple" size="md">
+                    <GraduationCap size={15} />
+                    <span>AAU Information Science (2nd Year)</span>
+                  </Tag>
+                  <Tag variant="cyan" size="md">
+                    <Code2 size={15} />
+                    <span>Evangadi MERN Graduate</span>
+                  </Tag>
+                  <Tag variant="glass" size="md">
+                    <Sparkles size={15} />
+                    <span>AI-Powered Full-Stack</span>
+                  </Tag>
+                </div>
+              </div>
+            </Reveal>
           </div>
 
-          {/* Right Visual Image Frame with Parallax Tilt */}
-          <Reveal variant="scale-in" delay={0.2} className="about-visual-collage">
-            <Card variant="glass" tilt radius="xl" padding="none" className="about-image-card">
-              <div className="about-image-container">
-                <img 
-                  src={personalData.aboutImage} 
-                  alt={personalData.aboutImageAlt} 
-                  width="800" 
-                  height="600" 
-                  loading="lazy" 
-                />
-              </div>
-            </Card>
-          </Reveal>
+          {/* Photo Placeholder with Interactive Tilt-on-Hover Effect */}
+          <div className="about-photo-column">
+            <Reveal variant="scale-in" delay={0.2}>
+              <Card 
+                variant="glass" 
+                tilt 
+                tiltOptions={{
+                  tiltMaxAngleX: 12,
+                  tiltMaxAngleY: 12,
+                  perspective: 1000,
+                  scale: 1.02,
+                  transitionSpeed: 800,
+                  glareEnable: true,
+                  glareMaxOpacity: 0.2,
+                  glareColor: '#A855F7',
+                  glarePosition: 'all',
+                }}
+                radius="xl" 
+                padding="none" 
+                className="about-photo-card"
+              >
+                <div className="photo-placeholder-wrapper">
+                  <div className="photo-glow-backdrop" aria-hidden="true" />
+                  <div className="photo-image-frame">
+                    <img 
+                      src={aboutPhoto.image} 
+                      alt={aboutPhoto.alt} 
+                      width="800" 
+                      height="600" 
+                      loading="lazy" 
+                      onError={(e) => {
+                        if (aboutPhoto.fallbackImage && e.currentTarget.src !== aboutPhoto.fallbackImage) {
+                          e.currentTarget.src = aboutPhoto.fallbackImage;
+                        }
+                      }}
+                    />
+                    <div className="photo-overlay-gradient" />
+                  </div>
+
+                  {/* Floating Badges with 3D Depth */}
+                  <div className="photo-floating-badge top-left">
+                    <GraduationCap size={14} className="badge-icon-purple" />
+                    <span>{aboutPhoto.subBadge || 'AAU & Evangadi'}</span>
+                  </div>
+
+                  <div className="photo-floating-badge bottom-right">
+                    <span className="status-dot-pulse" aria-hidden="true" />
+                    <span>{aboutPhoto.status || 'Open to Junior Roles'}</span>
+                  </div>
+                </div>
+              </Card>
+            </Reveal>
+          </div>
         </div>
 
-        {/* Short Learning Path Timeline (Merged Experience & Credentials) */}
+        {/* Three Highlight Cards (Full-Stack Development, Problem Solving, Continuous Learning) */}
+        <div className="about-highlights-wrapper">
+          <Reveal variant="fade-up" delay={0.12}>
+            <div className="highlights-header">
+              <span className="highlights-eyebrow">CORE PILLARS</span>
+              <h3 className="highlights-title">What I Bring to Every Project</h3>
+            </div>
+          </Reveal>
+
+          <RevealStagger className="highlights-grid" staggerChildren={0.1} delayChildren={0.18}>
+            {aboutHighlights.map((item) => {
+              const Icon = highlightIcons[item.icon] || Layers;
+              return (
+                <RevealItem key={item.id} variant="fade-up">
+                  <Card 
+                    variant="glass" 
+                    radius="lg" 
+                    padding="md" 
+                    className="highlight-card"
+                  >
+                    <div className="highlight-top-row">
+                      <div className="highlight-icon-box" aria-hidden="true">
+                        <Icon size={22} />
+                      </div>
+                      {item.stat && (
+                        <span className="highlight-stat-pill">{item.stat}</span>
+                      )}
+                    </div>
+                    
+                    <h4 className="highlight-card-title">{item.title}</h4>
+                    <p className="highlight-card-desc">{item.description}</p>
+                  </Card>
+                </RevealItem>
+              );
+            })}
+          </RevealStagger>
+        </div>
+
+        {/* Compact "Learning Path" Vertical Timeline (3 Entries, scroll-drawing line, reveal one by one) */}
         <div className="learning-path-wrapper">
           <Reveal variant="fade-up">
             <SectionHeading
-              tag="Milestones & Training"
+              tag="MILESTONES & CREDENTIALS"
               title="My Learning Path"
               gradientWord="Learning Path"
-              subtitle="Academic foundations at AAU, intensive bootcamp immersion at Evangadi, and independent full-stack builds."
+              subtitle="Foundational university computer science studies paired with intense MERN immersion and AI-powered certification."
             />
           </Reveal>
 
-          <ol className="experience-timeline">
+          <div ref={timelineRef} className="learning-path-timeline">
+            {/* Background static line track */}
+            <div className="timeline-line-track" aria-hidden="true" />
+
+            {/* Foreground animated line drawing itself on scroll */}
+            <motion.div 
+              className="timeline-line-progress" 
+              style={{ scaleY: prefersReducedMotion ? 1 : scaleY }} 
+              aria-hidden="true" 
+            />
+
             {learningPath.map((item, index) => {
               const Icon = timelineIcons[item.type] || Code2;
               return (
-                <li key={item.id} className="experience-timeline-item">
-                  <span className="timeline-node" aria-hidden="true">
-                    <Icon size={18} />
-                  </span>
+                <Reveal key={item.id} variant="fade-up" delay={index * 0.15}>
+                  <div className="timeline-item-row">
+                    {/* Node indicator */}
+                    <div className="timeline-node" aria-hidden="true">
+                      <Icon size={18} />
+                    </div>
 
-                  <Reveal variant="fade-up" delay={index * 0.1}>
-                    <Card variant="glass" radius="lg" padding="md" className="experience-card">
-                      <div className="record-heading">
-                        <div>
-                          <Tag variant="purple" size="sm" className="timeline-badge-tag">
+                    {/* Timeline Entry Card */}
+                    <Card variant="glass" radius="lg" padding="md" className="timeline-entry-card">
+                      <div className="timeline-card-header">
+                        <div className="timeline-title-block">
+                          <Tag 
+                            variant={item.type === 'certification' ? 'cyan' : 'purple'} 
+                            size="sm" 
+                            className="timeline-badge-tag"
+                          >
                             {item.badge}
                           </Tag>
-                          <h3>{item.title}</h3>
-                          <p className="record-org">{item.institution}</p>
+                          <h4 className="timeline-title">{item.title}</h4>
+                          <p className="timeline-institution">{item.institution}</p>
                         </div>
-                        <span className="record-period">
-                          <Calendar size={14} />
-                          {item.year}
+
+                        <span className="timeline-period-pill">
+                          <Calendar size={13} />
+                          <span>{item.year}</span>
                         </span>
                       </div>
 
-                      <p className="record-location">
-                        <MapPin size={14} />
-                        {item.location} &nbsp;·&nbsp; <span>{item.period}</span>
+                      <p className="timeline-location-row">
+                        <MapPin size={13} />
+                        <span>{item.location}</span>
+                        <span className="dot-separator">·</span>
+                        <span className="period-detail">{item.period}</span>
                       </p>
 
-                      <p className="record-description">{item.description}</p>
+                      <p className="timeline-description">{item.description}</p>
 
-                      {item.highlights?.length > 0 && (
-                        <ul className="record-list">
+                      {item.highlights && item.highlights.length > 0 && (
+                        <ul className="timeline-highlights-list">
                           {item.highlights.map((point) => (
                             <li key={point}>
-                              <Check size={16} />
+                              <Check size={14} className="check-bullet" />
                               <span>{point}</span>
                             </li>
                           ))}
                         </ul>
                       )}
 
-                      {item.technologies?.length > 0 && (
-                        <div className="record-tags" aria-label="Core topics & tools">
+                      {item.technologies && item.technologies.length > 0 && (
+                        <div className="timeline-tech-tags" aria-label="Core technologies and concepts">
                           {item.technologies.map((tech) => (
-                            <Tag key={tech} variant="cyan" size="sm">
+                            <Tag key={tech} variant="glass" size="sm">
                               {tech}
                             </Tag>
                           ))}
                         </div>
                       )}
                     </Card>
-                  </Reveal>
-                </li>
+                  </div>
+                </Reveal>
               );
             })}
-          </ol>
+          </div>
 
           {/* Integrated Digital CV Action */}
           <Reveal variant="fade-up" delay={0.25}>

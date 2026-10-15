@@ -5,6 +5,7 @@ export function Card({
   children,
   variant = 'glass', // 'glass' | 'elevated' | 'subtle'
   tilt = false,
+  tiltOptions = {},
   glow = false,
   radius = 'lg',     // 'sm' | 'md' | 'lg' | 'xl'
   padding = 'md',    // 'sm' | 'md' | 'lg' | 'none'
@@ -47,13 +48,16 @@ export function Card({
   if (tilt) {
     return (
       <Tilt
-        tiltMaxAngleX={6}
-        tiltMaxAngleY={6}
-        perspective={1000}
-        scale={1.015}
-        transitionSpeed={1000}
-        glareEnable={false}
-        className="card-tilt-container"
+        tiltMaxAngleX={tiltOptions.tiltMaxAngleX ?? 6}
+        tiltMaxAngleY={tiltOptions.tiltMaxAngleY ?? 6}
+        perspective={tiltOptions.perspective ?? 1000}
+        scale={tiltOptions.scale ?? 1.015}
+        transitionSpeed={tiltOptions.transitionSpeed ?? 1000}
+        glareEnable={tiltOptions.glareEnable ?? false}
+        glareMaxOpacity={tiltOptions.glareMaxOpacity ?? 0.2}
+        glareColor={tiltOptions.glareColor ?? '#ffffff'}
+        glarePosition={tiltOptions.glarePosition ?? 'bottom'}
+        className={`card-tilt-container ${tiltOptions.className || ''}`.trim()}
       >
         {content}
       </Tilt>

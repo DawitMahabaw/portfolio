@@ -1,89 +1,116 @@
-import type { AboutHighlight, LearningPathItem } from './types';
+import type { AboutHighlight, LearningPathItem, AboutPhotoData } from './types';
 
+/**
+ * Short, confident 3-4 sentence intro in first person.
+ * Real info: fresh graduate of Evangadi's AI-powered MERN stack course,
+ * second-year Information Science student at Addis Ababa University (AAU).
+ */
+export const aboutIntro = 
+  "I am a second-year Information Science student at Addis Ababa University and a fresh graduate of Evangadi's AI-powered MERN stack course. Driven by curiosity and systematic engineering, I build modern full-stack web applications with responsive React frontends, robust Node.js/Express REST APIs, and scalable MongoDB and MySQL databases. I bridge foundational academic principles in data systems and human-computer interaction with modern, production-focused development workflows and AI tooling. Committed to continuous growth and clean architecture, I focus on crafting reliable, user-centered digital solutions that solve real-world problems.";
+
+export const aboutBio = aboutIntro;
+
+/**
+ * Three highlight cards with hover lift and glow
+ */
 export const aboutHighlights: AboutHighlight[] = [
   { 
     id: 'fullstack', 
     title: 'Full-Stack Development', 
-    description: 'Build complete web applications from responsive UI components to RESTful APIs and database schemas.', 
-    icon: 'Layout' 
+    description: 'Engineering responsive, component-driven React interfaces paired with modular Express.js REST APIs and structured MongoDB/MySQL databases.', 
+    icon: 'Layers',
+    stat: 'MERN Stack & SQL'
   },
   { 
     id: 'problem-solving', 
-    title: 'Practical Problem Solving', 
-    description: 'Translate user requirements, UI flows, and complex business logic into clean, robust software solutions.', 
-    icon: 'Cpu' 
-  },
-  { 
-    id: 'clean-code', 
-    title: 'Clean & Scalable Code', 
-    description: 'Modular React component hierarchies, structured Express route middleware, and atomic Git commit discipline.', 
-    icon: 'ShieldCheck' 
+    title: 'Problem Solving', 
+    description: 'Transforming complex product flows into clean, maintainable logic using strong data structure fundamentals and defensive error handling.', 
+    icon: 'Cpu',
+    stat: 'Architecture & Logic'
   },
   { 
     id: 'continuous-learning', 
-    title: 'Continuous Growth', 
-    description: 'Fast learner applying AI-augmented tooling, staying current with modern web standards, and mastering best practices.', 
-    icon: 'CheckCircle' 
+    title: 'Continuous Learning', 
+    description: 'Actively mastering modern full-stack standards, AI-accelerated tooling, and production practices alongside university computer science coursework.', 
+    icon: 'Sparkles',
+    stat: 'AAU & Evangadi'
   },
 ];
 
+/**
+ * Compact "Learning Path" vertical timeline with 3 entries:
+ * 1. Information Science at AAU
+ * 2. Evangadi MERN Course
+ * 3. AI-Powered Full-Stack Certification
+ */
 export const learningPath: LearningPathItem[] = [
   {
     id: 'aau',
     year: '2023 — Present',
-    period: 'Second-Year Undergraduate',
+    period: '2nd-Year Undergraduate',
     title: 'B.Sc. in Information Science',
     institution: 'Addis Ababa University (AAU)',
     role: 'Undergraduate Student',
     location: 'Addis Ababa, Ethiopia',
     type: 'education',
     badge: 'University Degree',
-    description: 'Rigorous academic foundations in software systems, information architecture, relational database normalization, data structures, and human-computer interaction.',
+    description: 'Rigorous academic foundations in software systems, relational database normalization (3NF SQL), data structures, and human-computer interaction.',
     highlights: [
-      'Database Systems & Relational SQL Modeling (3NF normalization)',
+      'Relational Database Systems (SQL modeling & 3NF normalization)',
       'Data Structures & Algorithms in practical problem solving',
       'Systems Analysis, Design, and Information Architecture',
-      'Web Technologies & Human-Computer Interface Principles',
+      'Human-Computer Interface (HCI) Principles',
     ],
     technologies: ['SQL', 'Relational DBs', 'Systems Analysis', 'Information Architecture', 'Data Structures'],
   },
   {
-    id: 'evangadi',
+    id: 'evangadi-mern',
     year: '2024 — 2025',
     period: '400+ Hours Intensive Immersion',
-    title: 'AI-Powered Full-Stack Application Development',
+    title: 'Full-Stack MERN Stack Course',
     institution: 'Evangadi Networks',
-    role: 'Full-Stack Engineering Trainee & Graduate',
+    role: 'Full-Stack Developer Trainee',
     location: 'Remote / Global',
     type: 'bootcamp',
-    badge: 'Certified Bootcamp',
-    description: 'Comprehensive industry-aligned bootcamp covering modern MERN architecture, token-based authentication, modular REST endpoints, Git branching, and capstone project defense.',
+    badge: 'Intensive Immersion',
+    description: 'Comprehensive industry-aligned bootcamp covering modern MERN architecture, token-based authentication, modular REST endpoints, Git branching, and collaborative capstone projects.',
     highlights: [
       'Mastered React hooks, Context API, responsive component design, and Axios',
-      'Engineered Express.js REST APIs with JWT auth and Bcrypt hashing',
+      'Engineered Express.js REST APIs with JWT auth and Bcrypt password hashing',
       'Designed dual-database schemas with MongoDB (Mongoose) and MySQL',
       'Built and defended collaborative full-stack capstone projects',
     ],
     technologies: ['React', 'Node.js', 'Express.js', 'MongoDB', 'MySQL', 'JWT', 'Git'],
-    credentialUrl: '',
   },
   {
-    id: 'practical-production',
-    year: '2024 — Present',
-    period: 'Production Builds & Engineering Practice',
-    title: 'Full-Stack Web Engineering & Capstone Builds',
-    institution: 'Independent Software Craftsmanship',
-    role: 'Junior Full-Stack Developer',
-    location: 'Addis Ababa, Ethiopia',
-    type: 'production',
-    badge: 'Practical Experience',
-    description: 'Shipped 4 production-grade web applications with live deployments, robust RESTful APIs, relational/document database integration, and responsive mobile-first interfaces.',
+    id: 'ai-certification',
+    year: '2025',
+    period: 'Certified Graduate',
+    title: 'AI-Powered Full-Stack Certification',
+    institution: 'Evangadi Networks',
+    role: 'Certified Full-Stack Graduate',
+    location: 'Remote / Global',
+    type: 'certification',
+    badge: 'Verified Credential',
+    description: 'Advanced credential recognizing excellence in AI-assisted full-stack development workflows, production API design, and modern deployment standards.',
     highlights: [
-      'Built Evangadi Forum: full-stack Q&A platform with MySQL, JWT, and threaded replies',
-      'Constructed Amazon Clone: e-commerce platform with Cart context and checkout flow',
-      'Created TaskFlow Pro: Kanban board with optimistic UI updates and MongoDB persistence',
-      'Developed Netflix Clone: dynamic streaming catalogue consuming the TMDB REST API',
+      'AI-assisted development acceleration, debugging, and test scaffolding',
+      'Robust API security, defensive error handling, and environment isolation',
+      'End-to-end full-stack integration and production performance standards',
     ],
-    technologies: ['React 18', 'Node.js', 'Express', 'MongoDB', 'MySQL', 'REST APIs', 'Vercel'],
+    technologies: ['AI Tooling', 'MERN Architecture', 'REST APIs', 'Cloud Deployment'],
   },
 ];
+
+/**
+ * Photo placeholder data with tilt-on-hover effect
+ */
+export const aboutPhoto: AboutPhotoData = {
+  image: '/images/about-workspace.jpg',
+  fallbackImage: '/images/profile.jpg',
+  alt: 'Dawit Mahabaw - Junior MERN Developer workspace and workstation',
+  badge: 'Junior MERN Developer',
+  subBadge: 'AAU InfoSci · Evangadi Graduate',
+  status: 'Open to Work & Internships',
+  location: 'Addis Ababa, Ethiopia',
+};
