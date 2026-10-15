@@ -11,7 +11,7 @@ import {
   GitBranch, 
   ShieldCheck 
 } from 'lucide-react';
-import { projectsData } from '../data/portfolioData';
+import { projectsData } from '../data';
 import TechIcon from './TechIcon';
 import '../styles/ProjectDetails.css';
 

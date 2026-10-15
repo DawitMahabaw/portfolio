@@ -1,21 +1,15 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ProfessionalSummary from './components/ProfessionalSummary';
 import About from './components/About';
 import Skills from './components/Skills';
-import FullStackApproach from './components/FullStackApproach';
-import WhyWorkWithMe from './components/WhyWorkWithMe';
 import Projects from './components/Projects';
 import ProjectDetails from './components/ProjectDetails';
-import Experience from './components/Experience';
-import Education from './components/Education';
-import ResumeCTA from './components/ResumeCTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BottomNav from './components/BottomNav';
 import ResumeModal from './components/ResumeModal';
-import { projectsData } from './data/portfolioData';
+import { projectsData } from './data';
 
 export default function App() {
   const [activeProject, setActiveProject] = useState(null);
@@ -67,15 +61,9 @@ export default function App() {
         ) : (
           <>
             <Hero />
-            <ProfessionalSummary />
-            <About />
+            <About onOpenResume={openResume} />
             <Skills />
-            <FullStackApproach />
-            <WhyWorkWithMe />
             <Projects projects={projectsData} onSelectProject={selectProject} />
-            <Experience />
-            <Education />
-            <ResumeCTA onOpenResume={openResume} />
             <Contact />
           </>
         )}

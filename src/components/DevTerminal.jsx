@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Terminal, Copy, Check, CornerDownLeft } from 'lucide-react';
-import { terminalData, personalData } from '../data/portfolioData';
+import { terminalData, personalData } from '../data';
 import '../styles/DevTerminal.css';
 
 export default function DevTerminal() {

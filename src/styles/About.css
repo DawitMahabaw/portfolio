@@ -1,11 +1,284 @@
-.about-section { background: var(--bg-light-card); }
-.about-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); align-items: center; gap: clamp(36px, 7vw, 76px); }
-.about-description { color: var(--text-dark-body); font-size: 1.05rem; line-height: 1.8; max-width: 650px; }
-.strengths-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 32px; }
-.strength-card { padding: 18px; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-light-body); }
-.strength-icon-box { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 14px; border-radius: 10px; background: var(--accent-blue-subtle); color: var(--accent-blue); }
-.strength-info h3 { color: var(--text-dark-title); font-size: .95rem; line-height: 1.3; }.strength-info p { color: var(--text-dark-muted); font-size: .85rem; line-height: 1.55; margin-top: 5px; }
-.about-visual-collage { padding: 12px; border: 1px solid var(--border-light); border-radius: var(--radius-xl); background: var(--bg-light-body); box-shadow: var(--shadow-md); }
-.about-image-container { overflow: hidden; border-radius: calc(var(--radius-xl) - 8px); aspect-ratio: 4 / 3; }.about-image-container img { width: 100%; height: 100%; object-fit: cover; }
-@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; }.about-visual-collage { max-width: 620px; } }
-@media (max-width: 600px) { .strengths-grid { grid-template-columns: 1fr; } }
+.about-section {
+  background: var(--bg-light-card);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .about-section {
+  background: #091124;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  align-items: center;
+  gap: clamp(36px, 6vw, 64px);
+  margin-bottom: 56px;
+}
+
+.about-description {
+  color: var(--text-dark-body);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 650px;
+}
+
+[data-theme="dark"] .about-description {
+  color: #94a3b8;
+}
+
+.strengths-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.strength-card {
+  padding: 18px 20px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-light-body);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+[data-theme="dark"] .strength-card {
+  background: rgba(15, 26, 52, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.strength-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-blue);
+  box-shadow: var(--shadow-sm);
+}
+
+.strength-icon-box {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  background: var(--accent-blue-subtle);
+  color: var(--accent-blue);
+}
+
+[data-theme="dark"] .strength-icon-box {
+  background: rgba(29, 123, 248, 0.15);
+  color: var(--accent-cyan);
+}
+
+.strength-info h3 {
+  color: var(--text-dark-title);
+  font-size: 0.96rem;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .strength-info h3 {
+  color: #fff;
+}
+
+.strength-info p {
+  color: var(--text-dark-muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin-top: 5px;
+}
+
+[data-theme="dark"] .strength-info p {
+  color: #94a3b8;
+}
+
+.about-visual-collage {
+  padding: 12px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  background: var(--bg-light-body);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .about-visual-collage {
+  background: rgba(15, 26, 52, 0.5);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.about-image-tilt {
+  transform-style: preserve-3d;
+}
+
+.about-image-container {
+  overflow: hidden;
+  border-radius: calc(var(--radius-xl) - 8px);
+  aspect-ratio: 4 / 3;
+}
+
+.about-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Learning Path Timeline Section within About */
+.learning-path-wrapper {
+  margin-top: 60px;
+  padding-top: 50px;
+  border-top: 1px solid var(--border-light);
+}
+
+[data-theme="dark"] .learning-path-wrapper {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.learning-path-header {
+  margin-bottom: 36px;
+}
+
+.learning-path-title {
+  color: var(--text-dark-title);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 6px;
+}
+
+[data-theme="dark"] .learning-path-title {
+  color: #fff;
+}
+
+.learning-path-subtitle {
+  color: var(--text-dark-muted);
+  font-size: 1rem;
+  max-width: 650px;
+  margin-top: 6px;
+}
+
+[data-theme="dark"] .learning-path-subtitle {
+  color: #94a3b8;
+}
+
+.timeline-badge-tag {
+  display: inline-block;
+  padding: 3px 9px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="dark"] .experience-card {
+  background: #0f1a34;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .record-heading h3 {
+  color: #fff;
+}
+
+[data-theme="dark"] .record-period {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .record-location {
+  color: #64748b;
+}
+
+[data-theme="dark"] .record-location span {
+  color: var(--accent-cyan);
+}
+
+[data-theme="dark"] .record-description {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .record-list li {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .record-tags span {
+  background: rgba(29, 123, 248, 0.12);
+  border-color: rgba(29, 123, 248, 0.3);
+  color: #38bdf8;
+}
+
+/* Integrated CV CTA Box */
+.about-resume-cta-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 40px;
+  padding: 24px 30px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(29, 123, 248, 0.08) 0%, rgba(56, 189, 248, 0.04) 100%);
+  border: 1px solid rgba(29, 123, 248, 0.25);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .about-resume-cta-box {
+  background: linear-gradient(135deg, rgba(15, 26, 52, 0.8) 0%, rgba(20, 34, 68, 0.8) 100%);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.resume-cta-text h4 {
+  font-size: 1.1rem;
+  font-weight: 750;
+  color: var(--text-dark-title);
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .resume-cta-text h4 {
+  color: #fff;
+}
+
+.resume-cta-text p {
+  font-size: 0.92rem;
+  color: var(--text-dark-muted);
+}
+
+[data-theme="dark"] .resume-cta-text p {
+  color: #94a3b8;
+}
+
+.btn-about-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 11px 22px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-visual-collage {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 768px) {
+  .strengths-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-resume-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btn-about-cv {
+    width: 100%;
+    justify-content: center;
+  }
+}

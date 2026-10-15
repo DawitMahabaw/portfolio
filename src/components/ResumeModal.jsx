@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { X, Download, Printer, Mail, MapPin, Globe } from 'lucide-react';
-import { personalData, skillCategories, experienceData, educationData, projectsData, certificationsData } from '../data/portfolioData';
+import { personalData, skillCategories, experienceData, educationData, projectsData, certificationsData } from '../data';
 import '../styles/ResumeModal.css';
 
 export default function ResumeModal({ onClose, onDownload }) {

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Database, Layout, Server, Wrench } from 'lucide-react';
-import { skillCategories } from '../data/portfolioData';
+import Tilt from 'react-parallax-tilt';
+import { skillCategories } from '../data';
 import TechIcon from './TechIcon';
+import { Reveal, RevealStagger, RevealItem } from './Reveal';
 import '../styles/Skills.css';
 
 const categoryIcons = {
@@ -22,51 +24,66 @@ export default function Skills() {
   return (
     <section id="skills" className="section skills-section" aria-labelledby="skills-heading">
       <div className="container">
-        <div className="section-pill-badge">
-          <span className="badge-num">02</span>
-          <span className="badge-divider">//</span>
-          <span className="badge-text">TECH STACK &amp; TOOLKIT</span>
-        </div>
+        {/* Section Header */}
+        <Reveal variant="fade-up">
+          <div className="section-pill-badge">
+            <span className="badge-num">03</span>
+            <span className="badge-divider">//</span>
+            <span className="badge-text">TECH STACK &amp; TOOLKIT</span>
+          </div>
 
-        <div className="section-header">
-          <h2 id="skills-heading" className="section-title">Technical Expertise</h2>
-          <p className="section-desc">
-            Production technologies I work with across frontend engineering, backend architecture, and database modeling.
-          </p>
-        </div>
+          <div className="section-header">
+            <h2 id="skills-heading" className="section-title">Technical Expertise</h2>
+            <p className="section-desc">
+              Production technologies I work with across frontend engineering, backend architecture, and database modeling.
+            </p>
+          </div>
+        </Reveal>
 
-        <div className="skills-grid">
+        {/* Categories Grid with Stagger & Parallax Tilt */}
+        <RevealStagger className="skills-grid" staggerChildren={0.12}>
           {skillCategories.map((category) => {
             const Icon = categoryIcons[category.id] || Layout;
             const desc = categoryDescriptions[category.id];
 
             return (
-              <article key={category.id} className={`skill-category-card category-${category.accentColor}`}>
-                <header className="category-header">
-                  <span className="category-icon-badge" aria-hidden="true">
-                    <Icon size={18} />
-                  </span>
-                  <div>
-                    <h3 className="category-title">{category.title}</h3>
-                    {desc && <p className="category-desc">{desc}</p>}
-                  </div>
-                </header>
-
-                <ul className="category-items-grid">
-                  {category.skills.map((skill) => (
-                    <li key={skill.name} className="skill-item-card">
-                      <span className="skill-icon-wrapper">
-                        <TechIcon name={skill.icon} size={26} />
+              <RevealItem key={category.id} variant="fade-up">
+                <Tilt
+                  tiltMaxAngleX={6}
+                  tiltMaxAngleY={6}
+                  perspective={1000}
+                  scale={1.015}
+                  transitionSpeed={1000}
+                  className="skill-card-tilt"
+                >
+                  <article className={`skill-category-card category-${category.accentColor}`}>
+                    <header className="category-header">
+                      <span className="category-icon-badge" aria-hidden="true">
+                        <Icon size={18} />
                       </span>
-                      <span className="skill-name">{skill.name}</span>
-                      {skill.level && <span className="skill-level-tag">{skill.level}</span>}
-                    </li>
-                  ))}
-                </ul>
-              </article>
+                      <div>
+                        <h3 className="category-title">{category.title}</h3>
+                        {desc && <p className="category-desc">{desc}</p>}
+                      </div>
+                    </header>
+
+                    <ul className="category-items-grid">
+                      {category.skills.map((skill) => (
+                        <li key={skill.name} className="skill-item-card">
+                          <span className="skill-icon-wrapper">
+                            <TechIcon name={skill.icon} size={26} />
+                          </span>
+                          <span className="skill-name">{skill.name}</span>
+                          {skill.level && <span className="skill-level-tag">{skill.level}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                </Tilt>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealStagger>
       </div>
     </section>
   );

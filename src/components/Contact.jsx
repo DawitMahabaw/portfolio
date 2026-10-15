@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { AlertCircle, CheckCircle, Mail, Send, MapPin } from 'lucide-react';
-import { contactData, personalData } from '../data/portfolioData';
+import React, { useState } from 'react';
+import { AlertCircle, CheckCircle, Mail, Send, MapPin, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { contactData, personalData } from '../data';
 import TechIcon from './TechIcon';
+import { Reveal } from './Reveal';
 import '../styles/Contact.css';
 
 const emptyForm = { name: '', email: '', message: '' };
@@ -38,28 +40,48 @@ export default function Contact() {
       return;
     }
 
-    if (!contactData.endpointUrl) {
-      // Fallback: Open mailto client with prefilled details
-      const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name.trim()}`);
-      const body = encodeURIComponent(`Name: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\n\nMessage:\n${formData.message.trim()}`);
-      window.location.href = `mailto:${contactData.email}?subject=${subject}&body=${body}`;
-      setStatus({ type: 'success', message: 'Opening your email client to send your message directly to Dawit Mahabaw.' });
-      setFormData(emptyForm);
-      return;
-    }
-
     setErrors({});
     setIsSubmitting(true);
     setStatus(null);
+
     try {
-      const response = await fetch(contactData.endpointUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...formData, _subject: `Portfolio message from ${formData.name.trim()}` }),
-      });
-      if (!response.ok) throw new Error('The form service could not accept the message.');
+      // 1. If EmailJS configuration is present, send directly via EmailJS
+      if (contactData.emailjsServiceId && contactData.emailjsTemplateId && contactData.emailjsPublicKey) {
+        await emailjs.send(
+          contactData.emailjsServiceId,
+          contactData.emailjsTemplateId,
+          {
+            from_name: formData.name.trim(),
+            from_email: formData.email.trim(),
+            message: formData.message.trim(),
+            to_name: personalData.name,
+          },
+          contactData.emailjsPublicKey
+        );
+        setFormData(emptyForm);
+        setStatus({ type: 'success', message: `Thanks ${formData.name.trim()}! Your message has been sent directly to Dawit.` });
+        return;
+      }
+
+      // 2. If endpoint URL (e.g. Formspree) is configured, POST to it
+      if (contactData.endpointUrl) {
+        const response = await fetch(contactData.endpointUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ ...formData, _subject: `Portfolio message from ${formData.name.trim()}` }),
+        });
+        if (!response.ok) throw new Error('The form service could not accept the message.');
+        setFormData(emptyForm);
+        setStatus({ type: 'success', message: 'Thanks — your message was sent successfully!' });
+        return;
+      }
+
+      // 3. Fallback: Prefilled mailto client link
+      const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name.trim()}`);
+      const body = encodeURIComponent(`Name: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\n\nMessage:\n${formData.message.trim()}`);
+      window.location.href = `mailto:${contactData.email}?subject=${subject}&body=${body}`;
+      setStatus({ type: 'success', message: 'Opening your default email app to deliver your message directly.' });
       setFormData(emptyForm);
-      setStatus({ type: 'success', message: 'Thanks — your message was sent successfully!' });
     } catch (error) {
       setStatus({ type: 'error', message: error.message || 'The message could not be sent. Please try again or email me directly.' });
     } finally {
@@ -76,14 +98,23 @@ export default function Contact() {
   return (
     <section id="contact" className="section contact-section" aria-labelledby="contact-heading">
       <div className="container">
+        {/* Section Header */}
+        <Reveal variant="fade-up">
+          <div className="section-pill-badge">
+            <span className="badge-num">05</span>
+            <span className="badge-divider">//</span>
+            <span className="badge-text">COMMUNICATION</span>
+          </div>
+
+          <div className="section-header">
+            <h2 id="contact-heading" className="section-title">{contactData.title}</h2>
+            <p className="section-desc">{contactData.subtitle}</p>
+          </div>
+        </Reveal>
+
         <div className="contact-grid">
-          <div className="contact-left-col">
-            <div className="section-header">
-              <span className="section-tag">Get in touch</span>
-              <h2 id="contact-heading" className="section-title">{contactData.title}</h2>
-              <p className="section-desc">{contactData.subtitle}</p>
-            </div>
-            
+          {/* Left Column: Direct Info Cards */}
+          <Reveal variant="fade-right" delay={0.1} className="contact-left-col">
             <div className="contact-info-stack">
               <a href={`mailto:${contactData.email}`} className="contact-card-item" aria-label={`Email ${personalData.name}`}>
                 <span className="contact-card-icon-box"><Mail size={20} /></span>
@@ -96,13 +127,20 @@ export default function Contact() {
               <div className="contact-card-item location-item">
                 <span className="contact-card-icon-box"><MapPin size={20} /></span>
                 <span className="contact-card-text">
-                  <span className="contact-card-label">Location</span>
+                  <span className="contact-card-label">Location &amp; Status</span>
                   <span className="contact-card-value">{contactData.location}</span>
                 </span>
               </div>
 
               {socialCards.map((social) => (
-                <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer" className="contact-card-item" aria-label={`${personalData.name} on ${social.label}`}>
+                <a 
+                  key={social.label} 
+                  href={social.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="contact-card-item" 
+                  aria-label={`${personalData.name} on ${social.label}`}
+                >
                   <span className="contact-card-icon-box"><TechIcon name={social.icon} size={20} /></span>
                   <span className="contact-card-text">
                     <span className="contact-card-label">{social.label}</span>
@@ -111,9 +149,10 @@ export default function Contact() {
                 </a>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <div className="contact-right-col">
+          {/* Right Column: Interactive Form */}
+          <Reveal variant="fade-left" delay={0.15} className="contact-right-col">
             <div className="contact-form-card">
               <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <div className="form-row">
@@ -149,13 +188,13 @@ export default function Contact() {
 
                 <div className="form-submit-row">
                   <button type="submit" className="btn btn-primary btn-contact-submit" disabled={isSubmitting}>
-                    <Send size={18} />
+                    {isSubmitting ? <Loader2 size={18} className="spin-loader" /> : <Send size={18} />}
                     <span>{isSubmitting ? 'Sending…' : 'Send Message'}</span>
                   </button>
                 </div>
               </form>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

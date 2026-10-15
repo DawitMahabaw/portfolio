@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Layers, MessageSquare } from 'lucide-react';
+import { Home, User, Wrench, Layers, MessageSquare } from 'lucide-react';
 import '../styles/BottomNav.css';
 
 export default function BottomNav() {
@@ -7,7 +7,7 @@ export default function BottomNav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
       const scrollPos = window.scrollY + 250;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -26,6 +26,7 @@ export default function BottomNav() {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home, href: '#home' },
     { id: 'about', label: 'About', icon: User, href: '#about' },
+    { id: 'skills', label: 'Skills', icon: Wrench, href: '#skills' },
     { id: 'projects', label: 'Projects', icon: Layers, href: '#projects' },
     { id: 'contact', label: 'Contact', icon: MessageSquare, href: '#contact' },
   ];
@@ -34,7 +35,6 @@ export default function BottomNav() {
     e.preventDefault();
     setActiveTab(id);
 
-    // If on a project case study page, return to home view
     if (window.location.hash.startsWith('#project/')) {
       window.location.hash = href;
       setTimeout(() => {
@@ -47,6 +47,7 @@ export default function BottomNav() {
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
+      window.history.replaceState(null, '', href);
     }
   };
 
@@ -65,7 +66,7 @@ export default function BottomNav() {
               aria-current={isActive ? 'page' : undefined}
             >
               <div className="bottom-nav-icon-wrap">
-                <Icon size={20} />
+                <Icon size={19} />
               </div>
               <span className="bottom-nav-label">{item.label}</span>
             </a>

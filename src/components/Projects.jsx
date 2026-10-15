@@ -1,13 +1,38 @@
+import React from 'react';
 import ProjectCard from './ProjectCard';
+import { Reveal, RevealStagger, RevealItem } from './Reveal';
 import '../styles/Projects.css';
 
 export default function Projects({ projects, onSelectProject }) {
-  if (!projects.length) return null;
+  if (!projects || !projects.length) return null;
+
   return (
     <section id="projects" className="section projects-section" aria-labelledby="projects-heading">
       <div className="container">
-        <div className="section-header"><span className="section-tag">Selected work</span><h2 id="projects-heading" className="section-title">Project case studies</h2><p className="section-desc">A closer look at the problems, decisions, and results behind each build.</p></div>
-        <div className="projects-grid">{projects.map((project) => <ProjectCard key={project.id} project={project} onOpenDetails={onSelectProject} />)}</div>
+        {/* Section Header */}
+        <Reveal variant="fade-up">
+          <div className="section-pill-badge">
+            <span className="badge-num">04</span>
+            <span className="badge-divider">//</span>
+            <span className="badge-text">FEATURED WORK</span>
+          </div>
+
+          <div className="section-header">
+            <h2 id="projects-heading" className="section-title">Project Case Studies</h2>
+            <p className="section-desc">
+              A closer look at the architecture, problem statements, decisions, and working results behind each build.
+            </p>
+          </div>
+        </Reveal>
+
+        {/* Staggered Projects Grid */}
+        <RevealStagger className="projects-grid" staggerChildren={0.12}>
+          {projects.map((project) => (
+            <RevealItem key={project.id} variant="fade-up">
+              <ProjectCard project={project} onOpenDetails={onSelectProject} />
+            </RevealItem>
+          ))}
+        </RevealStagger>
       </div>
     </section>
   );
