@@ -11,7 +11,7 @@ import {
   Code2 
 } from 'lucide-react';
 import TechIcon from './TechIcon';
-import { Button, Tag } from './ui';
+import { Button } from './ui';
 import { getTagColorScheme, getProjectGradient } from './ProjectCard';
 
 export default function ProjectModal({ project, onClose }) {

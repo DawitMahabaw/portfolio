@@ -170,14 +170,3 @@ export interface ContactData {
   emailjsPublicKey?: string;
 }
 
-export interface TerminalCommand {
-  cmd: string;
-  output: string;
-}
-
-export interface TerminalData {
-  user: string;
-  host: string;
-  path: string;
-  commands: TerminalCommand[];
-}

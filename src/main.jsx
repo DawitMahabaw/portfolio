@@ -7,7 +7,7 @@ import App from './App.jsx'
 document.documentElement.setAttribute('data-theme', 'dark');
 try {
   localStorage.setItem('portfolio-theme', 'dark');
-} catch (e) {
+} catch {
   // Ignore localStorage errors
 }
 
