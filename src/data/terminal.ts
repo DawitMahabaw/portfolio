@@ -9,6 +9,6 @@ export const terminalData: TerminalData = {
     { cmd: 'stack', output: 'React, Node.js, Express.js, MongoDB, MySQL, JavaScript (ES6+), REST APIs' },
     { cmd: 'projects', output: '4 featured web applications: Evangadi Forum, Amazon Clone, Netflix Clone, TaskFlow Pro' },
     { cmd: 'education', output: 'Addis Ababa University (B.Sc. Info Science) + Evangadi (AI Full-Stack)' },
-    { cmd: 'contact', output: 'Open to junior roles, internships, and contract builds. Email: dawitmahabaw@gmail.com' },
+    { cmd: 'contact', output: 'Open to junior roles, internships, and contract builds. Email: dawitmahabaw03@gmail.com' },
   ],
 };

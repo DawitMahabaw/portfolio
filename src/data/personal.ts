@@ -18,11 +18,11 @@ export const personalData: PersonalData = {
   resumeUrl: '/assets/developer-CV.pdf',
   resumeFileName: 'Dawit-Mahabaw-Resume.pdf',
   socials: {
-    email: 'dawitmahabaw@gmail.com',
-    github: 'https://github.com/dawitmahabaw',
-    githubUsername: 'dawitmahabaw',
-    linkedin: 'https://linkedin.com/in/dawit-mahabaw',
-    linkedinUsername: 'dawit-mahabaw',
+    email: 'dawitmahabaw03@gmail.com',
+    github: 'https://github.com/DawitMahabaw',
+    githubUsername: 'DawitMahabaw',
+    linkedin: 'https://www.linkedin.com/in/dawit-mahabaw-b7035a361?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    linkedinUsername: 'dawit-mahabaw-b7035a361',
     telegram: 'https://t.me/dawitmahabaw',
   },
 };

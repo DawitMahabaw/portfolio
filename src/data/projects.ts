@@ -27,7 +27,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     liveUrl: 'https://evangadi-forum-demo.vercel.app',
     liveDemoUrl: 'https://evangadi-forum-demo.vercel.app',
-    githubUrl: 'https://github.com/dawitmahabaw/evangadi-forum',
+    githubUrl: 'https://github.com/DawitMahabaw/evangadi-forum',
     summary: 'A full-stack Q&A community platform with JWT authentication, relational question-and-answer data architecture, and responsive React UI.',
     keyFeatures: [
       'User registration and login secured with Bcrypt password hashing and JWT authorization.',
@@ -105,7 +105,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     liveUrl: 'https://amazon-clone-store.vercel.app',
     liveDemoUrl: 'https://amazon-clone-store.vercel.app',
-    githubUrl: 'https://github.com/dawitmahabaw/amazon-clone',
+    githubUrl: 'https://github.com/DawitMahabaw/amazon-clone',
     summary: 'A clean, responsive e-commerce web application featuring dynamic catalog browsing, multi-category filtering, persistent shopping cart drawer, and order calculation.',
     keyFeatures: [
       'Interactive product catalog with category filter chips and instant search.',
@@ -179,7 +179,7 @@ export const projectsData: ProjectItem[] = [
     featured: false,
     liveUrl: 'https://netflix-clone-media.vercel.app',
     liveDemoUrl: 'https://netflix-clone-media.vercel.app',
-    githubUrl: 'https://github.com/dawitmahabaw/netflix-clone',
+    githubUrl: 'https://github.com/DawitMahabaw/netflix-clone',
     summary: 'A cinematic web app with dynamic hero banner selection, genre rows (Trending, Top Rated, Action), and interactive trailer playback.',
     keyFeatures: [
       'Dynamic hero billboard showcasing featured movies with random rotation on load.',
@@ -254,7 +254,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     liveUrl: 'https://taskflow-demo.vercel.app',
     liveDemoUrl: 'https://taskflow-demo.vercel.app',
-    githubUrl: 'https://github.com/dawitmahabaw/taskflow-pro',
+    githubUrl: 'https://github.com/DawitMahabaw/taskflow-pro',
     summary: 'A complete project management system allowing teams to create projects, organize tasks in Kanban boards, track progress visually, and collaborate in real-time.',
     keyFeatures: [
       'Visual Kanban workflow columns (To Do, In Progress, In Review, Done).',

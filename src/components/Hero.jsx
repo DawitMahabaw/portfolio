@@ -46,7 +46,7 @@ export default function Hero() {
 
               <Reveal variant="fade-up" delay={0.24}>
                 <p className="hero-value-statement">
-                  Engineering responsive, component-driven React interfaces and reliable Node.js/Express REST APIs backed by structured MySQL &amp; MongoDB data architectures.
+                  I build responsive web applications using React, Node.js, and Express, with MySQL databases to organize and manage data.
                 </p>
               </Reveal>
 

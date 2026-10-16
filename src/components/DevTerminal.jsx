@@ -22,7 +22,7 @@ export default function DevTerminal() {
   };
 
   const handleCopySnippet = () => {
-    navigator.clipboard.writeText(`npx @dawit/portfolio-cli || curl -sL https://github.com/dawitmahabaw`);
+    navigator.clipboard.writeText(`npx @dawit/portfolio-cli || curl -sL https://github.com/DawitMahabaw`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

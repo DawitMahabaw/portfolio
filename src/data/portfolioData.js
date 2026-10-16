@@ -19,11 +19,11 @@ export const personalData = {
   resumeUrl: '/assets/developer-CV.pdf',
   resumeFileName: 'Dawit-Mahabaw-Resume.pdf',
   socials: {
-    email: 'dawitmahabaw@gmail.com',
-    github: 'https://github.com/dawitmahabaw',
-    githubUsername: 'dawitmahabaw',
-    linkedin: 'https://linkedin.com/in/dawit-mahabaw',
-    linkedinUsername: 'dawit-mahabaw',
+    email: 'dawitmahabaw03@gmail.com',
+    github: 'https://github.com/DawitMahabaw',
+    githubUsername: 'DawitMahabaw',
+    linkedin: 'https://www.linkedin.com/in/dawit-mahabaw-b7035a361?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    linkedinUsername: 'dawit-mahabaw-b7035a361',
     telegram: 'https://t.me/dawitmahabaw',
   },
 };
@@ -37,7 +37,7 @@ export const terminalData = {
     { cmd: 'stack', output: 'React, Node.js, Express.js, MongoDB, MySQL, JavaScript (ES6+), REST APIs' },
     { cmd: 'projects', output: '4 featured web applications: Evangadi Forum, Amazon Clone, Netflix Clone, TaskFlow Pro' },
     { cmd: 'education', output: 'Addis Ababa University (B.Sc. Info Science) + Evangadi (AI Full-Stack)' },
-    { cmd: 'contact', output: 'Open to junior roles, internships, and contract builds. Email: dawitmahabaw@gmail.com' },
+    { cmd: 'contact', output: 'Open to junior roles, internships, and contract builds. Email: dawitmahabaw03@gmail.com' },
   ],
 };
 
@@ -254,7 +254,7 @@ export const projectsData = [
     featured: true,
     liveUrl: 'https://evangadi-forum-demo.vercel.app',
     liveDemoUrl: 'https://evangadi-forum-demo.vercel.app',
-    githubUrl: 'https://github.com/dawitmahabaw/evangadi-forum',
+    githubUrl: 'https://github.com/DawitMahabaw/evangadi-forum',
     summary: 'A full-stack Q&A community platform with JWT authentication, relational question-and-answer data architecture, and responsive React UI.',
     keyFeatures: [
       'User registration and login secured with Bcrypt password hashing and JWT authorization.',
@@ -332,7 +332,7 @@ export const projectsData = [
     featured: true,
     liveUrl: 'https://amazon-clone-store.vercel.app',
     liveDemoUrl: 'https://amazon-clone-store.vercel.app',
-    githubUrl: 'https://github.com/dawitmahabaw/amazon-clone',
+    githubUrl: 'https://github.com/DawitMahabaw/amazon-clone',
     summary: 'A clean, responsive e-commerce web application featuring dynamic catalog browsing, multi-category filtering, persistent shopping cart drawer, and order calculation.',
     keyFeatures: [
       'Interactive product catalog with category filter chips and instant search.',
@@ -406,7 +406,7 @@ export const projectsData = [
     featured: false,
     liveUrl: 'https://netflix-clone-media.vercel.app',
     liveDemoUrl: 'https://netflix-clone-media.vercel.app',
-    githubUrl: 'https://github.com/dawitmahabaw/netflix-clone',
+    githubUrl: 'https://github.com/DawitMahabaw/netflix-clone',
     summary: 'A cinematic web app with dynamic hero banner selection, genre rows (Trending, Top Rated, Action), and interactive trailer playback.',
     keyFeatures: [
       'Dynamic hero billboard showcasing featured movies with random rotation on load.',
@@ -481,7 +481,7 @@ export const projectsData = [
     featured: true,
     liveUrl: 'https://taskflow-demo.vercel.app',
     liveDemoUrl: 'https://taskflow-demo.vercel.app',
-    githubUrl: 'https://github.com/dawitmahabaw/taskflow-pro',
+    githubUrl: 'https://github.com/DawitMahabaw/taskflow-pro',
     summary: 'A complete project management system allowing teams to create projects, organize tasks in Kanban boards, track progress visually, and collaborate in real-time.',
     keyFeatures: [
       'Visual Kanban workflow columns (To Do, In Progress, In Review, Done).',
