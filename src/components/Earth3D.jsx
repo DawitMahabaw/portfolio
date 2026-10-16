@@ -1,24 +1,59 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 
-/*
- * The visual is deliberately CSS-driven instead of a canvas plane. It keeps
- * the source illustration crisp, lets its edges dissolve into the page, and
- * provides an ambient automatic turn without any cursor interaction.
- */
+function EarthModel() {
+  const earth = useGLTF('/planet/scene.gltf');
+
+  return (
+    <primitive 
+      object={earth.scene} 
+      scale={2.65} 
+      position-y={0} 
+      rotation-y={0} 
+    />
+  );
+}
+
+useGLTF.preload('/planet/scene.gltf');
+
+function CanvasFallback() {
+  return (
+    <mesh>
+      <sphereGeometry args={[1.5, 32, 32]} />
+      <meshBasicMaterial color="#38bdf8" wireframe transparent opacity={0.25} />
+    </mesh>
+  );
+}
+
 export default function Earth3D() {
   return (
-    <div className="contact-earth-3d-wrapper" aria-label="A slowly rotating Earth in space">
-      <span className="earth-halo" aria-hidden="true" />
-      <div className="earth-visual-planet">
-        <img src="/images/contact-earth-ref.webp" alt="" className="contact-earth-reference-image" loading="lazy" />
-      </div>
-      <div className="earth-orbit-system" aria-hidden="true">
-        <span className="earth-orbit earth-orbit-one" />
-        <span className="earth-orbit earth-orbit-two" />
-      </div>
-      <span className="earth-star earth-star-one" aria-hidden="true" />
-      <span className="earth-star earth-star-two" aria-hidden="true" />
-      <span className="earth-star earth-star-three" aria-hidden="true" />
+    <div className="contact-earth-3d-wrapper" aria-label="Interactive 3D Earth planet">
+      <Canvas
+        shadows
+        frameloop="always"
+        dpr={[1, 2]}
+        gl={{ preserveDrawingBuffer: true, antialias: true, alpha: true }}
+        camera={{
+          fov: 45,
+          near: 0.1,
+          far: 200,
+          position: [-4, 3, 6],
+        }}
+        className="contact-earth-canvas"
+      >
+        <Suspense fallback={<CanvasFallback />}>
+          <OrbitControls
+            autoRotate
+            autoRotateSpeed={2.2}
+            enableZoom={false}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
+          />
+          <EarthModel />
+          <Preload all />
+        </Suspense>
+      </Canvas>
     </div>
   );
 }
