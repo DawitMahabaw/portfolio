@@ -49,7 +49,6 @@ export function AnimatedBackground() {
           d="M-100,520 C360,620 740,360 1120,580 C1380,460 1520,580 1600,540"
           stroke="url(#wave-grad-1)"
           strokeWidth="1.5"
-          strokeDasharray="4 6"
         />
       </svg>
 

@@ -110,27 +110,7 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Light Theme Variables: Elevated, refined slate palette ("a little lighter") */
-html[data-theme="light"] {
-  --bg-primary: #0E172F;
-  --bg-secondary: #14203F;
-  --bg-surface: #19274D;
-  --bg-card: rgba(22, 35, 71, 0.85);
-  --bg-card-hover: rgba(30, 48, 96, 0.95);
-  --bg-glass: rgba(22, 35, 71, 0.8);
-  --bg-glass-subtle: rgba(255, 255, 255, 0.05);
-  --text-title: #FFFFFF;
-  --text-body: #CBD5E1;
-  --text-muted: #94A3B8;
-  --text-dark-title: #FFFFFF;
-  --text-dark-body: #CBD5E1;
-  --text-light-title: #FFFFFF;
-  --text-light-body: #CBD5E1;
-  --border-subtle: rgba(56, 189, 248, 0.18);
-  --border-glass: rgba(56, 189, 248, 0.24);
-  --border-light: rgba(56, 189, 248, 0.18);
-  --shadow-glass: 0 10px 32px 0 rgba(0, 0, 0, 0.45);
-}
+
 
 /* Reset & Box Sizing */
 *, *::before, *::after {

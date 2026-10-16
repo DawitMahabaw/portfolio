@@ -1,295 +1,261 @@
-/* ==========================================================================
-   Professional Compact Contact Section (No Scrolling Required)
-   ========================================================================== */
-
+/* Contact: the same restrained navy, violet, and cyan language as the hero. */
 .contact-exact-section {
   position: relative;
-  overflow: hidden;
-  min-height: calc(100vh - 80px);
+  isolation: isolate;
   display: flex;
+  min-height: 100vh;
   align-items: center;
-  justify-content: center;
-  padding: clamp(36px, 5vw, 64px) 0;
-  background: radial-gradient(ellipse at 80% 50%, rgba(14, 25, 54, 0.45) 0%, transparent 65%), #030712;
+  overflow: hidden;
+  padding: clamp(108px, 11vw, 142px) 0 clamp(78px, 8vw, 112px);
+  background:
+    radial-gradient(ellipse 52% 68% at 75% 45%, rgba(5, 67, 122, 0.22), transparent 76%),
+    radial-gradient(ellipse 38% 58% at 16% 55%, rgba(104, 46, 189, 0.12), transparent 73%),
+    #020611;
+}
+
+.contact-space-noise {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.7;
+  background-image:
+    radial-gradient(circle at 8% 24%, rgba(179, 232, 255, 0.72) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 76% 18%, rgba(120, 203, 255, 0.62) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 92% 71%, rgba(179, 232, 255, 0.58) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 32% 90%, rgba(179, 232, 255, 0.4) 0 1px, transparent 1.5px);
+  background-size: 230px 185px, 320px 275px, 290px 240px, 380px 320px;
+}
+
+.contact-ambient-glow {
+  position: absolute;
+  z-index: -1;
+  right: -15%;
+  top: 6%;
+  width: 740px;
+  height: 740px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(34, 178, 255, 0.13), transparent 68%);
+  filter: blur(30px);
 }
 
 .contact-exact-container {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 40px);
-  display: grid;
-  grid-template-columns: minmax(340px, 430px) 1fr;
-  gap: clamp(32px, 5vw, 70px);
-  align-items: center;
   position: relative;
   z-index: 1;
+  display: grid;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 38px);
+  grid-template-columns: minmax(360px, 490px) minmax(410px, 1fr);
+  align-items: center;
+  gap: clamp(36px, 7vw, 115px);
 }
 
-/* --------------------------------------------------------------------------
-   Left Column: Compact Contact Card
-   -------------------------------------------------------------------------- */
-.contact-card-reveal-wrapper {
-  width: 100%;
-}
+.contact-card-reveal-wrapper,
+.contact-earth-reveal-wrapper { width: 100%; }
 
 .contact-exact-card {
-  background: #0c1228;
-  border-radius: 22px;
-  padding: clamp(24px, 3.2vw, 32px);
-  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(26px, 3vw, 34px);
+  border: 1px solid rgba(48, 218, 255, 0.68);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(32, 114, 154, 0.09), transparent 26%),
+    linear-gradient(150deg, rgba(14, 32, 69, 0.96), rgba(6, 14, 34, 0.96));
+  box-shadow: 0 0 0 1px rgba(112, 238, 255, 0.08) inset, 0 28px 70px rgba(0, 0, 0, 0.46), 0 0 32px rgba(15, 205, 236, 0.12);
 }
+
+.contact-exact-card::before {
+  position: absolute;
+  top: 0;
+  right: 9%;
+  left: 9%;
+  height: 1px;
+  content: '';
+  background: linear-gradient(90deg, transparent, rgba(160, 239, 255, 0.84), transparent);
+}
+
+.contact-card-intro { margin-bottom: 22px; }
+
+.contact-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 17px;
+  padding: 5px 11px;
+  border: 1px solid rgba(21, 219, 171, 0.42);
+  border-radius: 999px;
+  background: rgba(7, 102, 103, 0.18);
+  color: #d4fcf5;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.contact-availability > span { width: 8px; height: 8px; border-radius: 50%; background: #1fe1ad; box-shadow: 0 0 9px #1fe1ad; }
 
 .contact-card-eyebrow {
   display: block;
-  font-size: 0.8rem;
+  margin-bottom: 6px;
+  color: #a6ccf6;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: #8E9DB3;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
-  margin-bottom: 4px;
 }
 
 .contact-exact-title {
-  font-size: clamp(2.4rem, 3.8vw, 3rem);
+  margin: 0;
+  color: #f8fbff;
+  font-size: clamp(2.35rem, 4vw, 3.45rem);
   font-weight: 800;
-  color: #FFFFFF;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  margin: 0 0 20px 0;
+  line-height: 1.05;
+  letter-spacing: -0.052em;
 }
 
-/* Form layout */
-.contact-exact-form {
+.contact-exact-title span {
+  background: linear-gradient(105deg, #74e9ff 14%, #10bce6 55%, #8e7cf4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-card-intro p {
+  max-width: 400px;
+  margin-top: 10px;
+  color: #8eadd3;
+  font-size: 0.89rem;
+  line-height: 1.65;
+}
+
+.contact-exact-form { display: flex; flex-direction: column; gap: 14px; }
+.contact-input-group { display: flex; flex-direction: column; gap: 6px; }
+
+.contact-exact-label { color: #cbe2ff; font-size: 0.83rem; font-weight: 600; }
+
+.contact-field-shell {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.contact-input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.contact-exact-label {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #FFFFFF;
-}
-
-.contact-exact-input {
-  width: 100%;
-  height: 44px;
-  border-radius: 10px;
-  background: #151c38;
-  border: 1px solid transparent;
-  color: #FFFFFF;
-  font-family: inherit;
-  font-size: 0.92rem;
-  padding: 0 16px;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.contact-exact-input::placeholder {
-  color: #61708A;
-}
-
-.contact-exact-input:focus {
-  border-color: rgba(56, 189, 248, 0.5);
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
-  background: #182244;
-}
-
-.contact-exact-textarea {
-  width: 100%;
-  border-radius: 10px;
-  background: #151c38;
-  border: 1px solid transparent;
-  color: #FFFFFF;
-  font-family: inherit;
-  font-size: 0.92rem;
-  padding: 12px 16px;
-  outline: none;
-  resize: none;
-  min-height: 105px;
-  max-height: 115px;
-  line-height: 1.5;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.contact-exact-textarea::placeholder {
-  color: #61708A;
-}
-
-.contact-exact-textarea:focus {
-  border-color: rgba(56, 189, 248, 0.5);
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
-  background: #182244;
-}
-
-.input-has-error {
-  border-color: #F43F5E !important;
-}
-
-.contact-error-hint {
-  font-size: 0.74rem;
-  color: #F43F5E;
-}
-
-/* Status message alert */
-.contact-status-box {
-  display: flex;
+  min-height: 48px;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 0.82rem;
+  gap: 11px;
+  padding: 0 14px;
+  border: 1px solid rgba(95, 170, 239, 0.4);
+  border-radius: 12px;
+  background: rgba(5, 22, 49, 0.76);
+  color: #8bc7ff;
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
-.contact-status-box.success {
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: #34D399;
+.contact-field-shell:focus-within { border-color: #45d5f5; background: rgba(7, 32, 66, 0.92); box-shadow: 0 0 0 3px rgba(45, 194, 239, 0.13), 0 0 16px rgba(45, 194, 239, 0.1); }
+.contact-field-shell.input-has-error { border-color: #fb7185; }
+
+.contact-field-shell input,
+.contact-field-shell textarea {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #f5f9ff;
+  font: inherit;
+  font-size: 0.9rem;
 }
 
-.contact-status-box.error {
-  background: rgba(244, 63, 94, 0.12);
-  border: 1px solid rgba(244, 63, 94, 0.3);
-  color: #FB7185;
-}
+.contact-field-shell input::placeholder,
+.contact-field-shell textarea::placeholder { color: #6786ae; }
+.contact-message-shell { min-height: 104px; align-items: flex-start; padding-top: 13px; }
+.contact-message-shell textarea { min-height: 76px; resize: vertical; line-height: 1.55; }
+.contact-error-hint { color: #fda4af; font-size: 0.72rem; }
 
-/* Submit Button: Exact compact style */
+.contact-status-box { padding: 9px 12px; border: 1px solid; border-radius: 9px; font-size: 0.79rem; line-height: 1.45; }
+.contact-status-box.success { border-color: rgba(52, 211, 153, 0.42); background: rgba(16, 185, 129, 0.11); color: #87f0ca; }
+.contact-status-box.error { border-color: rgba(251, 113, 133, 0.42); background: rgba(244, 63, 94, 0.11); color: #fda4af; }
+
 .contact-exact-submit-btn {
-  width: fit-content;
-  min-width: 90px;
-  height: 42px;
-  padding: 0 28px;
-  border-radius: 10px;
-  border: none;
-  background: #182042;
-  color: #FFFFFF !important;
-  font-family: inherit;
-  font-weight: 700;
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 25px;
+  border: 1px solid rgba(176, 245, 255, 0.4);
+  border-radius: 999px;
+  background: linear-gradient(105deg, #10bce6 0%, #32c6f4 48%, #159fe0 100%);
+  box-shadow: 0 11px 24px rgba(5, 175, 227, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  color: #fafdff;
+  font: inherit;
   font-size: 0.95rem;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-  margin-top: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
-.contact-exact-submit-btn:hover:not(:disabled) {
-  background: #222d5c;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 0 16px rgba(56, 189, 248, 0.2);
-}
+.contact-exact-submit-btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 14px 29px rgba(5, 175, 227, 0.28), 0 0 22px rgba(46, 205, 246, 0.22); }
+.contact-exact-submit-btn:disabled { cursor: wait; opacity: 0.72; }
+.btn-loading-state { display: inline-flex; align-items: center; gap: 8px; }
+.spin-icon { animation: spinLoader 0.9s linear infinite; }
+@keyframes spinLoader { to { transform: rotate(360deg); } }
 
-.contact-exact-submit-btn:disabled {
-  opacity: 0.75;
-  cursor: not-allowed;
-}
-
-.btn-loading-state {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.spin-icon {
-  animation: spinLoader 0.9s linear infinite;
-}
-
-@keyframes spinLoader {
-  to { transform: rotate(360deg); }
-}
-
-/* --------------------------------------------------------------------------
-   Right Column: 3D Earth Container
-   -------------------------------------------------------------------------- */
-.contact-earth-reveal-wrapper {
+.contact-quick-links {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  gap: 11px;
+  margin-top: 20px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(116, 173, 232, 0.2);
 }
 
-.contact-earth-container {
-  position: relative;
-  width: 100%;
-  height: clamp(380px, 48vw, 500px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.contact-quick-links > span { width: 1px; height: 16px; background: rgba(116, 173, 232, 0.42); }
+.contact-quick-link { display: inline-flex; align-items: center; gap: 6px; color: #b9d7fb; font: inherit; font-size: 0.76rem; font-weight: 600; transition: color 180ms ease, transform 180ms ease; }
+.contact-quick-link:hover { color: #6de5fa; transform: translateY(-1px); }
 
-.contact-earth-3d-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  cursor: default;
-}
+/* Earth visual: image edges dissolve into the scene while the planet and orbits self-animate. */
+.contact-earth-reveal-wrapper { display: flex; align-items: center; justify-content: center; }
+.contact-earth-container { display: flex; width: 100%; min-height: 470px; align-items: center; justify-content: center; }
+.contact-earth-3d-wrapper { position: relative; width: min(100%, 610px); aspect-ratio: 1; perspective: 1100px; }
 
-.contact-earth-canvas {
-  width: 100% !important;
-  height: 100% !important;
-  position: relative;
-  z-index: 1;
-}
+.earth-halo { position: absolute; z-index: -1; top: 12%; left: 12%; width: 76%; height: 76%; border-radius: 50%; background: radial-gradient(circle, rgba(15, 199, 255, 0.14), rgba(12, 67, 147, 0.08) 47%, transparent 72%); filter: blur(15px); animation: earthHaloPulse 6.5s ease-in-out infinite alternate; }
+.earth-visual-planet { position: absolute; inset: 0; transform-style: preserve-3d; animation: earthAutoTurn 17s ease-in-out infinite; }
+.contact-earth-reference-image { display: block; width: 100%; height: 100%; object-fit: contain; filter: saturate(1.09) contrast(1.08) brightness(1.08); mask-image: radial-gradient(circle at center, #000 0 48%, rgba(0, 0, 0, 0.92) 61%, transparent 75%); }
 
-.contact-earth-loader {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(56, 189, 248, 0.2);
-  border-top-color: #38BDF8;
-  border-radius: 50%;
-  animation: spinLoader 0.9s linear infinite;
-  margin: auto;
-}
+.earth-orbit { position: absolute; top: 50%; left: 50%; width: 88%; height: 35%; border: 1px solid rgba(68, 218, 251, 0.46); border-radius: 50%; filter: drop-shadow(0 0 6px rgba(25, 203, 255, 0.42)); transform: translate(-50%, -50%) rotate(-18deg); animation: orbitSpin 22s linear infinite; }
+.earth-orbit-one::after, .earth-orbit-two::after { position: absolute; top: -3px; left: 20%; width: 6px; height: 6px; content: ''; border-radius: 50%; background: #9cf3ff; box-shadow: 0 0 12px #63e5ff; }
+.earth-orbit-two { width: 81%; height: 49%; border-color: rgba(102, 183, 255, 0.32); transform: translate(-50%, -50%) rotate(52deg); animation-direction: reverse; animation-duration: 28s; }
+.earth-orbit-two::after { top: auto; right: 20%; bottom: -3px; left: auto; }
 
-.contact-earth-mobile-visual {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-}
+.earth-star { position: absolute; display: block; width: 4px; height: 4px; border-radius: 50%; background: #c8f5ff; box-shadow: 0 0 13px #86eaff; animation: starTwinkle 3.4s ease-in-out infinite alternate; }
+.earth-star-one { top: 16%; right: 9%; }
+.earth-star-two { bottom: 17%; left: 12%; width: 3px; height: 3px; animation-delay: -1.2s; }
+.earth-star-three { top: 42%; left: 6%; width: 2px; height: 2px; animation-delay: -2.1s; }
 
-.contact-earth-mobile-img {
-  width: 100%;
-  max-width: 360px;
-  height: auto;
-  border-radius: 50%;
-  animation: planetSpin 45s linear infinite;
-}
+@keyframes earthAutoTurn { 0%, 100% { transform: rotateY(-10deg) rotateZ(-1deg) scale(0.99); } 50% { transform: rotateY(10deg) rotateZ(1deg) scale(1.015); } }
+@keyframes earthHaloPulse { from { opacity: 0.62; transform: scale(0.94); } to { opacity: 1; transform: scale(1.05); } }
+@keyframes orbitSpin { to { transform: translate(-50%, -50%) rotate(342deg); } }
+@keyframes starTwinkle { from { opacity: 0.32; transform: scale(0.75); } to { opacity: 1; transform: scale(1.18); } }
 
-@keyframes planetSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+.contact-earth-loader { width: 42px; height: 42px; border: 3px solid rgba(56, 189, 248, 0.2); border-top-color: #38bdf8; border-radius: 50%; animation: spinLoader 0.9s linear infinite; }
 
-/* --------------------------------------------------------------------------
-   Responsive Layout
-   -------------------------------------------------------------------------- */
 @media (max-width: 960px) {
-  .contact-exact-container {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-    gap: 36px;
-  }
-
-  .contact-earth-container {
-    height: 340px;
-  }
+  .contact-exact-container { max-width: 590px; grid-template-columns: 1fr; gap: 42px; }
+  .contact-earth-container { min-height: 390px; }
+  .contact-earth-3d-wrapper { width: min(100%, 490px); }
 }
 
-@media (max-width: 480px) {
-  .contact-exact-card {
-    padding: 22px 18px 20px;
-  }
+@media (max-width: 520px) {
+  .contact-exact-section { padding-top: 96px; }
+  .contact-exact-container { padding-inline: 17px; }
+  .contact-exact-card { padding: 24px 18px 20px; border-radius: 20px; }
+  .contact-card-eyebrow { font-size: 0.68rem; letter-spacing: 0.27em; }
+  .contact-quick-links { gap: 9px; }
+  .contact-quick-link { font-size: 0.71rem; }
+  .contact-quick-links > span { display: none; }
+  .contact-earth-container { min-height: 315px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .earth-halo, .earth-visual-planet, .earth-orbit, .earth-star, .spin-icon { animation: none; }
 }

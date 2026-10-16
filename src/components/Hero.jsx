@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { ArrowRight, Mail } from 'lucide-react';
 import { personalData } from '../data';
 import TechIcon from './TechIcon';
@@ -8,46 +8,30 @@ import { Reveal } from './Reveal';
 import { Button } from './ui';
 import '../styles/Hero.css';
 
-// Lazy-load the 3D Workstation Canvas
-const Workstation3D = lazy(() => import('./Workstation3D'));
-
 export default function Hero() {
-  const handleContact = (event) => {
+  const scrollTo = (event, id) => {
     event.preventDefault();
-    const target = document.getElementById('contact');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.history.replaceState(null, '', '#contact');
-    }
-  };
+    const target = document.getElementById(id);
+    if (!target) return;
 
-  const handleExploreProjects = (event) => {
-    event.preventDefault();
-    const target = document.getElementById('projects');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.history.replaceState(null, '', '#projects');
-    }
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.history.replaceState(null, '', `#${id}`);
   };
 
   return (
     <section id="home" className="hero-section" aria-labelledby="hero-heading">
-      {/* Ambient background glows */}
       <div className="hero-glow-1" aria-hidden="true" />
       <div className="hero-glow-2" aria-hidden="true" />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="hero-grid">
-          {/* Left Column: Vertical Accent Line + Narrative */}
           <div className="hero-left-wrapper">
-            {/* Vertical Accent Line with Glowing Dot */}
             <div className="hero-accent-rail" aria-hidden="true">
               <div className="glowing-dot" />
               <div className="rail-line" />
             </div>
 
             <div className="hero-content">
-              {/* Status Pill */}
               <Reveal variant="fade-up" delay={0.05}>
                 <div className="hero-status-pill">
                   <span className="status-dot" aria-hidden="true" />
@@ -55,34 +39,30 @@ export default function Hero() {
                 </div>
               </Reveal>
 
-              {/* Headline */}
               <Reveal variant="fade-up" delay={0.12}>
                 <h1 id="hero-heading" className="hero-headline">
-                  Hi, I'm <span className="hero-name-gradient">{personalData.firstName}</span>
+                  Hi, I&apos;m <span className="hero-name-gradient">{personalData.firstName}</span>
                 </h1>
               </Reveal>
 
-              {/* Rotating Role Line (Typewriter) */}
               <Reveal variant="fade-up" delay={0.18}>
                 <div className="hero-role-wrapper">
                   <TypewriterRole />
                 </div>
               </Reveal>
 
-              {/* One-Line Value Statement */}
               <Reveal variant="fade-up" delay={0.24}>
                 <p className="hero-value-statement">
                   Engineering responsive, component-driven React interfaces and reliable Node.js/Express REST APIs backed by structured MySQL &amp; MongoDB data architectures.
                 </p>
               </Reveal>
 
-              {/* Action Buttons: "View Projects" and "Contact Me" */}
               <Reveal variant="fade-up" delay={0.3}>
                 <div className="hero-actions-group">
                   <Button
                     as="a"
                     href="#projects"
-                    onClick={handleExploreProjects}
+                    onClick={(event) => scrollTo(event, 'projects')}
                     variant="primary"
                     size="md"
                     className="btn-hero-primary"
@@ -95,7 +75,7 @@ export default function Hero() {
                   <Button
                     as="a"
                     href="#contact"
-                    onClick={handleContact}
+                    onClick={(event) => scrollTo(event, 'contact')}
                     variant="outline"
                     size="md"
                     className="btn-hero-contact"
@@ -105,7 +85,6 @@ export default function Hero() {
                 </div>
               </Reveal>
 
-              {/* Small GitHub / LinkedIn Icon Links */}
               <Reveal variant="fade-up" delay={0.36}>
                 <div className="hero-social-strip" aria-label="Quick social connections">
                   <a
@@ -118,7 +97,6 @@ export default function Hero() {
                   >
                     <TechIcon name="github" size={17} />
                   </a>
-
                   <a
                     href={personalData.socials.linkedin}
                     target="_blank"
@@ -129,7 +107,6 @@ export default function Hero() {
                   >
                     <TechIcon name="linkedin" size={17} />
                   </a>
-
                   <a
                     href={`mailto:${personalData.socials.email}`}
                     className="hero-social-icon-btn"
@@ -143,24 +120,20 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: 3D Desktop Workstation Scene */}
           <div className="hero-3d-column">
             <Reveal variant="scale-in" delay={0.2} style={{ width: '100%' }}>
-              <Suspense
-                fallback={
-                  <div className="workstation-loader">
-                    <div className="loader-ring" />
-                    <span className="loader-text">Loading 3D Workstation…</span>
-                  </div>
-                }
-              >
-                <Workstation3D />
-              </Suspense>
+              <div className="hero-workstation-art" aria-label="Neon-lit developer workstation">
+                <img
+                  src="/images/hero-workstation.webp"
+                  alt=""
+                  className="hero-workstation-image"
+                  fetchPriority="high"
+                />
+              </div>
             </Reveal>
           </div>
         </div>
 
-        {/* Animated Scroll-Down Mouse Indicator */}
         <Reveal variant="fade-up" delay={0.45}>
           <ScrollDownMouse targetId="about" />
         </Reveal>
