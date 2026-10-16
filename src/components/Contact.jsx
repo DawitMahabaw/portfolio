@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { FileText, Loader2, Mail, MessageSquare, Send, UserRound } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { contactData, personalData } from '../data';
-import { Reveal } from './Reveal';
 import TechIcon from './TechIcon';
 import '../styles/Contact.css';
 
 const Earth3D = React.lazy(() => import('./Earth3D'));
+
+const slideIn = (direction, delay = 0, duration = 1, shouldReduceMotion = false) => ({
+  hidden: {
+    x: shouldReduceMotion ? 0 : direction === 'left' ? -72 : direction === 'right' ? 72 : 0,
+    opacity: 0,
+  },
+  show: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: 'tween',
+      delay,
+      duration: shouldReduceMotion ? 0.25 : duration,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+});
 const emptyForm = { name: '', email: '', message: '' };
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -19,6 +36,7 @@ function validate(formData) {
 }
 
 export default function Contact({ onOpenResume }) {
+  const shouldReduceMotion = useReducedMotion();
   const [formData, setFormData] = useState(emptyForm);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
@@ -72,12 +90,14 @@ export default function Contact({ onOpenResume }) {
       <div className="contact-space-noise" aria-hidden="true" />
       <div className="contact-ambient-glow" aria-hidden="true" />
 
-      <div className="contact-exact-container">
-        <Reveal
-          variant="fade-left"
-          delay={0.08}
-          duration={1.15}
-          viewport={{ once: true, amount: 0.25 }}
+      <motion.div
+        className="contact-exact-container"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.32 }}
+      >
+        <motion.div
+          variants={slideIn('left', 0.1, 1.3, shouldReduceMotion)}
           className="contact-card-reveal-wrapper"
         >
           <div className="contact-exact-card">
@@ -132,13 +152,10 @@ export default function Contact({ onOpenResume }) {
               <a href={`mailto:${contactData.email}`} className="contact-quick-link"><Mail size={16} />Email</a>
             </div>
           </div>
-        </Reveal>
+        </motion.div>
 
-        <Reveal
-          variant="fade-right"
-          delay={0.2}
-          duration={1.15}
-          viewport={{ once: true, amount: 0.25 }}
+        <motion.div
+          variants={slideIn('right', 0.18, 1.3, shouldReduceMotion)}
           className="contact-earth-reveal-wrapper"
         >
           <div className="contact-earth-container">
@@ -146,8 +163,9 @@ export default function Contact({ onOpenResume }) {
               <Earth3D />
             </React.Suspense>
           </div>
-        </Reveal>
-      </div>
+        </motion.div>
+      </motion.div>
+
     </section>
   );
 }
