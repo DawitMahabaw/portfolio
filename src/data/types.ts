@@ -27,6 +27,25 @@ export interface PersonalData {
   socials: SocialLinks;
 }
 
+export interface JourneyMilestoneSubItem {
+  type: string;
+  institution: string;
+  period: string;
+  degree: string;
+  note: string;
+}
+
+export interface JourneyMilestone {
+  id: string;
+  step: string;
+  period: string;
+  title: string;
+  summary: string;
+  subItems?: JourneyMilestoneSubItem[];
+  tags: string[];
+  icon: string;
+}
+
 export interface LearningPathItem {
   id: string;
   year: string;

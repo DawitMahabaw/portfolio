@@ -1,10 +1,10 @@
-import type { AboutHighlight, LearningPathItem, AboutPhotoData } from './types';
+import type { AboutHighlight, LearningPathItem, AboutPhotoData, JourneyMilestone } from './types';
 
 /**
  * Clean, concise first-person intro matching the portfolio design.
  */
 export const aboutIntro = 
-  "I'm a fresh graduate of Evangadi's AI-powered MERN Stack course and a second-year Information Science student at Addis Ababa University (AAU). I'm developing my skills across React, Node.js, Express, and MySQL by turning ideas into practical web experiences. I bring a thoughtful, problem-solving mindset to my work and stay committed to learning and growing as a full-stack developer.";
+  "I'm a junior full-stack developer and second-year Information Science student at Addis Ababa University. I build practical, responsive web applications with React, Node.js, Express, and MySQL/MongoDB, combining university-level systems foundations with 400+ hours of full-stack bootcamp training from Evangadi Networks. I focus on writing clean, modular code and growing into high-impact software engineering roles.";
 
 export const aboutBio = aboutIntro;
 
@@ -45,6 +45,65 @@ export const aboutPhoto: AboutPhotoData & { caption?: string } = {
   status: 'Open to Work',
   location: 'Addis Ababa, Ethiopia',
 };
+
+/**
+ * Concise "My Learning Journey" Milestones (20-30s scan)
+ * Early Tech Interest -> C++ Foundations -> Frontend Dev -> Higher Ed & Bootcamp -> Full-Stack Engineering
+ */
+export const learningJourneyMilestones: JourneyMilestone[] = [
+  {
+    id: 'programming-foundations',
+    step: '01',
+    period: 'Jan 2022 — May 2022',
+    title: 'Programming Foundations',
+    summary: 'Sparked by an early curiosity for digital technology, I began coding with C++. I built my core foundation around variables, conditions, loops, functions, and structured problem solving.',
+    tags: ['C++', 'Control Flow', 'Functions', 'Problem Solving'],
+    icon: 'Terminal',
+  },
+  {
+    id: 'frontend-development',
+    step: '02',
+    period: 'Jun 2022 — Aug 2023',
+    title: 'Frontend Web Development',
+    summary: 'Expanded into modern web development with HTML, CSS, and JavaScript. I focused on building responsive layouts, accessible markup, and interactive user interfaces.',
+    tags: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'Responsive UI'],
+    icon: 'Layout',
+  },
+  {
+    id: 'education-and-training',
+    step: '03',
+    period: '2023 — Present',
+    title: 'Higher Education & Professional Training',
+    summary: 'Balanced academic coursework in information systems with intensive, hands-on full-stack engineering immersion.',
+    subItems: [
+      {
+        type: 'University Degree',
+        institution: 'Addis Ababa University (AAU)',
+        period: '2023 — Present (2nd Year)',
+        degree: 'B.Sc. in Information Science',
+        note: 'Coursework in relational databases (SQL modeling), data structures, algorithms, and systems analysis.',
+      },
+      {
+        type: 'Professional Bootcamp',
+        institution: 'Evangadi Networks',
+        period: '2024 — 2025 (Graduate)',
+        degree: 'AI-Powered Full-Stack / MERN Program',
+        note: '400+ hours covering React, Node.js, Express RESTful APIs, MySQL/MongoDB, JWT authentication, and Git teamwork.',
+      },
+    ],
+    tags: ['AAU InfoSci', 'Evangadi Networks', 'MERN Stack', 'Relational Databases'],
+    icon: 'GraduationCap',
+  },
+  {
+    id: 'fullstack-applications',
+    step: '04',
+    period: '2024 — Present',
+    title: 'Building Full-Stack Applications',
+    summary: 'Progressed into end-to-end full-stack development, engineering complete web applications like the Evangadi Community Q&A Forum and TaskFlow Pro with secure JWT auth, REST APIs, and database persistence. I am continuously refining my craft and actively pursuing junior developer opportunities.',
+    tags: ['React', 'Node.js', 'Express.js', 'MySQL / MongoDB', 'REST APIs', 'Junior Roles'],
+    icon: 'Rocket',
+  },
+];
 
 /**
  * Retained learning path items for credentials/reference
@@ -104,4 +163,5 @@ export const learningPath: LearningPathItem[] = [
     technologies: ['AI Tooling', 'MERN Architecture', 'REST APIs', 'Cloud Deployment'],
   },
 ];
+
 
