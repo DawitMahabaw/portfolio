@@ -32,13 +32,6 @@ export default function Hero() {
             </div>
 
             <div className="hero-content">
-              <Reveal variant="fade-up" delay={0.05}>
-                <div className="hero-status-pill">
-                  <span className="status-dot" aria-hidden="true" />
-                  <span>{personalData.heroStatusPill}</span>
-                </div>
-              </Reveal>
-
               <Reveal variant="fade-up" delay={0.12}>
                 <h1 id="hero-heading" className="hero-headline">
                   Hi, I&apos;m <span className="hero-name-gradient">{personalData.firstName}</span>

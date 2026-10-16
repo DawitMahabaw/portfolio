@@ -4,7 +4,7 @@ export const personalData: PersonalData = {
   name: 'Dawit Mahabaw',
   firstName: 'Dawit',
   lastName: 'Mahabaw',
-  title: 'Junior MERN Stack Developer',
+  title: 'MERN Stack Developer',
   roleSubhead: 'React · Node.js · Express.js · MongoDB · MySQL',
   status: 'Open to work',
   heroStatusPill: 'Available for Junior Developer Roles & Internships',

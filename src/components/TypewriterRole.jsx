@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 const ROLES = [
+  'MERN Stack Developer',
   'Node.js & REST API Builder',
-  'Junior MERN Stack Developer',
   'React & Frontend Engineer',
   'Full-Stack Web Specialist',
-  'Information Science Undergrad @ AAU',
 ];
 
 export function TypewriterRole() {

@@ -6,8 +6,9 @@
 .global-animated-bg {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  /* `100vw` includes the scrollbar width and can cause a small side scroll. */
+  width: auto;
+  height: auto;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;

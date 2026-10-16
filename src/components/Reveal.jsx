@@ -6,7 +6,7 @@ export const REVEAL_EASE = [0.16, 1, 0.3, 1];
 export const REVEAL_DURATION = 0.55;
 export const VIEWPORT_CONFIG = { once: true, margin: '-80px' };
 
-const getVariants = (variant, shouldReduceMotion) => {
+const getVariants = (variant, shouldReduceMotion, duration = REVEAL_DURATION) => {
   if (shouldReduceMotion) {
     return {
       hidden: { opacity: 0 },
@@ -39,7 +39,7 @@ const getVariants = (variant, shouldReduceMotion) => {
       y: 0,
       scale: 1,
       transition: {
-        duration: REVEAL_DURATION,
+        duration,
         ease: REVEAL_EASE,
       },
     },
@@ -60,7 +60,7 @@ export function Reveal({
   ...props
 }) {
   const shouldReduceMotion = useReducedMotion();
-  const variants = getVariants(variant, shouldReduceMotion);
+  const variants = getVariants(variant, shouldReduceMotion, duration);
   const MotionComponent = motion[as] || motion.div;
 
   return (

@@ -73,39 +73,44 @@ export default function Contact({ onOpenResume }) {
       <div className="contact-ambient-glow" aria-hidden="true" />
 
       <div className="contact-exact-container">
-        <Reveal variant="fade-up" delay={0.08} className="contact-card-reveal-wrapper">
+        <Reveal
+          variant="fade-left"
+          delay={0.08}
+          duration={1.15}
+          viewport={{ once: true, amount: 0.25 }}
+          className="contact-card-reveal-wrapper"
+        >
           <div className="contact-exact-card">
             <div className="contact-card-intro">
               <span className="contact-availability"><span aria-hidden="true" />Open to work</span>
               <span className="contact-card-eyebrow">Get in touch</span>
               <h2 id="contact-heading" className="contact-exact-title">Let&apos;s <span>Connect.</span></h2>
-              <p>Have a role, idea, or project in mind? I&apos;d be glad to hear from you.</p>
             </div>
 
             <form className="contact-exact-form" onSubmit={handleSubmit} noValidate>
               <div className="contact-input-group">
-                <label htmlFor="contact-name" className="contact-exact-label">Your name</label>
+                <label htmlFor="contact-name" className="contact-exact-label">Your Name</label>
                 <div className={`contact-field-shell ${errors.name ? 'input-has-error' : ''}`}>
                   <UserRound size={17} aria-hidden="true" />
-                  <input id="contact-name" name="name" type="text" value={formData.name} onChange={handleChange} placeholder="What should I call you?" autoComplete="name" disabled={isSubmitting} required />
+                  <input id="contact-name" name="name" type="text" value={formData.name} onChange={handleChange} placeholder="What&apos;s your name?" autoComplete="name" disabled={isSubmitting} required />
                 </div>
                 {errors.name && <span className="contact-error-hint" role="alert">{errors.name}</span>}
               </div>
 
               <div className="contact-input-group">
-                <label htmlFor="contact-email" className="contact-exact-label">Your email</label>
+                <label htmlFor="contact-email" className="contact-exact-label">Your Email</label>
                 <div className={`contact-field-shell ${errors.email ? 'input-has-error' : ''}`}>
                   <Mail size={17} aria-hidden="true" />
-                  <input id="contact-email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="you@example.com" autoComplete="email" disabled={isSubmitting} required />
+                  <input id="contact-email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="What&apos;s your email?" autoComplete="email" disabled={isSubmitting} required />
                 </div>
                 {errors.email && <span className="contact-error-hint" role="alert">{errors.email}</span>}
               </div>
 
               <div className="contact-input-group">
-                <label htmlFor="contact-message" className="contact-exact-label">Your message</label>
+                <label htmlFor="contact-message" className="contact-exact-label">Your Message</label>
                 <div className={`contact-field-shell contact-message-shell ${errors.message ? 'input-has-error' : ''}`}>
                   <MessageSquare size={17} aria-hidden="true" />
-                  <textarea id="contact-message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell me a little about the opportunity..." rows={4} disabled={isSubmitting} required />
+                  <textarea id="contact-message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell me about the project..." rows={4} disabled={isSubmitting} required />
                 </div>
                 {errors.message && <span className="contact-error-hint" role="alert">{errors.message}</span>}
               </div>
@@ -129,7 +134,13 @@ export default function Contact({ onOpenResume }) {
           </div>
         </Reveal>
 
-        <Reveal variant="fade-left" delay={0.2} className="contact-earth-reveal-wrapper">
+        <Reveal
+          variant="fade-right"
+          delay={0.2}
+          duration={1.15}
+          viewport={{ once: true, amount: 0.25 }}
+          className="contact-earth-reveal-wrapper"
+        >
           <div className="contact-earth-container">
             <React.Suspense fallback={<div className="contact-earth-loader" aria-label="Loading globe" />}>
               <Earth3D />

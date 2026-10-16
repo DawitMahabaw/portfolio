@@ -15,7 +15,8 @@
 }
 
 .hero-section .container {
-  max-width: 1440px;
+  /* Match the shared page container so the hero cannot create horizontal overflow. */
+  max-width: 1200px;
 }
 
 .hero-section::before {
@@ -61,13 +62,15 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(510px, 1.08fr);
+  /* Both tracks can shrink; the breakpoint below handles compact layouts. */
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   align-items: center;
   gap: clamp(20px, 3.5vw, 54px);
 }
 
 .hero-left-wrapper {
   display: flex;
+  min-width: 0;
   align-items: stretch;
   gap: clamp(18px, 2vw, 28px);
 }
@@ -107,12 +110,14 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-width: 0;
   max-width: 625px;
 }
 
 .hero-status-pill {
   display: inline-flex;
   width: fit-content;
+  max-width: 100%;
   align-items: center;
   gap: 8px;
   margin-bottom: 23px;
@@ -220,8 +225,9 @@
   position: relative;
   isolation: isolate;
   width: 100%;
+  max-width: 100%;
   height: clamp(405px, 40vw, 590px);
-  margin-right: clamp(-64px, -5vw, -10px);
+  margin-right: 0;
   overflow: hidden;
 }
 
@@ -240,21 +246,12 @@
   height: 100%;
   object-fit: cover;
   object-position: 56% 51%;
-  filter: saturate(1.16) contrast(1.04) brightness(1.08);
-  transform: scale(1.04);
-  animation: workstationBreathe 9s ease-in-out infinite alternate;
-}
-
-@media (min-width: 1200px) {
-  .hero-3d-column {
-    width: 122%;
-    margin-right: -22%;
-  }
-}
-
-@keyframes workstationBreathe {
-  from { transform: scale(1.04) translate3d(0, 0, 0); }
-  to { transform: scale(1.075) translate3d(-0.7%, -0.45%, 0); }
+  /* Keep the original pixels crisp: no scale animation means no softening. */
+  filter: saturate(1.1) contrast(1.03) brightness(1.05);
+  transform: translateZ(0);
+  /* Remove the copied nav and explorer controls baked into the source image. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 9%, #000 15%, #000 81%, transparent 94%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 9%, #000 15%, #000 81%, transparent 94%, transparent 100%);
 }
 
 .hero-scroll-divider-wrap { position: relative; z-index: 2; display: flex; width: 100%; max-width: 460px; align-items: center; justify-content: center; gap: 18px; margin: 28px auto 0; }
@@ -273,12 +270,12 @@
   .hero-workstation-art { height: clamp(390px, 43vw, 500px); }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1080px) {
   .hero-section { min-height: auto; padding-top: 112px; }
   .hero-grid { grid-template-columns: 1fr; gap: 40px; }
   .hero-content { max-width: 680px; }
   .hero-3d-column { order: 2; }
-  .hero-workstation-art { width: min(760px, 112%); height: clamp(360px, 66vw, 530px); margin: -12px auto 0; }
+  .hero-workstation-art { width: min(760px, 100%); height: clamp(360px, 66vw, 530px); margin: -12px auto 0; }
 }
 
 @media (max-width: 640px) {
@@ -287,7 +284,7 @@
   .rail-line { min-height: 270px; }
   .hero-actions-group { align-items: stretch; flex-direction: column; }
   .hero-actions-group a { width: 100%; justify-content: center; }
-  .hero-workstation-art { width: 118%; height: 330px; margin-left: -9%; }
+  .hero-workstation-art { width: 100%; height: 330px; margin-left: 0; }
   .hero-scroll-divider-wrap { margin-top: 22px; }
 }
 
@@ -301,5 +298,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .glowing-dot, .status-dot, .typewriter-cursor, .hero-workstation-image, .mouse-wheel-dot { animation: none; }
+  .glowing-dot, .status-dot, .typewriter-cursor, .mouse-wheel-dot { animation: none; }
 }
