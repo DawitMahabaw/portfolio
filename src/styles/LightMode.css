@@ -1,7 +1,7 @@
 /* ==========================================================================
-   Comprehensive Light Mode Polish
-   Fixes all contrast, card visibility, typography, and UI element defects
-   when data-theme="light" is active.
+   Harmonious "A Little Lighter" Mode
+   Transforms the dark theme into an elevated, soothing slate/navy aesthetic
+   without jarring white flashes or broken contrast across any component.
    ========================================================================== */
 
 /* 1. Global Light Canvas & Surfaces */
@@ -13,11 +13,24 @@ html[data-theme="light"] .about-section,
 html[data-theme="light"] .skills-section,
 html[data-theme="light"] .projects-section,
 html[data-theme="light"] .contact-section {
-  background-color: #F8FAFC !important;
-  color: #334155;
+  background-color: #0E172F !important;
+  color: #CBD5E1;
 }
 
-/* 2. Global Headings & Titles */
+/* Global Animated Background */
+html[data-theme="light"] .global-animated-bg {
+  background-color: #0E172F !important;
+}
+
+html[data-theme="light"] .bg-grid-overlay {
+  background-image: radial-gradient(rgba(56, 189, 248, 0.09) 1px, transparent 1px) !important;
+}
+
+html[data-theme="light"] .bg-gradient-orb {
+  opacity: 0.18 !important;
+}
+
+/* 2. Global Headings & Display Titles */
 html[data-theme="light"] h1,
 html[data-theme="light"] h2,
 html[data-theme="light"] h3,
@@ -25,344 +38,178 @@ html[data-theme="light"] h4,
 html[data-theme="light"] .section-title,
 html[data-theme="light"] .section-heading-title,
 html[data-theme="light"] .hero-headline,
+html[data-theme="light"] .about-headline,
+html[data-theme="light"] .skills-title,
 html[data-theme="light"] .contact-card-title,
+html[data-theme="light"] .contact-exact-title,
 html[data-theme="light"] .project-title,
-html[data-theme="light"] .category-title,
-html[data-theme="light"] .highlight-title,
-html[data-theme="light"] .timeline-title,
+html[data-theme="light"] .pillar-title,
+html[data-theme="light"] .tech-card-name,
 html[data-theme="light"] .modal-title,
 html[data-theme="light"] .modal-block-title,
-html[data-theme="light"] .resume-cta-title {
-  color: #0F172A !important;
+html[data-theme="light"] .footer-brand-title {
+  color: #FFFFFF !important;
 }
 
 /* 3. Subtitles, Body & Narrative Text */
 html[data-theme="light"] p,
 html[data-theme="light"] .about-bio-text,
+html[data-theme="light"] .about-photo-quote,
+html[data-theme="light"] .pillar-desc,
+html[data-theme="light"] .skills-subtitle,
 html[data-theme="light"] .hero-value-statement,
 html[data-theme="light"] .project-one-liner,
 html[data-theme="light"] .contact-card-desc,
-html[data-theme="light"] .highlight-desc,
-html[data-theme="light"] .timeline-desc,
-html[data-theme="light"] .timeline-institution,
 html[data-theme="light"] .modal-block-text,
 html[data-theme="light"] .modal-subtitle {
-  color: #334155 !important;
+  color: #B4C4DA !important;
 }
 
-html[data-theme="light"] .section-heading-label {
-  color: #7C3AED !important;
-  background: rgba(124, 58, 237, 0.08) !important;
-  border-color: rgba(124, 58, 237, 0.25) !important;
-}
-
-/* 4. Glass Cards & Surface Cards */
+/* 4. Cards & Elevated Glass Surfaces */
 html[data-theme="light"] .glass-card,
-html[data-theme="light"] .highlight-card,
-html[data-theme="light"] .timeline-entry-card,
-html[data-theme="light"] .category-glass-card,
+html[data-theme="light"] .about-photo-card,
+html[data-theme="light"] .about-pillar-card,
+html[data-theme="light"] .tech-card,
 html[data-theme="light"] .project-card,
+html[data-theme="light"] .contact-exact-card,
 html[data-theme="light"] .contact-form-glass-card,
-html[data-theme="light"] .about-resume-cta-box,
-html[data-theme="light"] .about-photo-card {
-  background: #FFFFFF !important;
-  border: 1px solid rgba(15, 23, 42, 0.09) !important;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05) !important;
+html[data-theme="light"] .modal-dialog-card {
+  background: #162446 !important;
+  border: 1px solid rgba(56, 189, 248, 0.22) !important;
+  box-shadow: 0 14px 32px -8px rgba(0, 0, 0, 0.55), 0 0 22px rgba(56, 189, 248, 0.08) !important;
 }
 
-html[data-theme="light"] .highlight-card:hover,
-html[data-theme="light"] .timeline-entry-card:hover,
-html[data-theme="light"] .category-glass-card:hover,
+html[data-theme="light"] .about-photo-card:hover,
+html[data-theme="light"] .about-pillar-card:hover,
+html[data-theme="light"] .tech-card:hover,
 html[data-theme="light"] .project-card:hover,
-html[data-theme="light"] .contact-form-glass-card:hover {
-  box-shadow: 0 18px 38px rgba(124, 58, 237, 0.1), 0 0 20px rgba(6, 182, 212, 0.08) !important;
-  border-color: rgba(124, 58, 237, 0.3) !important;
+html[data-theme="light"] .contact-exact-card:hover {
+  background: #1C2E58 !important;
+  border-color: rgba(56, 189, 248, 0.45) !important;
+  box-shadow: 0 20px 42px -8px rgba(0, 0, 0, 0.65), 0 0 28px rgba(56, 189, 248, 0.18) !important;
 }
 
-/* 5. Buttons in Light Mode */
-html[data-theme="light"] .btn-outline,
-html[data-theme="light"] .btn-hero-contact {
-  background: #FFFFFF !important;
-  color: #0F172A !important;
-  border: 1px solid rgba(15, 23, 42, 0.18) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
+/* 5. Navbar in Light Mode */
+html[data-theme="light"] .navbar.scrolled {
+  background: rgba(14, 23, 47, 0.88) !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.18) !important;
+  backdrop-filter: blur(16px) !important;
 }
 
-html[data-theme="light"] .btn-outline:hover,
-html[data-theme="light"] .btn-hero-contact:hover {
-  background: #F1F5F9 !important;
-  border-color: #7C3AED !important;
-  color: #7C3AED !important;
+html[data-theme="light"] .nav-link {
+  color: #B4C4DA !important;
 }
 
-html[data-theme="light"] .btn-project-details {
-  background: #F1F5F9 !important;
-  color: #0F172A !important;
-  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+html[data-theme="light"] .nav-link:hover,
+html[data-theme="light"] .nav-link.active {
+  color: #38BDF8 !important;
 }
 
-html[data-theme="light"] .btn-project-details:hover {
-  background: #E2E8F0 !important;
-  border-color: #7C3AED !important;
-  color: #7C3AED !important;
-}
-
-html[data-theme="light"] .project-github-circle {
-  background: #F1F5F9 !important;
-  color: #0F172A !important;
-  border: 1px solid rgba(15, 23, 42, 0.12) !important;
-}
-
-html[data-theme="light"] .project-github-circle:hover {
-  background: #0F172A !important;
-  color: #FFFFFF !important;
-}
-
-/* 6. Skills Tiles & Marquee */
-html[data-theme="light"] .skill-tile {
-  background: #F8FAFC !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-}
-
-html[data-theme="light"] .skill-tile:hover {
-  background: #FFFFFF !important;
-  border-color: rgba(124, 58, 237, 0.35) !important;
-  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.12) !important;
-}
-
-html[data-theme="light"] .skill-tile-label {
-  color: #0F172A !important;
-}
-
-html[data-theme="light"] .skill-tile-level {
-  color: #64748B !important;
-}
-
-html[data-theme="light"] .marquee-item {
-  background: #FFFFFF !important;
-  border: 1px solid rgba(15, 23, 42, 0.1) !important;
-  color: #0F172A !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
-}
-
-html[data-theme="light"] .marquee-item-name {
-  color: #0F172A !important;
-}
-
-/* 7. Timeline Badges & Items */
-html[data-theme="light"] .timeline-period-pill {
-  background: rgba(15, 23, 42, 0.06) !important;
-  color: #0F172A !important;
-  border: 1px solid rgba(15, 23, 42, 0.1) !important;
-}
-
-html[data-theme="light"] .timeline-line-track {
-  background: rgba(15, 23, 42, 0.1) !important;
-}
-
-html[data-theme="light"] .timeline-highlight-item span {
-  color: #334155 !important;
-}
-
-html[data-theme="light"] .timeline-location-row {
-  color: #64748B !important;
-}
-
-/* 8. Contact Form & Magnetic Links */
-html[data-theme="light"] .contact-form-header {
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
-  background: linear-gradient(180deg, rgba(124, 58, 237, 0.04) 0%, transparent 100%) !important;
-}
-
-html[data-theme="light"] .form-field-label {
-  color: #0F172A !important;
-}
-
+/* 6. Form Inputs & Textareas */
 html[data-theme="light"] .form-input,
-html[data-theme="light"] .form-textarea {
-  background: #F8FAFC !important;
-  color: #0F172A !important;
-  border: 1.5px solid rgba(15, 23, 42, 0.15) !important;
+html[data-theme="light"] .form-textarea,
+html[data-theme="light"] .contact-exact-input,
+html[data-theme="light"] .contact-exact-textarea {
+  background: #111C36 !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.22) !important;
 }
 
 html[data-theme="light"] .form-input:focus,
-html[data-theme="light"] .form-textarea:focus {
-  background: #FFFFFF !important;
-  border-color: #7C3AED !important;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
-}
-
-html[data-theme="light"] .magnetic-link-item {
-  background: #FFFFFF !important;
-  border: 1px solid rgba(15, 23, 42, 0.1) !important;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04) !important;
-}
-
-html[data-theme="light"] .magnetic-link-item:hover {
-  background: #FFFFFF !important;
-  border-color: rgba(124, 58, 237, 0.4) !important;
-  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.12) !important;
-}
-
-html[data-theme="light"] .magnetic-channel-name {
-  color: #0F172A !important;
-}
-
-html[data-theme="light"] .magnetic-channel-detail {
-  color: #64748B !important;
-}
-
-html[data-theme="light"] .magnetic-btn-icon {
-  background: #F1F5F9 !important;
-  border: 1px solid rgba(15, 23, 42, 0.1) !important;
-  color: #7C3AED !important;
-}
-
-/* Exact Contact Section in Light Mode */
-html[data-theme="light"] .contact-exact-section {
-  background: #F8FAFC !important;
-}
-
-html[data-theme="light"] .contact-exact-card {
-  background: #FFFFFF !important;
-  border-color: rgba(6, 182, 212, 0.6) !important;
-  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08), 0 0 25px rgba(6, 182, 212, 0.15) !important;
-}
-
-html[data-theme="light"] .contact-exact-title {
-  color: #0F172A !important;
-}
-
-html[data-theme="light"] .contact-exact-label {
-  color: #1E293B !important;
-}
-
-html[data-theme="light"] .contact-exact-input,
-html[data-theme="light"] .contact-exact-textarea {
-  background: #F1F5F9 !important;
-  color: #0F172A !important;
-  border-color: rgba(15, 23, 42, 0.16) !important;
-}
-
+html[data-theme="light"] .form-textarea:focus,
 html[data-theme="light"] .contact-exact-input:focus,
 html[data-theme="light"] .contact-exact-textarea:focus {
-  background: #FFFFFF !important;
-  border-color: #0284C7 !important;
-  box-shadow: 0 0 12px rgba(2, 132, 199, 0.25) !important;
+  background: #142242 !important;
+  border-color: #38BDF8 !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25) !important;
 }
 
-html[data-theme="light"] .contact-pill-status {
-  background: rgba(15, 23, 42, 0.06) !important;
-  border-color: rgba(6, 182, 212, 0.3) !important;
-  color: #334155 !important;
+html[data-theme="light"] .form-field-label,
+html[data-theme="light"] .contact-exact-label {
+  color: #E2E8F0 !important;
 }
 
-html[data-theme="light"] .contact-exact-footer {
-  border-top-color: rgba(15, 23, 42, 0.1) !important;
+/* 7. Buttons in Light Mode */
+html[data-theme="light"] .btn-outline,
+html[data-theme="light"] .btn-hero-contact,
+html[data-theme="light"] .btn-project-details {
+  background: rgba(56, 189, 248, 0.08) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(56, 189, 248, 0.32) !important;
 }
 
-html[data-theme="light"] .contact-exact-channel-link {
-  color: #475569 !important;
-}
-
-html[data-theme="light"] .contact-exact-channel-link:hover {
-  color: #0284C7 !important;
-}
-
-/* 9. Modal Dialog in Light Mode */
-html[data-theme="light"] .modal-dialog-card {
-  background: #FFFFFF !important;
-  color: #0F172A !important;
-  border: 1px solid rgba(15, 23, 42, 0.14) !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18) !important;
-}
-
-html[data-theme="light"] .modal-actions-footer {
-  background: #F8FAFC !important;
-  border-color: rgba(15, 23, 42, 0.08) !important;
-}
-
-html[data-theme="light"] .modal-close-btn {
-  background: #FFFFFF !important;
-  color: #0F172A !important;
-  border: 1px solid rgba(15, 23, 42, 0.15) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-}
-
-html[data-theme="light"] .modal-feature-item span {
-  color: #334155 !important;
-}
-
-/* 10. Footer in Light Mode */
-html[data-theme="light"] .footer-section {
-  background-color: #FFFFFF !important;
-  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
-  color: #475569 !important;
-}
-
-html[data-theme="light"] .footer-top-row {
-  border-color: rgba(15, 23, 42, 0.08) !important;
-}
-
-html[data-theme="light"] .footer-brand-title {
-  color: #0F172A !important;
-}
-
-html[data-theme="light"] .footer-nav-link {
-  color: #475569 !important;
-}
-
-html[data-theme="light"] .footer-nav-link:hover {
-  color: #7C3AED !important;
-}
-
-html[data-theme="light"] .footer-bottom-row span {
-  color: #64748B !important;
-}
-
-html[data-theme="light"] .footer-social-btn,
-html[data-theme="light"] .btn-back-to-top {
-  background: #F8FAFC !important;
-  border: 1px solid rgba(15, 23, 42, 0.12) !important;
-  color: #0F172A !important;
-}
-
-html[data-theme="light"] .footer-social-btn:hover,
-html[data-theme="light"] .btn-back-to-top:hover {
-  background: #7C3AED !important;
-  border-color: #7C3AED !important;
+html[data-theme="light"] .btn-outline:hover,
+html[data-theme="light"] .btn-hero-contact:hover,
+html[data-theme="light"] .btn-project-details:hover {
+  background: rgba(56, 189, 248, 0.2) !important;
+  border-color: #38BDF8 !important;
   color: #FFFFFF !important;
 }
 
-/* 11. Mobile Bottom Nav in Light Mode */
+html[data-theme="light"] .project-github-circle {
+  background: #1A284D !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(56, 189, 248, 0.22) !important;
+}
+
+html[data-theme="light"] .project-github-circle:hover {
+  background: #38BDF8 !important;
+  color: #070B1E !important;
+}
+
+/* 8. Modals in Light Mode */
+html[data-theme="light"] .modal-dialog-card {
+  background: #131F3F !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6) !important;
+}
+
+html[data-theme="light"] .modal-actions-footer {
+  background: #0F1933 !important;
+  border-color: rgba(56, 189, 248, 0.18) !important;
+}
+
+html[data-theme="light"] .modal-close-btn {
+  background: #1A284D !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+}
+
+html[data-theme="light"] .modal-close-btn:hover {
+  background: #223562 !important;
+  border-color: #38BDF8 !important;
+}
+
+/* 9. Footer & Mobile Bottom Navigation */
+html[data-theme="light"] .footer-section {
+  background-color: #0A1122 !important;
+  border-top: 1px solid rgba(56, 189, 248, 0.15) !important;
+  color: #94A3B8 !important;
+}
+
+html[data-theme="light"] .footer-nav-link {
+  color: #94A3B8 !important;
+}
+
+html[data-theme="light"] .footer-nav-link:hover {
+  color: #38BDF8 !important;
+}
+
 html[data-theme="light"] .mobile-bottom-nav {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06) !important;
+  background-color: rgba(14, 23, 47, 0.94) !important;
+  border-top: 1px solid rgba(56, 189, 248, 0.18) !important;
 }
 
 html[data-theme="light"] .bottom-nav-item {
-  color: #64748B !important;
+  color: #94A3B8 !important;
 }
 
 html[data-theme="light"] .bottom-nav-item:hover,
 html[data-theme="light"] .bottom-nav-item.active {
-  color: #7C3AED !important;
+  color: #38BDF8 !important;
 }
 
 html[data-theme="light"] .bottom-nav-item.active .bottom-nav-icon-wrap {
-  color: #7C3AED !important;
-}
-
-/* 12. Global Background in Light Mode */
-html[data-theme="light"] .global-animated-bg {
-  background-color: #F8FAFC !important;
-}
-
-html[data-theme="light"] .bg-grid-overlay {
-  background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px) !important;
-}
-
-html[data-theme="light"] .bg-gradient-orb {
-  opacity: 0.10 !important;
+  color: #38BDF8 !important;
 }

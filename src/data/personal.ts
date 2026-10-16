@@ -13,8 +13,8 @@ export const personalData: PersonalData = {
   heroImage: '/images/hero-portrait.webp',
   heroOriginalImage: '/images/dawit-original.webp',
   heroImageAlt: 'Portrait of Dawit Mahabaw',
-  aboutImage: '/images/about-workspace.webp',
-  aboutImageAlt: 'Developer workspace with code editor and modern multi-monitor setup',
+  aboutImage: '/images/hero-portrait.webp',
+  aboutImageAlt: 'Dawit Mahabaw - Full-Stack Developer at workstation',
   resumeUrl: '/assets/developer-CV.pdf',
   resumeFileName: 'Dawit-Mahabaw-Resume.pdf',
   socials: {

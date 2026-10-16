@@ -110,23 +110,26 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Light Theme Variables if explicit light theme requested */
+/* Light Theme Variables: Elevated, refined slate palette ("a little lighter") */
 html[data-theme="light"] {
-  --bg-primary: #F8FAFC;
-  --bg-secondary: #F1F5F9;
-  --bg-surface: #FFFFFF;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --bg-card-hover: #FFFFFF;
-  --bg-glass: rgba(255, 255, 255, 0.85);
-  --text-title: #0F172A;
-  --text-body: #475569;
-  --text-muted: #64748B;
-  --text-dark-title: #0F172A;
-  --text-dark-body: #475569;
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-glass: rgba(15, 23, 42, 0.12);
-  --border-light: rgba(15, 23, 42, 0.08);
-  --shadow-glass: 0 8px 24px 0 rgba(15, 23, 42, 0.08);
+  --bg-primary: #0E172F;
+  --bg-secondary: #14203F;
+  --bg-surface: #19274D;
+  --bg-card: rgba(22, 35, 71, 0.85);
+  --bg-card-hover: rgba(30, 48, 96, 0.95);
+  --bg-glass: rgba(22, 35, 71, 0.8);
+  --bg-glass-subtle: rgba(255, 255, 255, 0.05);
+  --text-title: #FFFFFF;
+  --text-body: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-dark-title: #FFFFFF;
+  --text-dark-body: #CBD5E1;
+  --text-light-title: #FFFFFF;
+  --text-light-body: #CBD5E1;
+  --border-subtle: rgba(56, 189, 248, 0.18);
+  --border-glass: rgba(56, 189, 248, 0.24);
+  --border-light: rgba(56, 189, 248, 0.18);
+  --shadow-glass: 0 10px 32px 0 rgba(0, 0, 0, 0.45);
 }
 
 /* Reset & Box Sizing */

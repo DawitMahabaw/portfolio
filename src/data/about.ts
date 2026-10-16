@@ -1,47 +1,53 @@
 import type { AboutHighlight, LearningPathItem, AboutPhotoData } from './types';
 
 /**
- * Short, confident 3-4 sentence intro in first person.
- * Real info: fresh graduate of Evangadi's AI-powered MERN stack course,
- * second-year Information Science student at Addis Ababa University (AAU).
+ * Clean, concise first-person intro matching the portfolio design.
  */
 export const aboutIntro = 
-  "I am a second-year Information Science student at Addis Ababa University and a fresh graduate of Evangadi's AI-powered MERN stack course. Driven by curiosity and systematic engineering, I build modern full-stack web applications with responsive React frontends, robust Node.js/Express REST APIs, and scalable MongoDB and MySQL databases. I bridge foundational academic principles in data systems and human-computer interaction with modern, production-focused development workflows and AI tooling. Committed to continuous growth and clean architecture, I focus on crafting reliable, user-centered digital solutions that solve real-world problems.";
+  "I'm a fresh graduate of Evangadi's AI-powered MERN Stack course and a second-year Information Science student at Addis Ababa University (AAU). I'm developing my skills across React, Node.js, Express, and MongoDB by turning ideas into practical web experiences. I bring a thoughtful, problem-solving mindset to my work and stay committed to learning and growing as a full-stack developer.";
 
 export const aboutBio = aboutIntro;
 
 /**
- * Three highlight cards with hover lift and glow
+ * Three core pillar cards
  */
 export const aboutHighlights: AboutHighlight[] = [
   { 
     id: 'fullstack', 
-    title: 'Full-Stack Development', 
-    description: 'Engineering responsive, component-driven React interfaces paired with modular Express.js REST APIs and structured MongoDB/MySQL databases.', 
-    icon: 'Layers',
-    stat: 'MERN Stack & SQL'
+    title: 'Full–Stack Development', 
+    description: 'Building responsive interfaces and complete web experiences with the MERN stack.', 
+    icon: 'Code2',
   },
   { 
     id: 'problem-solving', 
     title: 'Problem Solving', 
-    description: 'Transforming complex product flows into clean, maintainable logic using strong data structure fundamentals and defensive error handling.', 
-    icon: 'Cpu',
-    stat: 'Architecture & Logic'
+    description: 'Breaking challenges into clear steps and practical, user-focused solutions.', 
+    icon: 'Lightbulb',
   },
   { 
     id: 'continuous-learning', 
     title: 'Continuous Learning', 
-    description: 'Actively mastering modern full-stack standards, AI-accelerated tooling, and production practices alongside university computer science coursework.', 
-    icon: 'Sparkles',
-    stat: 'AAU & Evangadi'
+    description: 'Growing my skills through hands-on work and Information Science studies.', 
+    icon: 'BookOpen',
   },
 ];
 
 /**
- * Compact "Learning Path" vertical timeline with 3 entries:
- * 1. Information Science at AAU
- * 2. Evangadi MERN Course
- * 3. AI-Powered Full-Stack Certification
+ * About photo and quote
+ */
+export const aboutPhoto: AboutPhotoData & { caption?: string } = {
+  image: '/images/hero-portrait.webp',
+  fallbackImage: '/images/hero-portrait.jpg',
+  alt: 'Dawit Mahabaw - Full-Stack Developer at workstation',
+  caption: 'Learning, building, and improving every day.',
+  badge: 'Junior MERN Developer',
+  subBadge: 'AAU InfoSci · Evangadi Graduate',
+  status: 'Open to Work',
+  location: 'Addis Ababa, Ethiopia',
+};
+
+/**
+ * Retained learning path items for credentials/reference
  */
 export const learningPath: LearningPathItem[] = [
   {
@@ -54,12 +60,11 @@ export const learningPath: LearningPathItem[] = [
     location: 'Addis Ababa, Ethiopia',
     type: 'education',
     badge: 'University Degree',
-    description: 'Rigorous academic foundations in software systems, relational database normalization (3NF SQL), data structures, and human-computer interaction.',
+    description: 'Academic foundations in software systems, relational database normalization (3NF SQL), data structures, and human-computer interaction.',
     highlights: [
       'Relational Database Systems (SQL modeling & 3NF normalization)',
       'Data Structures & Algorithms in practical problem solving',
       'Systems Analysis, Design, and Information Architecture',
-      'Human-Computer Interface (HCI) Principles',
     ],
     technologies: ['SQL', 'Relational DBs', 'Systems Analysis', 'Information Architecture', 'Data Structures'],
   },
@@ -78,7 +83,6 @@ export const learningPath: LearningPathItem[] = [
       'Mastered React hooks, Context API, responsive component design, and Axios',
       'Engineered Express.js REST APIs with JWT auth and Bcrypt password hashing',
       'Designed dual-database schemas with MongoDB (Mongoose) and MySQL',
-      'Built and defended collaborative full-stack capstone projects',
     ],
     technologies: ['React', 'Node.js', 'Express.js', 'MongoDB', 'MySQL', 'JWT', 'Git'],
   },
@@ -96,21 +100,8 @@ export const learningPath: LearningPathItem[] = [
     highlights: [
       'AI-assisted development acceleration, debugging, and test scaffolding',
       'Robust API security, defensive error handling, and environment isolation',
-      'End-to-end full-stack integration and production performance standards',
     ],
     technologies: ['AI Tooling', 'MERN Architecture', 'REST APIs', 'Cloud Deployment'],
   },
 ];
 
-/**
- * Photo placeholder data with tilt-on-hover effect
- */
-export const aboutPhoto: AboutPhotoData = {
-  image: '/images/about-workspace.webp',
-  fallbackImage: '/images/profile.webp',
-  alt: 'Dawit Mahabaw - Junior MERN Developer workspace and workstation',
-  badge: 'Junior MERN Developer',
-  subBadge: 'AAU InfoSci · Evangadi Graduate',
-  status: 'Open to Work & Internships',
-  location: 'Addis Ababa, Ethiopia',
-};
