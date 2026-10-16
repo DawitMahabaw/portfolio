@@ -3,16 +3,14 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Interactive 3D Earth Component that matches the design image with orbital rings & parallax
-function InteractiveEarthScene() {
-  const groupRef = useRef(null);
-  const cyanRimLight = useRef(null);
-  const amberGlowLight = useRef(null);
+// 3D Planet Component that continuously auto-rotates and DOES NOT respond to cursor
+function RotatingPlanetScene() {
+  const meshRef = useRef(null);
   const [texture, setTexture] = useState(null);
 
   useEffect(() => {
     const loader = new THREE.TextureLoader();
-    loader.load('/images/contact-earth-visual.webp', (tex) => {
+    loader.load('/images/contact-planet-earth.jpg', (tex) => {
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.minFilter = THREE.LinearFilter;
       tex.magFilter = THREE.LinearFilter;
@@ -21,53 +19,25 @@ function InteractiveEarthScene() {
   }, []);
 
   useFrame((state, delta) => {
-    if (!groupRef.current) return;
+    if (!meshRef.current) return;
 
-    // Smooth 3D tilt following mouse cursor for depth
-    const targetY = state.pointer.x * 0.28;
-    const targetX = -state.pointer.y * 0.18;
+    // Steady, smooth planetary rotation - does NOT track or respond to mouse cursor
+    meshRef.current.rotation.z += delta * 0.14;
 
-    groupRef.current.rotation.y = THREE.MathUtils.damp(groupRef.current.rotation.y, targetY, 4.2, delta);
-    groupRef.current.rotation.x = THREE.MathUtils.damp(groupRef.current.rotation.x, targetX, 4.2, delta);
-
-    // Subtle gentle orbital breathing
+    // Subtle natural breathing float
     const t = state.clock.getElapsedTime();
-    groupRef.current.position.y = Math.sin(t * 1.3) * 0.04;
-
-    // Cyan rim light reacts to cursor
-    if (cyanRimLight.current) {
-      cyanRimLight.current.position.x = 1.2 + state.pointer.x * 0.5;
-      cyanRimLight.current.position.y = state.pointer.y * 0.4;
-    }
-
-    if (amberGlowLight.current) {
-      amberGlowLight.current.position.x = -0.5 - state.pointer.x * 0.3;
-      amberGlowLight.current.position.y = -0.3 + state.pointer.y * 0.3;
-    }
+    meshRef.current.position.y = Math.sin(t * 1.2) * 0.04;
   });
 
   return (
-    <group ref={groupRef} position={[0, 0, 0]}>
-      {/* Dynamic Specular Point Lights for Depth & Atmosphere Glow */}
-      <pointLight 
-        ref={cyanRimLight}
-        position={[1.5, 0.4, 1.2]} 
-        intensity={2.4} 
-        color="#38BDF8" 
-        distance={4.5} 
-      />
-      <pointLight 
-        ref={amberGlowLight}
-        position={[-0.4, -0.2, 0.9]} 
-        intensity={1.8} 
-        color="#FBBF24" 
-        distance={3.5} 
-      />
+    <group position={[0, 0, 0]}>
+      {/* Specular Ambient Glow Lights */}
+      <pointLight position={[2, 1, 2]} intensity={2.2} color="#38BDF8" distance={6} />
+      <pointLight position={[-2, -1, 1]} intensity={1.6} color="#F472B6" distance={5} />
 
-      {/* Earth Artwork with Glowing Diagonal Rings & City Lights */}
       {texture && (
-        <mesh position={[0, 0, 0]}>
-          <planeGeometry args={[4.4, 4.08]} />
+        <mesh ref={meshRef} position={[0, 0, 0]}>
+          <planeGeometry args={[4.4, 4.4]} />
           <meshBasicMaterial 
             map={texture} 
             transparent 
@@ -97,10 +67,10 @@ export default function Earth3D() {
 
   if (isMobile) {
     return (
-      <div className="contact-earth-mobile-visual" aria-label="Night Earth with orbital rings">
+      <div className="contact-earth-mobile-visual" aria-label="Rotating Earth planet with stylized ribbon clouds">
         <img 
-          src="/images/contact-earth-visual.webp" 
-          alt="Glowing Earth with orbital rings" 
+          src="/images/contact-planet-earth.jpg" 
+          alt="Glowing planet Earth with swirling ribbon clouds" 
           className="contact-earth-mobile-img" 
           loading="lazy"
         />
@@ -109,10 +79,10 @@ export default function Earth3D() {
   }
 
   return (
-    <div className="contact-earth-3d-wrapper" aria-label="Interactive 3D Night Earth">
+    <div className="contact-earth-3d-wrapper" aria-label="Steadily rotating Earth planet in space">
       <Suspense fallback={null}>
         <Canvas
-          camera={{ position: [0, 0, 4.3], fov: 45 }}
+          camera={{ position: [0, 0, 4.2], fov: 45 }}
           dpr={[1, 2]}
           gl={{
             antialias: true,
@@ -121,19 +91,19 @@ export default function Earth3D() {
           }}
           className="contact-earth-canvas"
         >
-          {/* Subtle Deep Space Stars */}
+          {/* Subtle Deep Space Stars matching reference screenshot */}
           <Stars 
             radius={40} 
-            depth={30} 
-            count={900} 
-            factor={3.0} 
+            depth={35} 
+            count={950} 
+            factor={3.2} 
             saturation={0} 
             fade 
-            speed={1.0} 
+            speed={0.8} 
           />
 
-          <ambientLight intensity={0.9} />
-          <InteractiveEarthScene />
+          <ambientLight intensity={1.0} />
+          <RotatingPlanetScene />
         </Canvas>
       </Suspense>
     </div>

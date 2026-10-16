@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { FileText, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personalData } from '../data';
-import ThemeToggle from './ThemeToggle';
 import '../styles/Navbar.css';
 
 const NAV_LINKS = [
@@ -93,7 +92,6 @@ export default function Navbar({ onOpenResume }) {
         </nav>
 
         <div className="navbar-actions">
-          <ThemeToggle />
           <button 
             type="button" 
             className="btn-nav-resume" 

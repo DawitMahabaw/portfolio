@@ -4,7 +4,7 @@ import type { AboutHighlight, LearningPathItem, AboutPhotoData } from './types';
  * Clean, concise first-person intro matching the portfolio design.
  */
 export const aboutIntro = 
-  "I'm a fresh graduate of Evangadi's AI-powered MERN Stack course and a second-year Information Science student at Addis Ababa University (AAU). I'm developing my skills across React, Node.js, Express, and MongoDB by turning ideas into practical web experiences. I bring a thoughtful, problem-solving mindset to my work and stay committed to learning and growing as a full-stack developer.";
+  "I'm a fresh graduate of Evangadi's AI-powered MERN Stack course and a second-year Information Science student at Addis Ababa University (AAU). I'm developing my skills across React, Node.js, Express, and MySQL by turning ideas into practical web experiences. I bring a thoughtful, problem-solving mindset to my work and stay committed to learning and growing as a full-stack developer.";
 
 export const aboutBio = aboutIntro;
 
