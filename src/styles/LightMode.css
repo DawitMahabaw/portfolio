@@ -218,6 +218,57 @@ html[data-theme="light"] .magnetic-btn-icon {
   color: #7C3AED !important;
 }
 
+/* Exact Contact Section in Light Mode */
+html[data-theme="light"] .contact-exact-section {
+  background: #F8FAFC !important;
+}
+
+html[data-theme="light"] .contact-exact-card {
+  background: #FFFFFF !important;
+  border-color: rgba(6, 182, 212, 0.6) !important;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08), 0 0 25px rgba(6, 182, 212, 0.15) !important;
+}
+
+html[data-theme="light"] .contact-exact-title {
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] .contact-exact-label {
+  color: #1E293B !important;
+}
+
+html[data-theme="light"] .contact-exact-input,
+html[data-theme="light"] .contact-exact-textarea {
+  background: #F1F5F9 !important;
+  color: #0F172A !important;
+  border-color: rgba(15, 23, 42, 0.16) !important;
+}
+
+html[data-theme="light"] .contact-exact-input:focus,
+html[data-theme="light"] .contact-exact-textarea:focus {
+  background: #FFFFFF !important;
+  border-color: #0284C7 !important;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.25) !important;
+}
+
+html[data-theme="light"] .contact-pill-status {
+  background: rgba(15, 23, 42, 0.06) !important;
+  border-color: rgba(6, 182, 212, 0.3) !important;
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .contact-exact-footer {
+  border-top-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html[data-theme="light"] .contact-exact-channel-link {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .contact-exact-channel-link:hover {
+  color: #0284C7 !important;
+}
+
 /* 9. Modal Dialog in Light Mode */
 html[data-theme="light"] .modal-dialog-card {
   background: #FFFFFF !important;

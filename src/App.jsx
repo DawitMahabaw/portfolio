@@ -62,7 +62,7 @@ export default function App() {
           onSelectProject={selectProject} 
           onCloseProject={returnToProjects}
         />
-        <Contact />
+        <Contact onOpenResume={openResume} />
       </main>
 
       <Footer />

@@ -1,6 +1,5 @@
 import React, { Suspense, useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 // 3D Workstation Scene responding smoothly to Mouse Movement (No dragging required)
@@ -74,67 +73,15 @@ function MouseResponsiveWorkstation() {
       {/* Main Workstation 3D Layer with Specular Material */}
       {texture && (
         <mesh position={[0, 0, 0]}>
-          <planeGeometry args={[4.4, 3.1]} />
+          <planeGeometry args={[4.6, 3.9]} />
           <meshBasicMaterial 
             map={texture} 
             transparent 
-            opacity={0.98} 
+            opacity={1} 
             toneMapped={false}
           />
         </mesh>
       )}
-
-      {/* 3D Floating Illuminated Code Badges that have independent depth parallax */}
-      <Float speed={2.0} rotationIntensity={0.2} floatIntensity={0.4}>
-        {/* React Pill */}
-        <group position={[-1.7, 0.9, 0.45]}>
-          <mesh>
-            <boxGeometry args={[0.75, 0.24, 0.04]} />
-            <meshStandardMaterial 
-              color="#0c1328" 
-              emissive="#06B6D4" 
-              emissiveIntensity={0.3} 
-              roughness={0.2} 
-            />
-          </mesh>
-        </group>
-
-        {/* Node.js Pill */}
-        <group position={[1.65, 0.6, 0.35]}>
-          <mesh>
-            <boxGeometry args={[0.78, 0.24, 0.04]} />
-            <meshStandardMaterial 
-              color="#0c1328" 
-              emissive="#10B981" 
-              emissiveIntensity={0.3} 
-              roughness={0.2} 
-            />
-          </mesh>
-        </group>
-
-        {/* REST API Pill */}
-        <group position={[-1.5, -0.7, 0.5]}>
-          <mesh>
-            <boxGeometry args={[0.85, 0.24, 0.04]} />
-            <meshStandardMaterial 
-              color="#0c1328" 
-              emissive="#A855F7" 
-              emissiveIntensity={0.35} 
-              roughness={0.2} 
-            />
-          </mesh>
-        </group>
-      </Float>
-
-      {/* Soft Ambient Radial Backlight in 3D */}
-      <mesh position={[0, 0, -0.15]}>
-        <planeGeometry args={[4.8, 3.4]} />
-        <meshBasicMaterial 
-          color="#070c20" 
-          transparent 
-          opacity={0.5} 
-        />
-      </mesh>
     </group>
   );
 }
@@ -144,7 +91,6 @@ function CanvasLoader() {
   return (
     <div className="workstation-loader" aria-hidden="true">
       <div className="loader-ring" />
-      <span className="loader-text">Initializing 3D Workstation…</span>
     </div>
   );
 }
@@ -156,14 +102,12 @@ export default function Workstation3D() {
     <div 
       className="workstation-3d-wrapper" 
       ref={wrapperRef}
-      aria-label="Interactive 3D Workstation reacting to cursor movement"
+      aria-label="Developer workstation"
     >
-      <div className="workstation-glow-underlay" aria-hidden="true" />
-      
       <Suspense fallback={<CanvasLoader />}>
         <Canvas
           camera={{ position: [0, 0, 4.4], fov: 42 }}
-          dpr={[1, 2]} // Cap DPR at 2 for smooth 60fps performance
+          dpr={[1, 2]}
           gl={{
             antialias: true,
             alpha: true,
@@ -172,20 +116,14 @@ export default function Workstation3D() {
           className="workstation-canvas"
         >
           {/* Base Lights */}
-          <ambientLight intensity={0.8} />
-          <directionalLight position={[4, 5, 5]} intensity={1.0} color="#ffffff" />
-          <directionalLight position={[-4, 2, 2]} intensity={0.5} color="#A855F7" />
+          <ambientLight intensity={0.9} />
+          <directionalLight position={[4, 5, 5]} intensity={1.1} color="#ffffff" />
+          <directionalLight position={[-4, 2, 2]} intensity={0.6} color="#A855F7" />
 
           {/* Mouse Responsive 3D Scene */}
           <MouseResponsiveWorkstation />
         </Canvas>
       </Suspense>
-
-      {/* Floating 3D Depth Specular Highlight */}
-      <div className="workstation-mouse-hint" aria-hidden="true">
-        <span className="hint-pulse" />
-        <span>3D Scene · Moves with cursor</span>
-      </div>
     </div>
   );
 }
