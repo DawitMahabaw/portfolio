@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Loader2, Mail, MessageSquare, Send, UserRound } from 'lucide-react';
+import { Check, Loader2, Mail, MessageSquare, Send, UserRound } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { contactData, personalData } from '../data';
 import TechIcon from './TechIcon';
@@ -41,6 +41,19 @@ export default function Contact() {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = () => {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        navigator.clipboard.writeText(contactData.email);
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2600);
+      }
+    } catch (err) {
+      console.warn('Clipboard copy failed:', err);
+    }
+  };
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((current) => ({ ...current, [name]: value }));
@@ -143,11 +156,25 @@ export default function Contact() {
             </form>
 
             <div className="contact-quick-links" aria-label="Additional ways to connect">
-              <a href={personalData.socials.linkedin} target="_blank" rel="noopener noreferrer" className="contact-quick-link"><TechIcon name="linkedin" size={16} />LinkedIn</a>
+              <a href={personalData.socials.linkedin} target="_blank" rel="noopener noreferrer" className="contact-quick-link" title="LinkedIn Profile">
+                <TechIcon name="linkedin" size={16} />
+                <span>LinkedIn</span>
+              </a>
               <span aria-hidden="true" />
-              <a href={personalData.socials.github} target="_blank" rel="noopener noreferrer" className="contact-quick-link"><TechIcon name="github" size={16} />GitHub</a>
+              <a href={personalData.socials.github} target="_blank" rel="noopener noreferrer" className="contact-quick-link" title="GitHub Profile">
+                <TechIcon name="github" size={16} />
+                <span>GitHub</span>
+              </a>
               <span aria-hidden="true" />
-              <a href={`mailto:${contactData.email}`} className="contact-quick-link"><Mail size={16} />Email</a>
+              <a 
+                href={`mailto:${contactData.email}`} 
+                onClick={handleCopyEmail}
+                className={`contact-quick-link contact-email-quick-link ${copiedEmail ? 'is-copied' : ''}`}
+                title={`Click to email or copy address: ${contactData.email}`}
+              >
+                {copiedEmail ? <Check size={15} className="contact-copy-check" /> : <Mail size={15} />}
+                <span>{copiedEmail ? 'Copied to clipboard!' : contactData.email}</span>
+              </a>
             </div>
           </div>
         </motion.div>

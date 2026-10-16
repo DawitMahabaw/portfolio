@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowUp, Mail } from 'lucide-react';
 import { personalData } from '../data';
 import TechIcon from './TechIcon';
@@ -13,6 +13,20 @@ const FOOTER_LINKS = [
 ];
 
 export default function Footer() {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleEmailClick = () => {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        navigator.clipboard.writeText(personalData.socials.email);
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2400);
+      }
+    } catch {
+      // ignore
+    }
+  };
+
   const goTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   const handleNavigate = (event, id) => {
@@ -68,13 +82,22 @@ export default function Footer() {
               >
                 <TechIcon name="linkedin" size={17} />
               </a>
-              <a 
-                href={`mailto:${personalData.socials.email}`} 
-                className="footer-social-btn" 
-                aria-label={`Email ${personalData.name}`}
-              >
-                <Mail size={17} />
-              </a>
+              <div className="footer-email-wrapper" style={{ position: 'relative', display: 'inline-flex' }}>
+                <a 
+                  href={`mailto:${personalData.socials.email}`} 
+                  onClick={handleEmailClick}
+                  className={`footer-social-btn ${copiedEmail ? 'footer-email-copied' : ''}`} 
+                  aria-label={`Email ${personalData.name}: ${personalData.socials.email}`}
+                  title={`Email: ${personalData.socials.email} (copies on click)`}
+                >
+                  <Mail size={17} />
+                </a>
+                {copiedEmail && (
+                  <span className="footer-email-copied-tooltip" role="status">
+                    Copied!
+                  </span>
+                )}
+              </div>
             </div>
 
             <button 

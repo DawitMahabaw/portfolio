@@ -40,10 +40,9 @@ export default function Projects({
         {/* Section Header */}
         <Reveal variant="fade-up">
           <SectionHeading
-            numberBadge="04 // FEATURED WORK"
-            title="Production Projects"
-            gradientWord="Projects"
-            subtitle="Full-stack web applications featuring modular Express REST APIs, responsive React interfaces, relational & document schemas, and live production deployments."
+            title="Project Showcase"
+            gradientWord="Showcase"
+            subtitle="These are projects I've developed, providing effective solutions to diverse problems"
             id="projects-heading"
           />
         </Reveal>

@@ -36,9 +36,9 @@ export const aboutHighlights: AboutHighlight[] = [
  * About photo and quote
  */
 export const aboutPhoto: AboutPhotoData & { caption?: string } = {
-  image: '/images/hero-portrait.webp',
-  fallbackImage: '/images/hero-portrait.jpg',
-  alt: 'Dawit Mahabaw - Full-Stack Developer at workstation',
+  image: '/images/dawit-portrait.jpg',
+  fallbackImage: '/images/dawit-portrait.jpg',
+  alt: 'Dawit Mahabaw - Full-Stack Developer',
   caption: 'Learning, building, and improving every day.',
   badge: 'Junior MERN Developer',
   subBadge: 'AAU InfoSci · Evangadi Graduate',

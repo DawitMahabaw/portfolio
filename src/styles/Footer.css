@@ -90,6 +90,37 @@
   transform: translateY(-2px);
 }
 
+.footer-social-btn.footer-email-copied {
+  background-color: rgba(16, 185, 129, 0.2);
+  border-color: #34d399;
+  color: #34d399;
+  box-shadow: 0 0 14px rgba(52, 211, 153, 0.35);
+}
+
+.footer-email-copied-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #091329;
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation: footerTooltipFade 0.2s ease-out;
+  z-index: 20;
+}
+
+@keyframes footerTooltipFade {
+  from { opacity: 0; transform: translate(-50%, 4px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
 .btn-back-to-top {
   display: flex;
   align-items: center;
