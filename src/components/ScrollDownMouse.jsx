@@ -1,5 +1,4 @@
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
 
 export function ScrollDownMouse({ targetId = 'about' }) {
   const handleClick = (e) => {
@@ -12,19 +11,20 @@ export function ScrollDownMouse({ targetId = 'about' }) {
   };
 
   return (
-    <div className="hero-scroll-wrapper">
+    <div className="hero-scroll-divider-wrap">
+      <div className="scroll-divider-line left" />
       <a 
         href={`#${targetId}`} 
         onClick={handleClick} 
         className="mouse-scroll-link"
-        aria-label="Scroll down to About section"
+        aria-label="Scroll down to explore portfolio"
       >
         <div className="mouse-indicator" aria-hidden="true">
           <div className="mouse-wheel-dot" />
         </div>
-        <span className="mouse-scroll-text">Explore</span>
-        <ChevronDown size={14} className="mouse-scroll-arrow" aria-hidden="true" />
+        <span className="mouse-scroll-text">EXPLORE</span>
       </a>
+      <div className="scroll-divider-line right" />
     </div>
   );
 }

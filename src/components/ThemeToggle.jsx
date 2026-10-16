@@ -4,14 +4,10 @@ import '../styles/ThemeToggle.css';
 
 export default function ThemeToggle({ className = '' }) {
   const [theme, setTheme] = useState(() => {
-    // Check localStorage or default to 'light' (matching the default light-body sections)
+    // Check localStorage or default to 'dark'
     const savedTheme = localStorage.getItem('portfolio-theme');
     if (savedTheme) return savedTheme;
-    // Check user system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    return 'light';
+    return 'dark';
   });
 
   useEffect(() => {

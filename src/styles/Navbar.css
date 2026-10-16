@@ -59,9 +59,12 @@
 }
 
 .brand-icon {
-  color: var(--accent-purple-light, #A855F7);
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: var(--font-mono, monospace);
   font-weight: 700;
+  display: inline-block;
 }
 
 .navbar-links {
@@ -85,7 +88,7 @@
 }
 
 [data-theme="light"] .nav-link {
-  color: #64748b;
+  color: #475569;
 }
 
 .nav-link:hover,
@@ -95,7 +98,7 @@
 
 [data-theme="light"] .nav-link:hover,
 [data-theme="light"] .nav-link.active {
-  color: #0f172a;
+  color: #7C3AED;
 }
 
 .nav-active-indicator {
@@ -119,22 +122,24 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 8px 16px;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  padding: 8px 18px;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  font-size: 0.86rem;
+  font-weight: 600;
   cursor: pointer;
   font-family: inherit;
   transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
 }
 
 [data-theme="light"] .btn-nav-resume {
-  color: #0f172a;
-  background: rgba(15, 23, 42, 0.05);
+  color: #0F172A;
+  background: #FFFFFF;
   border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .btn-nav-resume:hover {
@@ -142,6 +147,13 @@
   border-color: var(--accent-purple, #8B5CF6);
   color: #fff;
   transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+}
+
+[data-theme="light"] .btn-nav-resume:hover {
+  background: #7C3AED;
+  border-color: #7C3AED;
+  color: #FFFFFF;
 }
 
 .mobile-menu-toggle {
