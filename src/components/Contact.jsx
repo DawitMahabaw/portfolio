@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { FileText, Loader2, Mail, MessageSquare, Send, UserRound } from 'lucide-react';
+import { Loader2, Mail, MessageSquare, Send, UserRound } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { contactData, personalData } from '../data';
 import TechIcon from './TechIcon';
@@ -35,7 +35,7 @@ function validate(formData) {
   return errors;
 }
 
-export default function Contact({ onOpenResume }) {
+export default function Contact() {
   const shouldReduceMotion = useReducedMotion();
   const [formData, setFormData] = useState(emptyForm);
   const [errors, setErrors] = useState({});
@@ -143,8 +143,6 @@ export default function Contact({ onOpenResume }) {
             </form>
 
             <div className="contact-quick-links" aria-label="Additional ways to connect">
-              <button type="button" onClick={onOpenResume} className="contact-quick-link"><FileText size={16} />Resume</button>
-              <span aria-hidden="true" />
               <a href={personalData.socials.linkedin} target="_blank" rel="noopener noreferrer" className="contact-quick-link"><TechIcon name="linkedin" size={16} />LinkedIn</a>
               <span aria-hidden="true" />
               <a href={personalData.socials.github} target="_blank" rel="noopener noreferrer" className="contact-quick-link"><TechIcon name="github" size={16} />GitHub</a>

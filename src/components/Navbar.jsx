@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FileText, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personalData } from '../data';
 import '../styles/Navbar.css';
@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { id: 'contact', label: 'Contact' },
 ];
 
-export default function Navbar({ onOpenResume }) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -94,16 +94,6 @@ export default function Navbar({ onOpenResume }) {
         <div className="navbar-actions">
           <button 
             type="button" 
-            className="btn-nav-resume" 
-            onClick={onOpenResume} 
-            title="View & Download Digital Resume"
-          >
-            <FileText size={16} />
-            <span>Digital CV</span>
-          </button>
-          
-          <button 
-            type="button" 
             className="mobile-menu-toggle" 
             onClick={() => setIsMenuOpen((open) => !open)} 
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} 
@@ -140,17 +130,6 @@ export default function Navbar({ onOpenResume }) {
                 </li>
               ))}
             </ul>
-            <button 
-              type="button" 
-              className="btn btn-primary mobile-resume-btn" 
-              onClick={() => {
-                setIsMenuOpen(false);
-                if (onOpenResume) onOpenResume();
-              }}
-            >
-              <FileText size={18} />
-              <span>View Digital CV</span>
-            </button>
           </motion.nav>
         )}
       </AnimatePresence>
