@@ -247,7 +247,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     liveUrl: 'https://ethio-apple.vercel.app/',
     liveDemoUrl: 'https://ethio-apple.vercel.app/',
-    githubUrl: 'https://github.com/DawitMahabaw/portfolio',
+    githubUrl: 'https://github.com/DawitMahabaw/Apple-Project-With-React',
     summary: 'A sleek, high-fidelity Apple-inspired product showcase with immersive layout, responsive grids, and clean design.',
     keyFeatures: [
       'High-precision Apple product showcase with dynamic hero banners (iPhone, Watch, MacBook).',
