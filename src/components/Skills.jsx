@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, MoveHorizontal } from 'lucide-react';
 import { techStackSkills } from '../data/skills';
 import TechIcon from './TechIcon';
 import { Reveal } from './Reveal';
@@ -81,12 +80,6 @@ export default function Skills() {
     }
   };
 
-  const scrollByAmount = (amount) => {
-    if (!scrollRef.current) return;
-    pauseAutoScroll(4000);
-    scrollRef.current.scrollBy({ left: amount, behavior: 'smooth' });
-  };
-
   return (
     <section id="skills" className="section skills-section" aria-labelledby="skills-heading">
       <div className="skills-container">
@@ -103,16 +96,6 @@ export default function Skills() {
         {/* Horizontally Scrollable Track of Tech Stack Cards */}
         <Reveal variant="fade-up" delay={0.15}>
           <div className="tech-stack-carousel-container">
-            <button 
-              type="button" 
-              className="tech-nav-arrow tech-nav-prev" 
-              onClick={() => scrollByAmount(-280)}
-              aria-label="Scroll tech stack left"
-              title="Scroll Left"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
             <div 
               ref={scrollRef}
               className={`tech-stack-marquee-wrapper ${isDragging ? 'is-dragging' : ''}`} 
@@ -147,21 +130,6 @@ export default function Skills() {
                 ))}
               </div>
             </div>
-
-            <button 
-              type="button" 
-              className="tech-nav-arrow tech-nav-next" 
-              onClick={() => scrollByAmount(280)}
-              aria-label="Scroll tech stack right"
-              title="Scroll Right"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-
-          <div className="tech-scroll-indicator" aria-hidden="true">
-            <MoveHorizontal size={14} />
-            <span>Scroll or swipe to explore all technologies</span>
           </div>
         </Reveal>
       </div>

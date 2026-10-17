@@ -1,13 +1,14 @@
 import React from 'react';
 import { 
   Code2, 
-  Lightbulb, 
-  BookOpen, 
+  Clock, 
+  GraduationCap, 
   Terminal, 
   Layout, 
-  GraduationCap, 
   Rocket, 
-  Calendar 
+  Calendar,
+  Download,
+  ArrowRight
 } from 'lucide-react';
 import { 
   aboutHighlights, 
@@ -20,8 +21,8 @@ import '../styles/About.css';
 
 const highlightIcons = {
   Code2,
-  Lightbulb,
-  BookOpen,
+  Clock,
+  GraduationCap,
 };
 
 const milestoneIcons = {
@@ -32,10 +33,19 @@ const milestoneIcons = {
 };
 
 export default function About() {
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.replaceState(null, '', '#contact');
+    }
+  };
+
   return (
     <section id="about" className="section about-section" aria-labelledby="about-heading">
       <div className="container about-container">
-        {/* Top Two-Column Grid: Photo Card & Bio with Pillars */}
+        {/* Top Two-Column Grid: Photo Card & Bio with Evidence Cards */}
         <div className="about-grid">
           {/* Left Column: Photo Card with personal quote */}
           <div className="about-photo-column">
@@ -56,13 +66,13 @@ export default function About() {
                   />
                 </div>
                 <p className="about-photo-quote">
-                  {aboutPhoto.caption || 'Learning, building, and improving every day.'}
+                  {aboutPhoto.caption || 'Dawit Mahabaw · Full-stack developer · Addis Ababa'}
                 </p>
               </div>
             </Reveal>
           </div>
 
-          {/* Right Column: Eyebrow, Headline, Narrative & 3 Pillar Cards */}
+          {/* Right Column: Eyebrow, Headline, Narrative & 3 Evidence Cards */}
           <div className="about-content-column">
             <Reveal variant="fade-up" delay={0.12}>
               <div className="about-eyebrow">
@@ -73,7 +83,7 @@ export default function About() {
 
             <Reveal variant="fade-up" delay={0.18}>
               <h2 id="about-heading" className="about-headline">
-                Curious by nature. Building with purpose.
+                I build full-stack apps, from the database to the interface.
               </h2>
             </Reveal>
 
@@ -83,7 +93,7 @@ export default function About() {
               </p>
             </Reveal>
 
-            {/* Three Pillar Cards */}
+            {/* Three Evidence Cards */}
             <RevealStagger className="about-pillars-grid" staggerChildren={0.1} delayChildren={0.3}>
               {aboutHighlights.map((item) => {
                 const Icon = highlightIcons[item.icon] || Code2;
@@ -100,6 +110,36 @@ export default function About() {
                 );
               })}
             </RevealStagger>
+
+            {/* Call To Action Buttons & Availability */}
+            <Reveal variant="fade-up" delay={0.4}>
+              <div className="about-cta-container">
+                <div className="about-cta-buttons">
+                  <a 
+                    href="/resume.pdf" 
+                    download="Dawit-Mahabaw-Resume.pdf"
+                    className="about-btn-primary"
+                    aria-label="Download Dawit Mahabaw's resume (PDF)"
+                  >
+                    <Download size={18} aria-hidden="true" />
+                    <span>Download resume</span>
+                  </a>
+                  <a 
+                    href="#contact" 
+                    onClick={handleContactClick}
+                    className="about-btn-secondary"
+                    aria-label="Get in touch with Dawit Mahabaw"
+                  >
+                    <span>Get in touch</span>
+                    <ArrowRight size={18} aria-hidden="true" />
+                  </a>
+                </div>
+                <p className="about-availability-line">
+                  <span className="availability-status-dot" aria-hidden="true" />
+                  <span>Open to junior roles · Addis Ababa</span>
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
 

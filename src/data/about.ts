@@ -4,31 +4,31 @@ import type { AboutHighlight, LearningPathItem, AboutPhotoData, JourneyMilestone
  * Clean, concise first-person intro matching the portfolio design.
  */
 export const aboutIntro = 
-  "I'm a junior full-stack developer and second-year Information Science student at Addis Ababa University. I build practical, responsive web applications with React, Node.js, Express, and MySQL/MongoDB, combining university-level systems foundations with 400+ hours of full-stack bootcamp training from Evangadi Networks. I focus on writing clean, modular code and growing into high-impact software engineering roles.";
+  "I build full-stack web apps with React, Node.js, Express and MySQL. I'm a second-year Information Science student at Addis Ababa University and finished 400+ hours of MERN training at Evangadi Networks. My projects include a Q&A forum with semantic search and an AI chatbot. I'm looking for a junior developer role where I can ship real features and keep growing.";
 
 export const aboutBio = aboutIntro;
 
 /**
- * Three core pillar cards
+ * Three evidence cards
  */
 export const aboutHighlights: AboutHighlight[] = [
   { 
-    id: 'fullstack', 
-    title: 'Full–Stack Development', 
-    description: 'Building responsive interfaces and complete web experiences with the MERN stack.', 
+    id: 'projects', 
+    title: '2 full-stack projects', 
+    description: 'A Q&A forum with semantic search and an AI chatbot, both live.', 
     icon: 'Code2',
   },
   { 
-    id: 'problem-solving', 
-    title: 'Problem Solving', 
-    description: 'Breaking challenges into clear steps and practical, user-focused solutions.', 
-    icon: 'Lightbulb',
+    id: 'bootcamp', 
+    title: '400+ hours', 
+    description: 'Hands-on MERN bootcamp training at Evangadi Networks.', 
+    icon: 'Clock',
   },
   { 
-    id: 'continuous-learning', 
-    title: 'Continuous Learning', 
-    description: 'Growing my skills through hands-on work and Information Science studies.', 
-    icon: 'BookOpen',
+    id: 'education', 
+    title: 'Information Science', 
+    description: 'Second-year student at Addis Ababa University.', 
+    icon: 'GraduationCap',
   },
 ];
 
@@ -39,8 +39,8 @@ export const aboutPhoto: AboutPhotoData & { caption?: string } = {
   image: '/images/dawit-portrait.jpg',
   fallbackImage: '/images/dawit-portrait.jpg',
   alt: 'Dawit Mahabaw - Full-Stack Developer',
-  caption: 'Learning, building, and improving every day.',
-  badge: 'Junior MERN Developer',
+  caption: 'Dawit Mahabaw · Full-stack developer · Addis Ababa',
+  badge: 'Junior Developer',
   subBadge: 'AAU InfoSci · Evangadi Graduate',
   status: 'Open to Work',
   location: 'Addis Ababa, Ethiopia',
@@ -88,7 +88,7 @@ export const learningJourneyMilestones: JourneyMilestone[] = [
         institution: 'Evangadi Networks',
         period: '2024 — 2025 (Graduate)',
         degree: 'AI-Powered Full-Stack / MERN Program',
-        note: '400+ hours covering React, Node.js, Express RESTful APIs, MySQL/MongoDB, JWT authentication, and Git teamwork.',
+        note: '400+ hours covering React, Node.js, Express RESTful APIs, MySQL, JWT authentication, and Git teamwork.',
       },
     ],
     tags: ['AAU InfoSci', 'Evangadi Networks', 'MERN Stack', 'Relational Databases'],
@@ -99,8 +99,8 @@ export const learningJourneyMilestones: JourneyMilestone[] = [
     step: '04',
     period: '2024 — Present',
     title: 'Building Full-Stack Applications',
-    summary: 'Progressed into end-to-end full-stack development, engineering complete web applications like the Evangadi Community Q&A Forum and TaskFlow Pro with secure JWT auth, REST APIs, and database persistence. I am continuously refining my craft and actively pursuing junior developer opportunities.',
-    tags: ['React', 'Node.js', 'Express.js', 'MySQL / MongoDB', 'REST APIs', 'Junior Roles'],
+    summary: 'Progressed into end-to-end full-stack development, engineering complete web applications like the Evangadi Community Q&A Forum with semantic search and an AI chatbot with secure JWT auth, REST APIs, and MySQL persistence. I am continuously refining my craft and actively pursuing junior developer opportunities.',
+    tags: ['React', 'Node.js', 'Express.js', 'MySQL', 'REST APIs', 'Junior Roles'],
     icon: 'Rocket',
   },
 ];
@@ -141,9 +141,9 @@ export const learningPath: LearningPathItem[] = [
     highlights: [
       'Mastered React hooks, Context API, responsive component design, and Axios',
       'Engineered Express.js REST APIs with JWT auth and Bcrypt password hashing',
-      'Designed dual-database schemas with MongoDB (Mongoose) and MySQL',
+      'Designed relational schemas with MySQL',
     ],
-    technologies: ['React', 'Node.js', 'Express.js', 'MongoDB', 'MySQL', 'JWT', 'Git'],
+    technologies: ['React', 'Node.js', 'Express.js', 'MySQL', 'JWT', 'Git'],
   },
   {
     id: 'ai-certification',
