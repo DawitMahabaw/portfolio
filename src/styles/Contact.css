@@ -207,27 +207,25 @@
 .contact-quick-link:hover { color: #6de5fa; transform: translateY(-1px); }
 
 .contact-email-quick-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
   cursor: pointer;
   background: rgba(16, 188, 230, 0.08);
-  padding: 4px 10px;
-  border-radius: 999px;
   border: 1px solid rgba(16, 188, 230, 0.25);
+  color: #b9d7fb;
+  transition: all 180ms ease;
 }
 
 .contact-email-quick-link:hover {
-  background: rgba(16, 188, 230, 0.16);
-  border-color: rgba(16, 188, 230, 0.55);
+  background: rgba(16, 188, 230, 0.22);
+  border-color: rgba(16, 188, 230, 0.6);
   color: #ffffff;
-}
-
-.contact-email-quick-link.is-copied {
-  color: #34d399 !important;
-  background: rgba(52, 211, 153, 0.15) !important;
-  border-color: rgba(52, 211, 153, 0.5) !important;
-}
-
-.contact-copy-check {
-  color: #34d399;
+  transform: translateY(-1px);
 }
 
 /* Contact Earth canvas */

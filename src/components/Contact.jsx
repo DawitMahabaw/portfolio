@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Check, Loader2, Mail, MessageSquare, Send, UserRound } from 'lucide-react';
+import { Loader2, Mail, MessageSquare, Send, UserRound } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { contactData, personalData } from '../data';
 import TechIcon from './TechIcon';
@@ -41,19 +41,6 @@ export default function Contact() {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [copiedEmail, setCopiedEmail] = useState(false);
-
-  const handleCopyEmail = () => {
-    try {
-      if (navigator?.clipboard?.writeText) {
-        navigator.clipboard.writeText(contactData.email);
-        setCopiedEmail(true);
-        setTimeout(() => setCopiedEmail(false), 2600);
-      }
-    } catch (err) {
-      console.warn('Clipboard copy failed:', err);
-    }
-  };
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((current) => ({ ...current, [name]: value }));
@@ -168,12 +155,11 @@ export default function Contact() {
               <span aria-hidden="true" />
               <a 
                 href={`mailto:${contactData.email}`} 
-                onClick={handleCopyEmail}
-                className={`contact-quick-link contact-email-quick-link ${copiedEmail ? 'is-copied' : ''}`}
-                title={`Click to email or copy address: ${contactData.email}`}
+                className="contact-quick-link contact-email-quick-link"
+                title={`Send email to ${contactData.email}`}
+                aria-label={`Send email to ${contactData.email}`}
               >
-                {copiedEmail ? <Check size={15} className="contact-copy-check" /> : <Mail size={15} />}
-                <span>{copiedEmail ? 'Copied to clipboard!' : contactData.email}</span>
+                <Mail size={15} />
               </a>
             </div>
           </div>

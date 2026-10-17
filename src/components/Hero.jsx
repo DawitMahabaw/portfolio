@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowRight, Mail } from 'lucide-react';
 import { personalData } from '../data';
 import TechIcon from './TechIcon';
@@ -9,20 +9,6 @@ import { Button } from './ui';
 import '../styles/Hero.css';
 
 export default function Hero() {
-  const [copiedEmail, setCopiedEmail] = useState(false);
-
-  const handleEmailClick = () => {
-    try {
-      if (navigator?.clipboard?.writeText) {
-        navigator.clipboard.writeText(personalData.socials.email);
-        setCopiedEmail(true);
-        setTimeout(() => setCopiedEmail(false), 2400);
-      }
-    } catch {
-      // ignore
-    }
-  };
-
   const scrollTo = (event, id) => {
     event.preventDefault();
     const target = document.getElementById(id);
@@ -114,22 +100,14 @@ export default function Hero() {
                   >
                     <TechIcon name="linkedin" size={17} />
                   </a>
-                  <div className="hero-social-email-wrapper">
-                    <a
-                      href={`mailto:${personalData.socials.email}`}
-                      onClick={handleEmailClick}
-                      className={`hero-social-icon-btn ${copiedEmail ? 'hero-email-copied' : ''}`}
-                      title={`Send email to ${personalData.socials.email} (copies on click)`}
-                      aria-label={`Email ${personalData.name}: ${personalData.socials.email}`}
-                    >
-                      <Mail size={17} />
-                    </a>
-                    {copiedEmail && (
-                      <span className="hero-email-copied-tooltip" role="status">
-                        Copied!
-                      </span>
-                    )}
-                  </div>
+                  <a
+                    href={`mailto:${personalData.socials.email}`}
+                    className="hero-social-icon-btn"
+                    title={`Send email to ${personalData.socials.email}`}
+                    aria-label={`Email ${personalData.name}`}
+                  >
+                    <Mail size={17} />
+                  </a>
                 </div>
               </Reveal>
             </div>
