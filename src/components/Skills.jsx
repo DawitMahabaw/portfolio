@@ -51,7 +51,7 @@ export default function Skills() {
   const handleWheel = (e) => {
     if (scrollRef.current && e.deltaY !== 0) {
       scrollRef.current.scrollLeft += e.deltaY * 1.1;
-      pauseAutoScroll();
+      pauseAutoScroll(1800);
     }
   };
 
@@ -62,6 +62,7 @@ export default function Skills() {
     startXRef.current = e.pageX - scrollRef.current.offsetLeft;
     startScrollLeftRef.current = scrollRef.current.scrollLeft;
     isPausedRef.current = true;
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
   };
 
   const handleMouseMove = (e) => {
@@ -72,12 +73,35 @@ export default function Skills() {
     scrollRef.current.scrollLeft = startScrollLeftRef.current - walk;
   };
 
-  const handleMouseUpOrLeave = () => {
+  const handleMouseUp = () => {
     if (isDraggingRef.current) {
       isDraggingRef.current = false;
       setIsDragging(false);
-      pauseAutoScroll(2000);
+      pauseAutoScroll(1500);
     }
+  };
+
+  const handleMouseEnter = () => {
+    isPausedRef.current = true;
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+  };
+
+  const handleMouseLeave = () => {
+    if (isDraggingRef.current) {
+      isDraggingRef.current = false;
+      setIsDragging(false);
+    }
+    // Resume scrolling immediately after cursor is removed
+    isPausedRef.current = false;
+  };
+
+  const handleTouchStart = () => {
+    isPausedRef.current = true;
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+  };
+
+  const handleTouchEnd = () => {
+    pauseAutoScroll(1500);
   };
 
   return (
@@ -104,11 +128,12 @@ export default function Skills() {
               onWheel={handleWheel}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUpOrLeave}
-              onMouseLeave={handleMouseUpOrLeave}
-              onMouseEnter={() => { isPausedRef.current = true; }}
-              onTouchStart={() => pauseAutoScroll()}
-              onTouchMove={() => pauseAutoScroll()}
+              onMouseUp={handleMouseUp}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onTouchMove={() => { isPausedRef.current = true; }}
             >
               <div className="tech-stack-track">
                 {/* Repeated array for wide continuous scrolling */}

@@ -27,7 +27,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     liveUrl: 'https://forum-project-collab.vercel.app/',
     liveDemoUrl: 'https://forum-project-collab.vercel.app/',
-    githubUrl: 'https://github.com/DawitMahabaw/evangadi-forum',
+    githubUrl: 'https://github.com/DawitMahabaw/Forum_Project_Collab',
     summary: 'A full-stack Q&A community platform with JWT authentication, relational question-and-answer data architecture, and responsive React UI.',
     keyFeatures: [
       'User registration and login secured with Bcrypt password hashing and JWT authorization.',
@@ -105,7 +105,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     liveUrl: 'https://ethiogptclone.vercel.app/',
     liveDemoUrl: 'https://ethiogptclone.vercel.app/',
-    githubUrl: 'https://github.com/DawitMahabaw',
+    githubUrl: 'https://github.com/DawitMahabaw/ChatGPT-Clone',
     summary: 'An AI assistant web application featuring a modern ChatGPT-style interface, thread management, prompt suggestions, and sleek dark mode.',
     keyFeatures: [
       'Minimalist, distraction-free conversational layout inspired by modern AI interfaces.',
@@ -173,7 +173,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     liveUrl: 'https://ethiomoviedm.vercel.app/',
     liveDemoUrl: 'https://ethiomoviedm.vercel.app/',
-    githubUrl: 'https://github.com/DawitMahabaw/netflix-clone',
+    githubUrl: 'https://github.com/DawitMahabaw/moviedb',
     summary: 'A cinematic web app with dynamic hero banner selection, genre rows (Trending, Top Rated, Action), and interactive trailer playback.',
     keyFeatures: [
       'Dynamic hero billboard showcasing featured movies with random rotation on load.',
@@ -247,7 +247,7 @@ export const projectsData: ProjectItem[] = [
     featured: true,
     liveUrl: 'https://ethio-apple.vercel.app/',
     liveDemoUrl: 'https://ethio-apple.vercel.app/',
-    githubUrl: 'https://github.com/DawitMahabaw',
+    githubUrl: 'https://github.com/DawitMahabaw/portfolio',
     summary: 'A sleek, high-fidelity Apple-inspired product showcase with immersive layout, responsive grids, and clean design.',
     keyFeatures: [
       'High-precision Apple product showcase with dynamic hero banners (iPhone, Watch, MacBook).',

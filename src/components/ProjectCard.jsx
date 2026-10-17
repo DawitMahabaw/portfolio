@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Tilt from 'react-parallax-tilt';
-import { ExternalLink, ArrowRight, ArrowUpRight, Code2 } from 'lucide-react';
+import { Code2 } from 'lucide-react';
 import TechIcon from './TechIcon';
 
 export function getTagColorScheme(tag) {
@@ -51,7 +51,6 @@ export default function ProjectCard({ project }) {
   }, []);
 
   const destinationUrl = project.liveDemoUrl || project.liveUrl || project.githubUrl;
-  const hasLiveDemo = Boolean(project.liveDemoUrl || project.liveUrl);
   const oneLineDesc = project.tagline || project.shortDescription || project.description;
 
   const cardContent = (
@@ -62,7 +61,7 @@ export default function ProjectCard({ project }) {
         target="_blank"
         rel="noopener noreferrer"
         className="project-card-link-wrapper"
-        aria-label={`${project.title} - ${hasLiveDemo ? 'Open Live Demo' : 'Open GitHub Repository'}`}
+        aria-label={`${project.title} - Open Live Project`}
       >
         {/* Screenshot / Fallback with Image Zoom */}
         <div className="project-image-box">
@@ -90,18 +89,6 @@ export default function ProjectCard({ project }) {
           )}
 
           <div className="project-image-overlay-vignette" />
-
-          {/* Floating Category Pill */}
-          {project.category && (
-            <span className="project-floating-category">
-              {project.category}
-            </span>
-          )}
-
-          {/* Corner Destination Indicator */}
-          <span className="project-corner-destination" aria-hidden="true">
-            <ArrowUpRight size={17} />
-          </span>
         </div>
 
         {/* Card Content Body */}
@@ -109,7 +96,6 @@ export default function ProjectCard({ project }) {
           <div className="project-title-row">
             <h3 className="project-title">
               <span>{project.title}</span>
-              <ArrowRight size={16} className="project-title-arrow" aria-hidden="true" />
             </h3>
           </div>
 
@@ -140,33 +126,20 @@ export default function ProjectCard({ project }) {
         </div>
       </a>
 
-      {/* Action Row: Live Demo button and independent GitHub link */}
-      <div className="project-card-actions">
+      {/* Top-Right GitHub Corner Button */}
+      {project.githubUrl && (
         <a 
-          href={destinationUrl}
+          href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-project-destination"
-          aria-label={`${hasLiveDemo ? 'Launch live demo' : 'View repository'} for ${project.title}`}
+          className="project-corner-github"
+          aria-label={`View ${project.title} source code on GitHub`}
+          title="View GitHub Repository"
+          onClick={(e) => e.stopPropagation()}
         >
-          <span>{hasLiveDemo ? 'Live Demo' : 'View Project'}</span>
-          <ExternalLink size={13} aria-hidden="true" />
+          <TechIcon name="github" size={17} />
         </a>
-
-        {project.githubUrl && (
-          <a 
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-circle-github"
-            aria-label={`View ${project.title} source code on GitHub`}
-            title="View GitHub Repository"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <TechIcon name="github" size={17} />
-          </a>
-        )}
-      </div>
+      )}
     </article>
   );
 

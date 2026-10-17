@@ -7,7 +7,6 @@ import {
   Layout, 
   Rocket, 
   Calendar,
-  Download,
   ArrowRight
 } from 'lucide-react';
 import { 
@@ -72,22 +71,15 @@ export default function About() {
             </Reveal>
           </div>
 
-          {/* Right Column: Eyebrow, Headline, Narrative & 3 Evidence Cards */}
+          {/* Right Column: Headline, Narrative & 3 Evidence Cards */}
           <div className="about-content-column">
-            <Reveal variant="fade-up" delay={0.12}>
-              <div className="about-eyebrow">
-                <span className="eyebrow-dash" aria-hidden="true">—</span>
-                <span>ABOUT ME</span>
-              </div>
-            </Reveal>
-
-            <Reveal variant="fade-up" delay={0.18}>
+            <Reveal variant="fade-up" delay={0.14}>
               <h2 id="about-heading" className="about-headline">
                 I build full-stack apps, from the database to the interface.
               </h2>
             </Reveal>
 
-            <Reveal variant="fade-up" delay={0.24}>
+            <Reveal variant="fade-up" delay={0.22}>
               <p className="about-bio-text">
                 {aboutIntro}
               </p>
@@ -116,18 +108,9 @@ export default function About() {
               <div className="about-cta-container">
                 <div className="about-cta-buttons">
                   <a 
-                    href="/resume.pdf" 
-                    download="Dawit-Mahabaw-Resume.pdf"
-                    className="about-btn-primary"
-                    aria-label="Download Dawit Mahabaw's resume (PDF)"
-                  >
-                    <Download size={18} aria-hidden="true" />
-                    <span>Download resume</span>
-                  </a>
-                  <a 
                     href="#contact" 
                     onClick={handleContactClick}
-                    className="about-btn-secondary"
+                    className="about-btn-primary"
                     aria-label="Get in touch with Dawit Mahabaw"
                   >
                     <span>Get in touch</span>
