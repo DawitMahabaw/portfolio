@@ -2,7 +2,7 @@ import type { SkillCategory, SkillItem } from './types';
 
 /**
  * Focused MERN + MySQL tech stack:
- * React, Node.js, Express, MySQL, JavaScript, REST APIs, Tailwind, Git, Postman, VS Code
+ * React, Node.js, Express, MySQL, JavaScript, REST APIs, Git, Postman, VS Code
  */
 export const techStackSkills: SkillItem[] = [
   { name: 'React', icon: 'react', color: '#61DAFB', glowColor: 'rgba(97, 218, 251, 0.45)' },
@@ -11,7 +11,6 @@ export const techStackSkills: SkillItem[] = [
   { name: 'MySQL', icon: 'mysql', color: '#00758F', glowColor: 'rgba(0, 117, 143, 0.5)' },
   { name: 'JavaScript', icon: 'javascript', color: '#F7DF1E', glowColor: 'rgba(247, 223, 30, 0.45)' },
   { name: 'REST APIs', icon: 'restapis', color: '#06B6D4', glowColor: 'rgba(6, 182, 212, 0.45)' },
-  { name: 'Tailwind', icon: 'tailwind', color: '#38BDF8', glowColor: 'rgba(56, 189, 248, 0.45)' },
   { name: 'Git', icon: 'git', color: '#F05032', glowColor: 'rgba(240, 80, 50, 0.45)' },
   { name: 'Postman', icon: 'postman', color: '#FF6C37', glowColor: 'rgba(255, 108, 55, 0.45)' },
   { name: 'VS Code', icon: 'vscode', color: '#007ACC', glowColor: 'rgba(0, 122, 204, 0.45)' },
@@ -28,7 +27,6 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'React', icon: 'react', color: '#61DAFB', glowColor: 'rgba(97, 218, 251, 0.45)' },
       { name: 'JavaScript', icon: 'javascript', color: '#F7DF1E', glowColor: 'rgba(247, 223, 30, 0.45)' },
-      { name: 'Tailwind', icon: 'tailwind', color: '#38BDF8', glowColor: 'rgba(56, 189, 248, 0.45)' },
     ],
   },
   {

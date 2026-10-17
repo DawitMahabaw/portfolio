@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,36 +11,6 @@ import { AnimatedBackground } from './components/ui';
 import { projectsData } from './data';
 
 export default function App() {
-  const [activeProject, setActiveProject] = useState(null);
-
-  useEffect(() => {
-    const syncProjectFromHash = () => {
-      if (window.location.hash.startsWith('#project/')) {
-        const id = window.location.hash.replace('#project/', '');
-        const found = projectsData.find((p) => p.id === id) || null;
-        setActiveProject(found);
-      } else {
-        setActiveProject(null);
-      }
-    };
-    window.addEventListener('hashchange', syncProjectFromHash);
-    syncProjectFromHash();
-    return () => window.removeEventListener('hashchange', syncProjectFromHash);
-  }, []);
-
-  const selectProject = (project) => {
-    setActiveProject(project);
-    window.location.hash = `project/${project.id}`;
-  };
-
-  const returnToProjects = () => {
-    setActiveProject(null);
-    window.location.hash = 'projects';
-    setTimeout(() => {
-      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
-  };
-
   return (
     <div className="portfolio-app">
       <AnimatedBackground />
@@ -51,12 +21,7 @@ export default function App() {
         <Hero />
         <About />
         <Skills />
-        <Projects 
-          projects={projectsData} 
-          activeProject={activeProject}
-          onSelectProject={selectProject} 
-          onCloseProject={returnToProjects}
-        />
+        <Projects projects={projectsData} />
         <Contact />
       </main>
 

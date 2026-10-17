@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Tilt from 'react-parallax-tilt';
-import { ExternalLink, ArrowRight, Code2 } from 'lucide-react';
+import { ExternalLink, ArrowRight, ArrowUpRight, Code2 } from 'lucide-react';
 import TechIcon from './TechIcon';
-import { Button } from './ui';
 
 export function getTagColorScheme(tag) {
   const t = tag.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -25,18 +24,18 @@ export function getProjectGradient(id) {
   switch (id) {
     case 'evangadi-forum':
       return 'linear-gradient(135deg, #1e113a 0%, #0c1a35 50%, #06283d 100%)';
-    case 'amazon-clone':
-      return 'linear-gradient(135deg, #2a1b08 0%, #171c2f 50%, #0d2836 100%)';
-    case 'netflix-clone':
-      return 'linear-gradient(135deg, #350812 0%, #180f24 50%, #0b1c2e 100%)';
-    case 'taskflow-pro':
+    case 'ethiogpt-clone':
       return 'linear-gradient(135deg, #092825 0%, #151d38 50%, #201335 100%)';
+    case 'ethiomovie':
+      return 'linear-gradient(135deg, #350812 0%, #180f24 50%, #0b1c2e 100%)';
+    case 'ethio-apple':
+      return 'linear-gradient(135deg, #161c2e 0%, #10162a 50%, #0c1220 100%)';
     default:
       return 'linear-gradient(135deg, #1E1238 0%, #0A192F 100%)';
   }
 }
 
-export default function ProjectCard({ project, onOpenDetails }) {
+export default function ProjectCard({ project }) {
   const [imgFailed, setImgFailed] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
@@ -51,168 +50,135 @@ export default function ProjectCard({ project, onOpenDetails }) {
     checkTouch();
   }, []);
 
-  const liveUrl = project.liveDemoUrl || project.liveUrl;
+  const destinationUrl = project.liveDemoUrl || project.liveUrl || project.githubUrl;
+  const hasLiveDemo = Boolean(project.liveDemoUrl || project.liveUrl);
   const oneLineDesc = project.tagline || project.shortDescription || project.description;
 
   const cardContent = (
     <article className="project-card" id={`project-${project.id}`}>
-      {/* Screenshot / Gradient Fallback with Image Zoom */}
-      <div 
-        className="project-image-box"
-        onClick={() => onOpenDetails && onOpenDetails(project)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            if (onOpenDetails) {
-              onOpenDetails(project);
-            }
-          }
-        }}
-        aria-label={`View details for ${project.title}`}
+      {/* Primary Clickable Area: Image, Title, Description & Tags */}
+      <a 
+        href={destinationUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="project-card-link-wrapper"
+        aria-label={`${project.title} - ${hasLiveDemo ? 'Open Live Demo' : 'Open GitHub Repository'}`}
       >
-        {!imgFailed && project.image ? (
-          <img 
-            src={project.image} 
-            alt={project.imageAlt || `${project.title} screenshot`}
-            loading="lazy"
-            onError={() => setImgFailed(true)}
-            className="project-screenshot-img"
-          />
-        ) : (
-          <div 
-            className="project-gradient-placeholder"
-            style={{ background: getProjectGradient(project.id) }}
-          >
-            <div className="placeholder-pattern-overlay" />
-            <div className="placeholder-content">
-              <span className="placeholder-icon-badge">
-                <Code2 size={32} />
-              </span>
-              <span className="placeholder-title">{project.title}</span>
-            </div>
-          </div>
-        )}
-
-        <div className="project-image-overlay-vignette" />
-
-        {/* Floating Category Pill */}
-        {project.category && (
-          <span className="project-floating-category">
-            {project.category}
-          </span>
-        )}
-      </div>
-
-      {/* Card Content Body */}
-      <div className="project-card-body">
-        <h3 
-          className="project-title"
-          onClick={() => onOpenDetails && onOpenDetails(project)}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              if (onOpenDetails) {
-                onOpenDetails(project);
-              }
-            }
-          }}
-        >
-          {project.title}
-        </h3>
-
-        {/* One-Line Description */}
-        <p className="project-one-liner">{oneLineDesc}</p>
-
-        {/* Colored Hashtag Tech Tags */}
-        {project.tags && project.tags.length > 0 && (
-          <div className="project-hashtag-tags" aria-label="Project technologies">
-            {project.tags.map((tag) => {
-              const scheme = getTagColorScheme(tag);
-              return (
-                <span 
-                  key={tag} 
-                  className="hashtag-pill"
-                  style={{
-                    '--tag-color': scheme.text,
-                    '--tag-bg': scheme.bg,
-                    '--tag-border': scheme.border,
-                  }}
-                >
-                  #{tag}
-                </span>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Action Row */}
-        <div className="project-card-actions">
-          <div className="project-links-group">
-            {/* Circular Gradient GitHub Button */}
-            {project.githubUrl && (
-              <a 
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-circle-github"
-                aria-label={`View ${project.title} source code on GitHub`}
-                title="View GitHub Repository"
-              >
-                <TechIcon name="github" size={18} />
-              </a>
-            )}
-
-            {/* Live Demo Button */}
-            {liveUrl && (
-              <Button
-                as="a"
-                href={liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="outline"
-                size="sm"
-                className="btn-project-live"
-                icon={<ExternalLink size={14} />}
-                iconPosition="right"
-                aria-label={`Open live demo for ${project.title}`}
-              >
-                Live Demo
-              </Button>
-            )}
-          </div>
-
-          {/* View Details Button */}
-          {onOpenDetails && (
-            <Button
-              type="button"
-              variant="primary"
-              size="sm"
-              className="btn-project-details"
-              onClick={() => onOpenDetails(project)}
-              icon={<ArrowRight size={14} />}
-              iconPosition="right"
+        {/* Screenshot / Fallback with Image Zoom */}
+        <div className="project-image-box">
+          {!imgFailed && project.image ? (
+            <img 
+              src={project.image} 
+              alt={project.imageAlt || `${project.title} screenshot`}
+              loading="lazy"
+              onError={() => setImgFailed(true)}
+              className="project-screenshot-img"
+            />
+          ) : (
+            <div 
+              className="project-gradient-placeholder"
+              style={{ background: getProjectGradient(project.id) }}
             >
-              View Details
-            </Button>
+              <div className="placeholder-pattern-overlay" />
+              <div className="placeholder-content">
+                <span className="placeholder-icon-badge">
+                  <Code2 size={28} />
+                </span>
+                <span className="placeholder-title">{project.title}</span>
+              </div>
+            </div>
+          )}
+
+          <div className="project-image-overlay-vignette" />
+
+          {/* Floating Category Pill */}
+          {project.category && (
+            <span className="project-floating-category">
+              {project.category}
+            </span>
+          )}
+
+          {/* Corner Destination Indicator */}
+          <span className="project-corner-destination" aria-hidden="true">
+            <ArrowUpRight size={17} />
+          </span>
+        </div>
+
+        {/* Card Content Body */}
+        <div className="project-card-body">
+          <div className="project-title-row">
+            <h3 className="project-title">
+              <span>{project.title}</span>
+              <ArrowRight size={16} className="project-title-arrow" aria-hidden="true" />
+            </h3>
+          </div>
+
+          {/* One-Line Description */}
+          <p className="project-one-liner">{oneLineDesc}</p>
+
+          {/* Colored Hashtag Tech Tags */}
+          {project.tags && project.tags.length > 0 && (
+            <div className="project-hashtag-tags" aria-label="Project technologies">
+              {project.tags.map((tag) => {
+                const scheme = getTagColorScheme(tag);
+                return (
+                  <span 
+                    key={tag} 
+                    className="hashtag-pill"
+                    style={{
+                      '--tag-color': scheme.text,
+                      '--tag-bg': scheme.bg,
+                      '--tag-border': scheme.border,
+                    }}
+                  >
+                    #{tag}
+                  </span>
+                );
+              })}
+            </div>
           )}
         </div>
+      </a>
+
+      {/* Action Row: Live Demo button and independent GitHub link */}
+      <div className="project-card-actions">
+        <a 
+          href={destinationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-project-destination"
+          aria-label={`${hasLiveDemo ? 'Launch live demo' : 'View repository'} for ${project.title}`}
+        >
+          <span>{hasLiveDemo ? 'Live Demo' : 'View Project'}</span>
+          <ExternalLink size={13} aria-hidden="true" />
+        </a>
+
+        {project.githubUrl && (
+          <a 
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-circle-github"
+            aria-label={`View ${project.title} source code on GitHub`}
+            title="View GitHub Repository"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <TechIcon name="github" size={17} />
+          </a>
+        )}
       </div>
     </article>
   );
 
   return (
     <Tilt
-      tiltMaxAngleX={7}
-      tiltMaxAngleY={7}
+      tiltMaxAngleX={5}
+      tiltMaxAngleY={5}
       perspective={1000}
-      scale={1.015}
+      scale={1.01}
       transitionSpeed={1000}
       glareEnable={true}
-      glareMaxOpacity={0.16}
+      glareMaxOpacity={0.12}
       glareColor="#A855F7"
       glarePosition="all"
       tiltEnable={!isTouchDevice}

@@ -41,10 +41,6 @@ export default function Navbar() {
     event.preventDefault();
     setIsMenuOpen(false);
 
-    if (window.location.hash.startsWith('#project/')) {
-      window.location.hash = id;
-    }
-
     const target = document.getElementById(id);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });

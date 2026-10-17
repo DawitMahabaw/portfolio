@@ -35,15 +35,6 @@ export default function BottomNav() {
     e.preventDefault();
     setActiveTab(id);
 
-    if (window.location.hash.startsWith('#project/')) {
-      window.location.hash = href;
-      setTimeout(() => {
-        const target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-      return;
-    }
-
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });

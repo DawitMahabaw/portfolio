@@ -45,15 +45,53 @@
 }
 
 /* --------------------------------------------------------------------------
-   Horizontal Infinite Track of Tech Cards
+   Horizontal Scrollable Track of Tech Cards
    -------------------------------------------------------------------------- */
+.tech-stack-carousel-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .tech-stack-marquee-wrapper {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   position: relative;
-  padding: 24px 0 32px 0;
-  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  padding: 24px 12px 28px 12px;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.3) rgba(11, 19, 43, 0.5);
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+
+.tech-stack-marquee-wrapper.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.tech-stack-marquee-wrapper::-webkit-scrollbar {
+  height: 5px;
+}
+
+.tech-stack-marquee-wrapper::-webkit-scrollbar-track {
+  background: rgba(11, 19, 43, 0.4);
+  border-radius: 999px;
+  margin: 0 40px;
+}
+
+.tech-stack-marquee-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.3);
+  border-radius: 999px;
+}
+
+.tech-stack-marquee-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.6);
 }
 
 .tech-stack-track {
@@ -61,13 +99,55 @@
   gap: 20px;
   align-items: center;
   width: max-content;
-  animation: techScroll 35s linear infinite;
   will-change: transform;
 }
 
-.tech-stack-marquee-wrapper:hover .tech-stack-track,
-.tech-stack-marquee-wrapper:focus-within .tech-stack-track {
-  animation-play-state: paused;
+/* Nav Arrows */
+.tech-nav-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(11, 19, 43, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: #38bdf8;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 5;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tech-nav-arrow:hover {
+  transform: scale(1.08);
+  background: rgba(14, 26, 60, 0.95);
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+  color: #ffffff;
+}
+
+.tech-nav-prev {
+  margin-right: -16px;
+}
+
+.tech-nav-next {
+  margin-left: -16px;
+}
+
+/* Subtle scroll hint */
+.tech-scroll-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 /* Individual Tech Stack Card */
@@ -126,21 +206,13 @@
 }
 
 /* --------------------------------------------------------------------------
-   Infinite Loop Animation
-   -------------------------------------------------------------------------- */
-@keyframes techScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50% - 10px));
-  }
-}
-
-/* --------------------------------------------------------------------------
    Responsive adjustments
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
+  .tech-nav-arrow {
+    display: none;
+  }
+
   .tech-card {
     width: 114px;
     height: 122px;
@@ -165,18 +237,10 @@
 
   .tech-stack-track {
     gap: 14px;
-    animation-duration: 25s;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tech-stack-track {
-    animation: none;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 12px;
-  }
-
   .tech-card {
     scroll-snap-align: start;
   }
