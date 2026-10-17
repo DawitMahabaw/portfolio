@@ -292,6 +292,25 @@
 
 .contact-earth-loader { width: 42px; height: 42px; border: 3px solid rgba(56, 189, 248, 0.2); border-top-color: #38bdf8; border-radius: 50%; animation: spinLoader 0.9s linear infinite; }
 
+.contact-earth-fallback-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.earth-fallback-sphere {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #0284c7 0%, #0c4a6e 50%, #030712 100%);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 50px rgba(56, 189, 248, 0.3), inset -15px -15px 40px rgba(0, 0, 0, 0.85);
+  animation: earthHaloPulse 6s ease-in-out infinite alternate;
+}
+
 @media (max-width: 960px) {
   .contact-exact-container { max-width: 590px; grid-template-columns: 1fr; gap: 42px; }
   .contact-earth-container { min-height: 420px; }
