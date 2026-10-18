@@ -134,7 +134,7 @@ export default function Contact() {
                 <label htmlFor="contact-message" className="contact-exact-label">Your Message</label>
                 <div className={`contact-field-shell contact-message-shell ${errors.message ? 'input-has-error' : ''}`}>
                   <MessageSquare size={17} aria-hidden="true" />
-                  <textarea id="contact-message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell me about the project..." rows={4} disabled={isSubmitting} required />
+                  <textarea id="contact-message" name="message" value={formData.message} onChange={handleChange} placeholder="What you want to say?" rows={4} disabled={isSubmitting} required />
                 </div>
                 {errors.message && <span className="contact-error-hint" role="alert">{errors.message}</span>}
               </div>
