@@ -27,7 +27,7 @@ export const aboutHighlights: AboutHighlight[] = [
   { 
     id: 'education', 
     title: 'Information Science', 
-    description: 'Second-year student at Addis Ababa University, studying databases, algorithms and systems design.', 
+    description: 'Second-year student at Addis Ababa University, studying databases, procedural and OOP programming.', 
     icon: 'GraduationCap',
   },
 ];
@@ -79,8 +79,8 @@ export const learningJourneyMilestones: JourneyMilestone[] = [
     id: 'aau-infosci',
     period: '2025 – Present',
     title: 'Information Science at Addis Ababa University',
-    summary: 'Studying relational databases, data structures, algorithms and systems design.',
-    tags: ['Databases', 'Algorithms', 'Systems design'],
+    summary: 'Studying relational databases, procedural and OOP programming.',
+    tags: ['Databases', 'Procedural programming', 'OOP'],
     icon: 'GraduationCap',
     inProgress: true,
   },
