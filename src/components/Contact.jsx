@@ -65,10 +65,14 @@ export default function Contact() {
       const { emailjsServiceId: serviceId, emailjsTemplateId: templateId, emailjsPublicKey: publicKey } = contactData;
       if (serviceId && templateId && publicKey) {
         await emailjs.send(serviceId, templateId, {
+          name: formData.name.trim(),
           from_name: formData.name.trim(),
+          email: formData.email.trim(),
           from_email: formData.email.trim(),
+          reply_to: formData.email.trim(),
           message: formData.message.trim(),
           to_name: personalData.name,
+          title: `Portfolio Inquiry from ${formData.name.trim()}`,
         }, publicKey);
       } else {
         await new Promise((resolve) => setTimeout(resolve, 650));
