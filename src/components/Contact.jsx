@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Loader2, Mail, MessageSquare, Send, UserRound } from 'lucide-react';
 import emailjs from '@emailjs/browser';
@@ -37,10 +37,18 @@ function validate(formData) {
 
 export default function Contact() {
   const shouldReduceMotion = useReducedMotion();
+  const emailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactData.email)}&su=${encodeURIComponent('Portfolio inquiry')}`;
   const [formData, setFormData] = useState(emptyForm);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (status?.type !== 'success') return undefined;
+
+    const dismissTimer = window.setTimeout(() => setStatus(null), 5000);
+    return () => window.clearTimeout(dismissTimer);
+  }, [status]);
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((current) => ({ ...current, [name]: value }));
@@ -63,27 +71,27 @@ export default function Contact() {
 
     try {
       const { emailjsServiceId: serviceId, emailjsTemplateId: templateId, emailjsPublicKey: publicKey } = contactData;
-      if (serviceId && templateId && publicKey) {
-        await emailjs.send(serviceId, templateId, {
-          name: formData.name.trim(),
-          from_name: formData.name.trim(),
-          email: formData.email.trim(),
-          from_email: formData.email.trim(),
-          reply_to: formData.email.trim(),
-          message: formData.message.trim(),
-          to_name: personalData.name,
-          title: `Portfolio Inquiry from ${formData.name.trim()}`,
-        }, publicKey);
-      } else {
-        await new Promise((resolve) => setTimeout(resolve, 650));
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('The email service is not configured.');
       }
+
+      await emailjs.send(serviceId, templateId, {
+        name: formData.name.trim(),
+        from_name: formData.name.trim(),
+        email: formData.email.trim(),
+        from_email: formData.email.trim(),
+        reply_to: formData.email.trim(),
+        message: formData.message.trim(),
+        to_name: personalData.name,
+        title: `Portfolio Inquiry from ${formData.name.trim()}`,
+      }, publicKey);
 
       const sender = formData.name.trim();
       setFormData(emptyForm);
-      setStatus({ type: 'success', message: `Thanks, ${sender}. Your message is on its way.` });
+      setStatus({ type: 'success', message: `Thanks, ${sender}. Your message was sent successfully.` });
     } catch (error) {
       console.error('EmailJS error:', error);
-      setStatus({ type: 'error', message: error?.text || `There was an issue sending your message. Please email ${contactData.email} directly.` });
+      setStatus({ type: 'error', message: `There was an issue sending your message. Please email ${contactData.email} directly.` });
     } finally {
       setIsSubmitting(false);
     }
@@ -158,10 +166,12 @@ export default function Contact() {
               </a>
               <span aria-hidden="true" />
               <a 
-                href={`mailto:${contactData.email}`} 
+                href={emailHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="contact-quick-link"
-                title="Send email"
-                aria-label="Send email"
+                title="Compose email in Gmail"
+                aria-label="Compose email in Gmail"
               >
                 <Mail size={16} />
                 <span>Email</span>

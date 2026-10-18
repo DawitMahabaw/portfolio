@@ -9,6 +9,8 @@ import { Button } from './ui';
 import '../styles/Hero.css';
 
 export default function Hero() {
+  const emailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(personalData.socials.email)}&su=${encodeURIComponent('Portfolio inquiry')}`;
+
   const scrollTo = (event, id) => {
     event.preventDefault();
     const target = document.getElementById(id);
@@ -101,10 +103,12 @@ export default function Hero() {
                     <TechIcon name="linkedin" size={17} />
                   </a>
                   <a
-                    href={`mailto:${personalData.socials.email}`}
+                    href={emailHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="hero-social-icon-btn"
-                    title="Send email"
-                    aria-label="Send email"
+                    title="Compose email in Gmail"
+                    aria-label="Compose email in Gmail"
                   >
                     <Mail size={17} />
                   </a>
