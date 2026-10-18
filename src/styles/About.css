@@ -544,6 +544,7 @@
   width: calc(50% - 40px);
   margin-right: auto;
   position: relative;
+  order: 1;
 }
 
 .item-left .journey-card-col::after {
@@ -564,6 +565,7 @@
   padding-left: 32px;
   padding-top: 24px;
   text-align: left;
+  order: 2;
 }
 
 .item-left .journey-card-pointer {
@@ -956,6 +958,12 @@
     flex-direction: column !important;
     padding-left: 50px;
     width: 100%;
+  }
+
+  /* Desktop ordering only: keep the established date-then-card mobile flow. */
+  .journey-date-col,
+  .journey-card-col {
+    order: initial;
   }
 
   .journey-node-container {
