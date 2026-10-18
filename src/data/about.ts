@@ -21,7 +21,7 @@ export const aboutHighlights: AboutHighlight[] = [
   { 
     id: 'bootcamp', 
     title: '1000+ hours', 
-    description: 'Hands-on MERN bootcamp training at Evangadi Networks, covering React, Node.js, Express, MySQL and REST APIs.', 
+    description: 'Hands-on AI-powered MERN training at Evangadi Networks: React, Node.js, MySQL, REST APIs and AI integration.', 
     icon: 'Clock',
   },
   { 

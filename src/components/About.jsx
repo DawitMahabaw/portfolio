@@ -141,13 +141,6 @@ export default function About() {
         <div className="journey-section-wrapper">
           <div className="journey-section-header">
             <Reveal variant="fade-up" delay={0.1}>
-              <div className="about-eyebrow">
-                <span className="eyebrow-dash" aria-hidden="true">—</span>
-                <span>MY JOURNEY</span>
-              </div>
-            </Reveal>
-
-            <Reveal variant="fade-up" delay={0.16}>
               <h3 className="journey-section-title">
                 My path to full-stack
               </h3>
