@@ -4,7 +4,7 @@ import type { AboutHighlight, LearningPathItem, AboutPhotoData, JourneyMilestone
  * Clean, concise first-person intro matching the portfolio design.
  */
 export const aboutIntro = 
-  "I build full-stack web apps with React, Node.js, Express and MySQL. I'm a second-year Information Science student at Addis Ababa University and finished 400+ hours of MERN training at Evangadi Networks. My projects include a Q&A forum with semantic search and an AI chatbot. I'm looking for a developer role where I can ship real features and keep growing.";
+  "I build full-stack web apps with React, Node.js, Express and MySQL. I'm a second-year Information Science student at Addis Ababa University and finished 1000+ hours of MERN training at Evangadi Networks. My projects include a Q&A forum with semantic search and an AI chatbot. I'm looking for a developer role where I can ship real features and keep growing.";
 
 export const aboutBio = aboutIntro;
 
@@ -15,19 +15,19 @@ export const aboutHighlights: AboutHighlight[] = [
   { 
     id: 'projects', 
     title: '12+ projects built', 
-    description: '2+ full-stack and 10+ front-end builds. Highlights: a Q&A forum with semantic search and an AI chatbot.', 
+    description: '2+ full-stack and 10+ front-end apps, including a Q&A forum with semantic search and an AI chatbot, both live.', 
     icon: 'Code2',
   },
   { 
     id: 'bootcamp', 
-    title: '400+ hours', 
-    description: 'Hands-on MERN bootcamp training at Evangadi Networks.', 
+    title: '1000+ hours', 
+    description: 'Hands-on MERN bootcamp training at Evangadi Networks, covering React, Node.js, Express, MySQL and REST APIs.', 
     icon: 'Clock',
   },
   { 
     id: 'education', 
     title: 'Information Science', 
-    description: 'Second-year student at Addis Ababa University.', 
+    description: 'Second-year student at Addis Ababa University, studying databases, algorithms and systems design.', 
     icon: 'GraduationCap',
   },
 ];
@@ -88,7 +88,7 @@ export const learningJourneyMilestones: JourneyMilestone[] = [
     id: 'evangadi-bootcamp',
     period: 'Mar – Oct 2026',
     title: 'Full-stack bootcamp at Evangadi Networks',
-    summary: 'Completed 400+ hours of MERN training, then built a Q&A forum with semantic search and an AI chatbot.',
+    summary: 'Completed 1000+ hours of MERN training, then built a Q&A forum with semantic search and an AI chatbot.',
     tags: ['React', 'Node.js', 'Express', 'MySQL'],
     icon: 'Rocket',
     highlighted: true,
@@ -120,7 +120,7 @@ export const learningPath: LearningPathItem[] = [
   {
     id: 'evangadi-mern',
     year: '2024 — 2025',
-    period: '400+ Hours Intensive Immersion',
+    period: '1000+ Hours Intensive Immersion',
     title: 'Full-Stack MERN Stack Course',
     institution: 'Evangadi Networks',
     role: 'Full-Stack Developer Trainee',

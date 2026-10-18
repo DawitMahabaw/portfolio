@@ -100,9 +100,9 @@ export default function About() {
                       <p className="pillar-desc">
                         {item.id === 'projects' ? (
                           <>
-                            2+ full-stack and 10+ front-end builds. Highlights: a{' '}
+                            2+ full-stack and 10+ front-end apps, including a{' '}
                             <span className="pillar-highlight">Q&A forum with semantic search</span> and an{' '}
-                            <span className="pillar-highlight">AI chatbot</span>.
+                            <span className="pillar-highlight">AI chatbot</span>, both live.
                           </>
                         ) : (
                           item.description
