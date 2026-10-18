@@ -206,27 +206,6 @@
 .contact-quick-link { display: inline-flex; align-items: center; gap: 6px; color: #b9d7fb; font: inherit; font-size: 0.76rem; font-weight: 600; transition: color 180ms ease, transform 180ms ease; }
 .contact-quick-link:hover { color: #6de5fa; transform: translateY(-1px); }
 
-.contact-email-quick-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  border-radius: 50%;
-  cursor: pointer;
-  background: rgba(16, 188, 230, 0.08);
-  border: 1px solid rgba(16, 188, 230, 0.25);
-  color: #b9d7fb;
-  transition: all 180ms ease;
-}
-
-.contact-email-quick-link:hover {
-  background: rgba(16, 188, 230, 0.22);
-  border-color: rgba(16, 188, 230, 0.6);
-  color: #ffffff;
-  transform: translateY(-1px);
-}
 
 /* Contact Earth canvas */
 .contact-earth-reveal-wrapper { display: flex; align-items: center; justify-content: center; }

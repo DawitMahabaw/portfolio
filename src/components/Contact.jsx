@@ -159,11 +159,12 @@ export default function Contact() {
               <span aria-hidden="true" />
               <a 
                 href={`mailto:${contactData.email}`} 
-                className="contact-quick-link contact-email-quick-link"
-                title={`Send email to ${contactData.email}`}
-                aria-label={`Send email to ${contactData.email}`}
+                className="contact-quick-link"
+                title="Send email"
+                aria-label="Send email"
               >
-                <Mail size={15} />
+                <Mail size={16} />
+                <span>Email</span>
               </a>
             </div>
           </div>

@@ -103,8 +103,8 @@ export default function Hero() {
                   <a
                     href={`mailto:${personalData.socials.email}`}
                     className="hero-social-icon-btn"
-                    title={`Send email to ${personalData.socials.email}`}
-                    aria-label={`Email ${personalData.name}`}
+                    title="Send email"
+                    aria-label="Send email"
                   >
                     <Mail size={17} />
                   </a>
