@@ -541,22 +541,34 @@
 }
 
 .item-left .journey-card-col {
-  width: calc(50% - 38px);
+  width: calc(50% - 40px);
   margin-right: auto;
   position: relative;
 }
 
+.item-left .journey-card-col::after {
+  content: '';
+  position: absolute;
+  top: 34px;
+  right: -18px;
+  width: 18px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.4) 0%, rgba(56, 189, 248, 0.8) 100%);
+  z-index: 2;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
 .item-left .journey-date-col {
-  width: calc(50% - 38px);
+  width: calc(50% - 40px);
   margin-left: auto;
-  padding-left: 28px;
+  padding-left: 32px;
   padding-top: 24px;
   text-align: left;
 }
 
 .item-left .journey-card-pointer {
   position: absolute;
-  top: 26px;
+  top: 25px;
   right: -9px;
   width: 0;
   height: 0;
@@ -571,22 +583,34 @@
 }
 
 .item-right .journey-card-col {
-  width: calc(50% - 38px);
+  width: calc(50% - 40px);
   margin-left: auto;
   position: relative;
 }
 
+.item-right .journey-card-col::after {
+  content: '';
+  position: absolute;
+  top: 34px;
+  left: -18px;
+  width: 18px;
+  height: 2px;
+  background: linear-gradient(270deg, rgba(56, 189, 248, 0.4) 0%, rgba(56, 189, 248, 0.8) 100%);
+  z-index: 2;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
 .item-right .journey-date-col {
-  width: calc(50% - 38px);
+  width: calc(50% - 40px);
   margin-right: auto;
-  padding-right: 28px;
+  padding-right: 32px;
   padding-top: 24px;
   text-align: right;
 }
 
 .item-right .journey-card-pointer {
   position: absolute;
-  top: 26px;
+  top: 25px;
   left: -9px;
   width: 0;
   height: 0;
@@ -594,6 +618,11 @@
   border-bottom: 9px solid transparent;
   border-right: 9px solid #10162f;
   z-index: 3;
+}
+
+.journey-timeline-item:hover .journey-card-col::after {
+  background: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
 }
 
 /* Highlighted item pointer colors */
@@ -957,6 +986,10 @@
   .journey-card-col {
     width: 100% !important;
     margin: 0 !important;
+  }
+
+  .journey-card-col::after {
+    display: none !important;
   }
 
   .journey-card-pointer {

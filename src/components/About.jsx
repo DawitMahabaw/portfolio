@@ -120,14 +120,14 @@ export default function About() {
                 </div>
                 <p className="about-availability-line">
                   <span className="availability-status-dot" aria-hidden="true" />
-                  <span>Open to junior roles · Addis Ababa</span>
+                  <span>Open to opportunities · Addis Ababa</span>
                 </p>
               </div>
             </Reveal>
           </div>
         </div>
 
-        {/* My Learning Journey Subsection */}
+        {/* My Journey Subsection */}
         <div className="journey-section-wrapper">
           <div className="journey-section-header">
             <Reveal variant="fade-up" delay={0.1}>
@@ -139,13 +139,13 @@ export default function About() {
 
             <Reveal variant="fade-up" delay={0.16}>
               <h3 className="journey-section-title">
-                From curious student to full-stack developer
+                My path to full-stack
               </h3>
             </Reveal>
 
             <Reveal variant="fade-up" delay={0.22}>
               <p className="journey-section-subtitle">
-                The key steps that shaped how I learn and build.
+                From my first lines of C++ to shipping real apps.
               </p>
             </Reveal>
           </div>
@@ -159,10 +159,11 @@ export default function About() {
                 {learningJourneyMilestones.map((milestone, index) => {
                   const Icon = milestoneIcons[milestone.icon] || Terminal;
                   const isLeft = index % 2 === 0;
+                  const revealVariant = isLeft ? 'fade-left' : 'fade-right';
 
                   return (
                     <li key={milestone.id} className="journey-timeline-row">
-                      <RevealItem variant="fade-up" style={{ width: '100%' }}>
+                      <RevealItem variant={revealVariant} style={{ width: '100%' }}>
                         <article 
                           className={`journey-timeline-item ${isLeft ? 'item-left' : 'item-right'} ${milestone.highlighted ? 'item-highlighted' : ''}`} 
                           aria-labelledby={`milestone-title-${milestone.id}`}
@@ -187,7 +188,7 @@ export default function About() {
                             </div>
                           </div>
 
-                          {/* Milestone Card Column with Pointer Arrow */}
+                          {/* Milestone Card Column with Pointer Arrow & Connector */}
                           <div className={`journey-card-col ${milestone.highlighted ? 'card-col-highlighted' : ''}`}>
                             <div className="journey-card">
                               <div className="journey-card-pointer" aria-hidden="true" />
@@ -224,7 +225,7 @@ export default function About() {
               <div className="journey-closing-wrapper">
                 <p className="journey-closing-line">
                   <span className="journey-closing-dot" aria-hidden="true" />
-                  Now: open to junior developer roles.
+                  Now: ready to join a team and build real products.
                 </p>
               </div>
             </Reveal>

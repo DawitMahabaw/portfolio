@@ -4,7 +4,7 @@ import type { AboutHighlight, LearningPathItem, AboutPhotoData, JourneyMilestone
  * Clean, concise first-person intro matching the portfolio design.
  */
 export const aboutIntro = 
-  "I build full-stack web apps with React, Node.js, Express and MySQL. I'm a second-year Information Science student at Addis Ababa University and finished 400+ hours of MERN training at Evangadi Networks. My projects include a Q&A forum with semantic search and an AI chatbot. I'm looking for a junior developer role where I can ship real features and keep growing.";
+  "I build full-stack web apps with React, Node.js, Express and MySQL. I'm a second-year Information Science student at Addis Ababa University and finished 400+ hours of MERN training at Evangadi Networks. My projects include a Q&A forum with semantic search and an AI chatbot. I'm looking for a developer role where I can ship real features and keep growing.";
 
 export const aboutBio = aboutIntro;
 
@@ -40,7 +40,7 @@ export const aboutPhoto: AboutPhotoData & { caption?: string } = {
   fallbackImage: '/images/dawit-portrait.jpg',
   alt: 'Dawit Mahabaw - Full-Stack Developer',
   caption: 'Dawit Mahabaw · Full-stack developer · Addis Ababa',
-  badge: 'Junior Developer',
+  badge: 'Full-Stack Developer',
   subBadge: 'AAU InfoSci · Evangadi Graduate',
   status: 'Open to Work',
   location: 'Addis Ababa, Ethiopia',
