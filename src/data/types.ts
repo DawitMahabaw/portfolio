@@ -37,13 +37,15 @@ export interface JourneyMilestoneSubItem {
 
 export interface JourneyMilestone {
   id: string;
-  step: string;
+  step?: string;
   period: string;
   title: string;
   summary: string;
   subItems?: JourneyMilestoneSubItem[];
   tags: string[];
   icon: string;
+  inProgress?: boolean;
+  highlighted?: boolean;
 }
 
 export interface LearningPathItem {

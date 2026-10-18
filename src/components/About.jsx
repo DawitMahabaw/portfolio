@@ -4,9 +4,9 @@ import {
   Clock, 
   GraduationCap, 
   Terminal, 
-  Layout, 
+  Trophy,
+  Award,
   Rocket, 
-  Calendar,
   ArrowRight
 } from 'lucide-react';
 import { 
@@ -26,7 +26,8 @@ const highlightIcons = {
 
 const milestoneIcons = {
   Terminal,
-  Layout,
+  Trophy,
+  Award,
   GraduationCap,
   Rocket,
 };
@@ -132,90 +133,101 @@ export default function About() {
             <Reveal variant="fade-up" delay={0.1}>
               <div className="about-eyebrow">
                 <span className="eyebrow-dash" aria-hidden="true">—</span>
-                <span>MY LEARNING JOURNEY</span>
+                <span>MY JOURNEY</span>
               </div>
             </Reveal>
 
             <Reveal variant="fade-up" delay={0.16}>
               <h3 className="journey-section-title">
-                From Foundations to Full-Stack Engineering
+                From curious student to full-stack developer
               </h3>
             </Reveal>
 
             <Reveal variant="fade-up" delay={0.22}>
               <p className="journey-section-subtitle">
-                A visual timeline of my progression—from early programming logic to modern full-stack web applications.
+                The key steps that shaped how I learn and build.
               </p>
             </Reveal>
           </div>
 
-          {/* Vertical Responsive Timeline */}
+          {/* Vertical Responsive Alternating Timeline */}
           <div className="journey-timeline">
             <div className="journey-timeline-track" aria-hidden="true" />
             
             <RevealStagger className="journey-timeline-items" staggerChildren={0.12} delayChildren={0.25}>
-              {learningJourneyMilestones.map((milestone) => {
-                const Icon = milestoneIcons[milestone.icon] || Terminal;
-                return (
-                  <RevealItem key={milestone.id} variant="fade-up">
-                    <article className="journey-timeline-item" aria-labelledby={`milestone-title-${milestone.id}`}>
-                      {/* Node / Marker */}
-                      <div className="journey-node-container" aria-hidden="true">
-                        <div className="journey-node-icon">
-                          <Icon size={18} />
-                        </div>
-                      </div>
+              <ol className="journey-timeline-list">
+                {learningJourneyMilestones.map((milestone, index) => {
+                  const Icon = milestoneIcons[milestone.icon] || Terminal;
+                  const isLeft = index % 2 === 0;
 
-                      {/* Milestone Card Body */}
-                      <div className="journey-card">
-                        <div className="journey-card-header">
-                          <div className="journey-card-badge-row">
-                            <span className="journey-step-badge">Milestone {milestone.step}</span>
-                            <span className="journey-period-pill">
-                              <Calendar size={13} aria-hidden="true" />
-                              {milestone.period}
-                            </span>
+                  return (
+                    <li key={milestone.id} className="journey-timeline-row">
+                      <RevealItem variant="fade-up" style={{ width: '100%' }}>
+                        <article 
+                          className={`journey-timeline-item ${isLeft ? 'item-left' : 'item-right'} ${milestone.highlighted ? 'item-highlighted' : ''}`} 
+                          aria-labelledby={`milestone-title-${milestone.id}`}
+                        >
+                          {/* Central Circular Node with Icon */}
+                          <div className="journey-node-container" aria-hidden="true">
+                            <div className={`journey-node-icon ${milestone.highlighted ? 'node-highlighted' : ''}`}>
+                              <Icon size={20} />
+                            </div>
                           </div>
-                          <h4 id={`milestone-title-${milestone.id}`} className="journey-card-title">
-                            {milestone.title}
-                          </h4>
-                        </div>
 
-                        <p className="journey-card-summary">{milestone.summary}</p>
+                          {/* Date Column (opposite the card on desktop) */}
+                          <div className="journey-date-col">
+                            <div className="journey-date-badge">
+                              <span className="journey-date-text">{milestone.period}</span>
+                              {milestone.inProgress && (
+                                <span className="journey-in-progress-pill">
+                                  <span className="in-progress-pulse" aria-hidden="true" />
+                                  In progress
+                                </span>
+                              )}
+                            </div>
+                          </div>
 
-                        {/* Dual Sub-Items for Higher Education vs Bootcamp */}
-                        {milestone.subItems && milestone.subItems.length > 0 && (
-                          <div className="journey-subitems-grid">
-                            {milestone.subItems.map((sub, idx) => (
-                              <div key={idx} className="journey-subitem-box">
-                                <div className="journey-subitem-top">
-                                  <span className="journey-subitem-type">{sub.type}</span>
-                                  <span className="journey-subitem-period">{sub.period}</span>
-                                </div>
-                                <h5 className="journey-subitem-inst">{sub.institution}</h5>
-                                <p className="journey-subitem-degree">{sub.degree}</p>
-                                <p className="journey-subitem-note">{sub.note}</p>
+                          {/* Milestone Card Column with Pointer Arrow */}
+                          <div className={`journey-card-col ${milestone.highlighted ? 'card-col-highlighted' : ''}`}>
+                            <div className="journey-card">
+                              <div className="journey-card-pointer" aria-hidden="true" />
+
+                              <div className="journey-card-header">
+                                <h4 id={`milestone-title-${milestone.id}`} className="journey-card-title">
+                                  {milestone.title}
+                                </h4>
                               </div>
-                            ))}
-                          </div>
-                        )}
 
-                        {/* Technology and Focus Tags */}
-                        {milestone.tags && milestone.tags.length > 0 && (
-                          <div className="journey-tags-row">
-                            {milestone.tags.map((tag) => (
-                              <span key={tag} className="journey-tech-tag">
-                                {tag}
-                              </span>
-                            ))}
+                              <p className="journey-card-summary">{milestone.summary}</p>
+
+                              {milestone.tags && milestone.tags.length > 0 && (
+                                <div className="journey-tags-row">
+                                  {milestone.tags.map((tag) => (
+                                    <span key={tag} className="journey-tech-tag">
+                                      {tag}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           </div>
-                        )}
-                      </div>
-                    </article>
-                  </RevealItem>
-                );
-              })}
+                        </article>
+                      </RevealItem>
+                    </li>
+                  );
+                })}
+              </ol>
             </RevealStagger>
+
+            {/* Closing Line below timeline */}
+            <Reveal variant="fade-up" delay={0.35}>
+              <div className="journey-closing-wrapper">
+                <p className="journey-closing-line">
+                  <span className="journey-closing-dot" aria-hidden="true" />
+                  Now: open to junior developer roles.
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>
