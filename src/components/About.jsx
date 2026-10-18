@@ -97,7 +97,17 @@ export default function About() {
                         <Icon size={20} />
                       </div>
                       <h3 className="pillar-title">{item.title}</h3>
-                      <p className="pillar-desc">{item.description}</p>
+                      <p className="pillar-desc">
+                        {item.id === 'projects' ? (
+                          <>
+                            2+ full-stack and 10+ front-end builds. Highlights: a{' '}
+                            <span className="pillar-highlight">Q&A forum with semantic search</span> and an{' '}
+                            <span className="pillar-highlight">AI chatbot</span>.
+                          </>
+                        ) : (
+                          item.description
+                        )}
+                      </p>
                     </div>
                   </RevealItem>
                 );

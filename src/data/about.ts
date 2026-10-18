@@ -14,8 +14,8 @@ export const aboutBio = aboutIntro;
 export const aboutHighlights: AboutHighlight[] = [
   { 
     id: 'projects', 
-    title: '2 full-stack projects', 
-    description: 'A Q&A forum with semantic search and an AI chatbot, both live.', 
+    title: '12+ projects built', 
+    description: '2+ full-stack and 10+ front-end builds. Highlights: a Q&A forum with semantic search and an AI chatbot.', 
     icon: 'Code2',
   },
   { 
