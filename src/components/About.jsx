@@ -7,7 +7,8 @@ import {
   Trophy,
   Award,
   Rocket, 
-  ArrowRight
+  ArrowRight,
+  FileText
 } from 'lucide-react';
 import { 
   aboutHighlights, 
@@ -15,6 +16,7 @@ import {
   aboutPhoto, 
   learningJourneyMilestones 
 } from '../data/about';
+import { personalData } from '../data/personal';
 import { Reveal, RevealStagger, RevealItem } from './Reveal';
 import '../styles/About.css';
 
@@ -126,6 +128,17 @@ export default function About() {
                   >
                     <span>Get in touch</span>
                     <ArrowRight size={18} aria-hidden="true" />
+                  </a>
+
+                  <a 
+                    href={personalData.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="about-btn-secondary"
+                    aria-label="View and Download Dawit Mahabaw's CV"
+                  >
+                    <FileText size={18} aria-hidden="true" />
+                    <span>View CV</span>
                   </a>
                 </div>
                 <p className="about-availability-line">

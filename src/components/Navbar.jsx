@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personalData } from '../data';
 import '../styles/Navbar.css';
@@ -88,6 +88,17 @@ export default function Navbar() {
         </nav>
 
         <div className="navbar-actions">
+          <a 
+            href={personalData.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-nav-resume"
+            aria-label="View and Download Dawit Mahabaw's Resume"
+          >
+            <FileText size={15} />
+            <span>Resume</span>
+          </a>
+
           <button 
             type="button" 
             className="mobile-menu-toggle" 
@@ -125,6 +136,18 @@ export default function Navbar() {
                   </a>
                 </li>
               ))}
+              <li style={{ marginTop: '12px' }}>
+                <a 
+                  href={personalData.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-nav-resume mobile-resume-btn"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <FileText size={16} />
+                  <span>View Resume</span>
+                </a>
+              </li>
             </ul>
           </motion.nav>
         )}
