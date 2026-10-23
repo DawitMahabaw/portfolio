@@ -70,8 +70,8 @@
     letter-spacing: 0.02em;
   }
 
-  /* Add padding to the footer on mobile to ensure it does not overlap with the bottom bar */
-  .footer {
-    padding-bottom: 96px;
+  /* Ensure footer content is comfortably above mobile bottom bar */
+  .footer-section {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
