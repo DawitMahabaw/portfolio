@@ -3,10 +3,9 @@
   position: relative;
   isolation: isolate;
   display: flex;
-  min-height: 100vh;
   align-items: center;
   overflow: hidden;
-  padding: clamp(108px, 11vw, 142px) 0 clamp(78px, 8vw, 112px);
+  padding: clamp(56px, 6vw, 76px) 0 clamp(16px, 2vw, 24px);
   background:
     radial-gradient(ellipse 52% 68% at 75% 45%, rgba(5, 67, 122, 0.22), transparent 76%),
     radial-gradient(ellipse 38% 58% at 16% 55%, rgba(104, 46, 189, 0.12), transparent 73%),
@@ -209,12 +208,12 @@
 
 /* Contact Earth canvas */
 .contact-earth-reveal-wrapper { display: flex; align-items: center; justify-content: center; }
-.contact-earth-container { display: flex; width: 100%; min-height: 540px; align-items: center; justify-content: center; }
+.contact-earth-container { display: flex; width: 100%; min-height: 520px; align-items: center; justify-content: center; }
 .contact-earth-3d-wrapper {
   position: relative;
   isolation: isolate;
-  width: min(100%, 640px);
-  height: 580px;
+  width: min(100%, 620px);
+  height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -295,7 +294,7 @@
 }
 
 @media (max-width: 520px) {
-  .contact-exact-section { padding-top: 96px; }
+  .contact-exact-section { padding-top: 50px; padding-bottom: 16px; }
   .contact-exact-container { padding-inline: 17px; }
   .contact-exact-card { padding: 24px 18px 20px; border-radius: 20px; }
   .contact-card-eyebrow { font-size: 0.68rem; letter-spacing: 0.27em; }
