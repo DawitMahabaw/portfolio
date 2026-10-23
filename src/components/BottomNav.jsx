@@ -37,7 +37,22 @@ export default function BottomNav() {
 
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      if (id === 'home') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } else {
+        const navHeight = 76;
+        const targetRect = target.getBoundingClientRect();
+        const targetTop = targetRect.top + window.pageYOffset;
+        const scrollPosition = Math.max(0, Math.round(targetTop - navHeight));
+
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: 'smooth'
+        });
+      }
       window.history.replaceState(null, '', href);
     }
   };
