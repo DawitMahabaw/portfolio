@@ -5,7 +5,8 @@
 .about-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(70px, 9vw, 120px) 0;
+  padding-top: clamp(70px, 9vw, 120px);
+  padding-bottom: clamp(24px, 3.5vw, 40px);
   background: transparent;
 }
 
