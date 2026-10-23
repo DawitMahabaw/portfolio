@@ -121,10 +121,15 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   /* Decorative effects must never create a second horizontal page axis. */
   overflow-x: clip;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
 }
 
 body {
