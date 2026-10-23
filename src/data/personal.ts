@@ -1,4 +1,5 @@
 import type { PersonalData } from './types';
+import resumeUrl from '../assets/Dawit Mahabaw - Full-Stack Developer CV Final.pdf';
 
 export const personalData: PersonalData = {
   name: 'Dawit Mahabaw',
@@ -15,8 +16,8 @@ export const personalData: PersonalData = {
   heroImageAlt: 'Portrait of Dawit Mahabaw',
   aboutImage: '/images/dawit-portrait.jpg',
   aboutImageAlt: 'Dawit Mahabaw - Full-Stack Developer',
-  resumeUrl: '/assets/developer-CV.pdf',
-  resumeFileName: 'Dawit-Mahabaw-Resume.pdf',
+  resumeUrl,
+  resumeFileName: 'Dawit Mahabaw - Full-Stack Developer CV Final.pdf',
   socials: {
     email: 'dawitmahabaw03@gmail.com',
     github: 'https://github.com/DawitMahabaw',
